@@ -40,11 +40,10 @@ const FeaturesSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Core Capabilities</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Everything You Need for <span className="text-gradient">Intelligent Feedback</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Core Capabilities
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-lg">
             From AI-powered survey creation to real-time sentiment analysis — AgentVista covers the entire feedback lifecycle.
           </p>
         </motion.div>
@@ -60,13 +59,17 @@ const FeaturesSection = () => {
             <motion.div
               key={f.title}
               variants={item}
-              className="group p-6 rounded-xl bg-background border border-border/60 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+              className="group relative p-6 rounded-xl bg-background border border-border/60 transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 overflow-hidden"
             >
-              <div className="w-11 h-11 rounded-lg bg-accent flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                <f.icon size={22} className="text-primary" />
+              {/* Hover background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10">
+                <div className="w-11 h-11 rounded-lg bg-accent flex items-center justify-center mb-4 group-hover:bg-primary/10 group-hover:scale-110 transition-all duration-300">
+                  <f.icon size={22} className="text-primary" />
+                </div>
+                <h3 className="font-semibold text-foreground mb-2">{f.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
-              <h3 className="font-semibold text-foreground mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </motion.div>

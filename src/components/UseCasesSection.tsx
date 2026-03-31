@@ -97,11 +97,10 @@ const UseCasesSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Use Cases</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Built for <span className="text-gradient">Every Team</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Use Cases
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-lg">
             AgentVista adapts to your business needs across sales, support, HR, marketing, and more.
           </p>
         </motion.div>
@@ -132,29 +131,35 @@ const UseCasesSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3 }}
-            className="max-w-3xl mx-auto"
+            className="max-w-4xl mx-auto"
           >
-            <div className="bg-background rounded-2xl border border-border/60 p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                  <activeCase.icon size={20} className="text-primary" />
+            <div className="bg-background rounded-2xl border border-border/60 p-8 shadow-sm grid md:grid-cols-[1fr,auto] gap-8 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
+                    <activeCase.icon size={20} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">{activeCase.label}</h3>
                 </div>
-                <h3 className="text-xl font-bold text-foreground">{activeCase.label}</h3>
+                <ul className="space-y-4">
+                  {activeCase.items.map((item, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.08 }}
+                      className="flex items-start gap-3"
+                    >
+                      <span className="mt-1.5 w-2 h-2 rounded-full bg-secondary shrink-0" />
+                      <span className="text-muted-foreground text-sm leading-relaxed">{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-4">
-                {activeCase.items.map((item, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                    className="flex items-start gap-3"
-                  >
-                    <span className="mt-1.5 w-2 h-2 rounded-full bg-secondary shrink-0" />
-                    <span className="text-muted-foreground text-sm leading-relaxed">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
+              {/* Illustration */}
+              <div className="hidden md:flex w-40 h-40 rounded-2xl bg-accent/50 items-center justify-center">
+                <activeCase.icon size={64} className="text-primary/30" />
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>

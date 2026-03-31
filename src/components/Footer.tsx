@@ -1,28 +1,123 @@
 import logo from "@/assets/agent-vista-logo.svg";
 
+const quickLinks = [
+  { label: "Features", href: "#features" },
+  { label: "Use Cases", href: "#use-cases" },
+  { label: "Benefits", href: "#benefits" },
+  { label: "Contact Us", href: "#contact" },
+];
+
+const companyLinks = [
+  { label: "About Us", href: "https://surveyvista.com/about-us/" },
+  { label: "Our Customers", href: "https://surveyvista.com/our-customers/" },
+  { label: "Resources", href: "https://surveyvista.com/resources/" },
+];
+
 const Footer = () => {
   return (
-    <footer className="py-12 border-t border-border bg-card">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="AgentVista" className="h-8" />
+    <footer className="bg-card border-t border-border">
+      <div className="container mx-auto px-4 lg:px-8 py-14">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <img src={logo} alt="AgentVista" className="h-9 mb-4" />
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              100% Native Salesforce Surveys, Forms, and Assessments — Seamless Data Collection with AI-Powered Insights to Drive Better Results.
+            </p>
+            <div className="flex items-center gap-3 mt-5">
+              {["instagram", "facebook", "x", "linkedin", "youtube"].map((s) => (
+                <a
+                  key={s}
+                  href="#"
+                  className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  aria-label={s}
+                >
+                  <SocialIcon name={s} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="flex items-center gap-8">
-            <a href="#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</a>
-            <a href="#use-cases" className="text-sm text-muted-foreground hover:text-primary transition-colors">Use Cases</a>
-            <a href="#benefits" className="text-sm text-muted-foreground hover:text-primary transition-colors">Benefits</a>
-            <a href="#pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">Pricing</a>
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-bold text-foreground mb-4">Quick Links</h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
+          {/* Company */}
+          <div>
+            <h4 className="font-bold text-foreground mb-4">Company</h4>
+            <ul className="space-y-2.5">
+              {companyLinks.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="font-bold text-foreground mb-4">Contact Info</h4>
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <span>🌐</span>
+                <a href="https://www.surveyvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  www.surveyvista.com
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <span>✉️</span>
+                <a href="mailto:info@surveyvista.com" className="hover:text-primary transition-colors">
+                  info@surveyvista.com
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <span>📞</span>
+                <a href="tel:16697776838" className="hover:text-primary transition-colors">
+                  1.669.777.6838
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-border">
+        <div className="container mx-auto px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} AgentVista. All rights reserved.
+            © {new Date().getFullYear()} SurveyVista. All Rights Reserved.
           </p>
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Use</a>
+            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
+          </div>
         </div>
       </div>
     </footer>
   );
+};
+
+const SocialIcon = ({ name }: { name: string }) => {
+  const icons: Record<string, string> = {
+    instagram: "📷",
+    facebook: "f",
+    x: "𝕏",
+    linkedin: "in",
+    youtube: "▶",
+  };
+  return <span className="text-xs font-bold">{icons[name] || name[0]}</span>;
 };
 
 export default Footer;
