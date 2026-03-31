@@ -24,11 +24,10 @@ const BenefitsSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <p className="text-sm font-semibold text-secondary uppercase tracking-wider mb-3">Why AgentVista</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Benefits That <span className="text-gradient">Transform Operations</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Why AgentVista
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-lg">
             AgentVista isn't just a tool — it's a paradigm shift in how enterprises handle feedback.
           </p>
         </motion.div>
@@ -41,7 +40,7 @@ const BenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.07, duration: 0.4 }}
-              className="relative p-6 rounded-xl border border-border/60 bg-card hover:shadow-xl transition-all duration-300 group overflow-hidden"
+              className="relative p-6 rounded-xl border border-border/60 bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/10 transition-colors" />
               <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4">
