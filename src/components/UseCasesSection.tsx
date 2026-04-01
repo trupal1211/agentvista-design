@@ -4,11 +4,18 @@ import {
   Headphones, UserCheck, TrendingUp, Globe2, Brain, Settings2, Building2, Megaphone,
 } from "lucide-react";
 
+import salesImg from "@/assets/usecase-sales.jpg";
+import marketingImg from "@/assets/usecase-marketing.jpg";
+import cxImg from "@/assets/usecase-cx.jpg";
+import employeeImg from "@/assets/usecase-employee.jpg";
+import partnerImg from "@/assets/usecase-partner.jpg";
+import insightsImg from "@/assets/usecase-insights.jpg";
+import adminImg from "@/assets/usecase-admin.jpg";
+import industryImg from "@/assets/usecase-industry.jpg";
+
 const useCases = [
   {
-    id: "sales",
-    icon: TrendingUp,
-    label: "Sales & Revenue",
+    id: "sales", icon: TrendingUp, label: "Sales & Revenue", image: salesImg,
     items: [
       "Auto-generate surveys using meeting summaries from Zoom or call logs",
       "Trigger feedback workflows on closed-lost opportunities",
@@ -17,9 +24,7 @@ const useCases = [
     ],
   },
   {
-    id: "marketing",
-    icon: Megaphone,
-    label: "Marketing & Campaign",
+    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", image: marketingImg,
     items: [
       "Send post-webinar feedback surveys automatically",
       "Measure campaign effectiveness through targeted response forms",
@@ -28,9 +33,7 @@ const useCases = [
     ],
   },
   {
-    id: "cx",
-    icon: Headphones,
-    label: "Customer Experience",
+    id: "cx", icon: Headphones, label: "Customer Experience", image: cxImg,
     items: [
       "Auto-send CSAT surveys post-case closure",
       "AI-driven follow-up based on customer sentiment",
@@ -39,9 +42,7 @@ const useCases = [
     ],
   },
   {
-    id: "employee",
-    icon: UserCheck,
-    label: "Employee Experience",
+    id: "employee", icon: UserCheck, label: "Employee Experience", image: employeeImg,
     items: [
       "Automate onboarding & exit surveys at lifecycle stages",
       "Trigger manager effectiveness feedback based on team structure",
@@ -50,9 +51,7 @@ const useCases = [
     ],
   },
   {
-    id: "partner",
-    icon: Globe2,
-    label: "Partner & Vendor",
+    id: "partner", icon: Globe2, label: "Partner & Vendor", image: partnerImg,
     items: [
       "Automate feedback during partner enablement journeys",
       "Query: 'Which partners reported friction in the last quarter?'",
@@ -61,9 +60,7 @@ const useCases = [
     ],
   },
   {
-    id: "insights",
-    icon: Brain,
-    label: "Knowledge & Insights",
+    id: "insights", icon: Brain, label: "Knowledge & Insights", image: insightsImg,
     items: [
       "AI-generated summary dashboards for executives",
       "Auto-surface top drivers of low satisfaction",
@@ -72,9 +69,7 @@ const useCases = [
     ],
   },
   {
-    id: "admin",
-    icon: Settings2,
-    label: "Platform Admin & Ops",
+    id: "admin", icon: Settings2, label: "Platform Admin & Ops", image: adminImg,
     items: [
       "'Clone onboarding survey, change theme to green, translate to French'",
       "Detect duplicate feedback and flag unstructured responses",
@@ -83,9 +78,7 @@ const useCases = [
     ],
   },
   {
-    id: "industry",
-    icon: Building2,
-    label: "Cross-Industry",
+    id: "industry", icon: Building2, label: "Cross-Industry", image: industryImg,
     items: [
       "Public sector: feedback on service requests at key checkpoints",
       "Healthcare: post-appointment follow-up surveys",
@@ -108,9 +101,8 @@ const UseCasesSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Real-World Applications</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Use <span className="text-gradient">Cases</span>
+            <span className="text-gradient">Use Cases</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             AgentVista adapts to your business needs across sales, support, HR, marketing, and more.
@@ -143,12 +135,12 @@ const UseCasesSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
-            <div className="bg-background rounded-2xl border border-border/60 p-8 shadow-sm grid md:grid-cols-[1fr,auto] gap-8 items-center">
-              <div>
+            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,320px] items-stretch">
+              <div className="p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <activeCase.icon size={20} className="text-primary" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground">{activeCase.label}</h3>
@@ -168,8 +160,13 @@ const UseCasesSection = () => {
                   ))}
                 </ul>
               </div>
-              <div className="hidden md:flex w-40 h-40 rounded-2xl bg-accent/50 items-center justify-center">
-                <activeCase.icon size={64} className="text-primary/30" />
+              <div className="hidden md:block">
+                <img
+                  src={activeCase.image}
+                  alt={activeCase.label}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
             </div>
           </motion.div>
