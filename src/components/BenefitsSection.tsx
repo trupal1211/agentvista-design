@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import {
-  Rocket, Users, LineChart, RefreshCw, Globe, Paintbrush, ShieldCheck, Settings,
+  Rocket, Users, LineChart, RefreshCw, Globe, Paintbrush, ShieldCheck, Settings, MessageCircle,
 } from "lucide-react";
 
 const benefits = [
@@ -10,6 +10,7 @@ const benefits = [
   { icon: RefreshCw, title: "Close Feedback Loops Faster", desc: "Detect urgency and trigger follow-ups or CRM actions in real time." },
   { icon: Globe, title: "Scale Across Lifecycles", desc: "Automate feedback across customer, employee, partner, or record lifecycle." },
   { icon: Paintbrush, title: "Personalize Effortlessly", desc: "Automatically apply brand themes and tailor experiences across languages." },
+  { icon: MessageCircle, title: "Boost Response Quality", desc: "Dynamically follow up with AI-generated clarifying questions." },
   { icon: ShieldCheck, title: "Stay Secure & Compliant", desc: "100% native to Salesforce — HIPAA, ISO, SOC, and GDPR ready." },
   { icon: Settings, title: "Governed AI at Scale", desc: "Admin-defined guardrails, approvals, and permissions for safe enterprise adoption." },
 ];
@@ -24,15 +25,16 @@ const BenefitsSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            Why AgentVista
+          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Why Choose Us</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Why <span className="text-gradient">AgentVista</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             AgentVista isn't just a tool — it's a paradigm shift in how enterprises handle feedback.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {benefits.map((b, i) => (
             <motion.div
               key={b.title}

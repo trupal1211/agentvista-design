@@ -79,3 +79,7 @@
     @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}

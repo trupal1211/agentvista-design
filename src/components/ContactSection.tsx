@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Mail, Phone, Globe } from "lucide-react";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -24,8 +24,9 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            Contact Us
+          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Get In Touch</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Contact <span className="text-gradient">Us</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             Have questions or want to learn more? Reach out and we'll get back to you promptly.
@@ -115,8 +116,8 @@ const ContactSection = () => {
               </div>
               <div>
                 <p className="font-semibold text-foreground text-sm">Email</p>
-                <a href="mailto:info@surveyvista.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  info@surveyvista.com
+                <a href="mailto:info@agentvista.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  info@agentvista.com
                 </a>
               </div>
             </div>
@@ -133,12 +134,12 @@ const ContactSection = () => {
             </div>
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shrink-0">
-                <MapPin size={18} className="text-primary" />
+                <Globe size={18} className="text-primary" />
               </div>
               <div>
                 <p className="font-semibold text-foreground text-sm">Website</p>
-                <a href="https://www.surveyvista.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  www.surveyvista.com
+                <a href="https://www.agentvista.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  www.agentvista.com
                 </a>
               </div>
             </div>
