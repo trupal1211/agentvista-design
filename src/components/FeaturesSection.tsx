@@ -22,28 +22,6 @@ const features = [
   { icon: Copy, title: "Prompt-Based Cloning", desc: "Duplicate or update surveys using plain language commands." },
 ];
 
-// Split into left and right columns for alternating layout
-const leftFeatures = features.filter((_, i) => i % 2 === 0);
-const rightFeatures = features.filter((_, i) => i % 2 !== 0);
-
-const FeatureRow = ({ feature, index, align }: { feature: typeof features[0]; index: number; align: "left" | "right" }) => (
-  <motion.div
-    initial={{ opacity: 0, x: align === "left" ? -30 : 30 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.06, duration: 0.4 }}
-    className="flex items-start gap-4 p-5 rounded-xl hover:bg-accent/50 transition-colors duration-300 group"
-  >
-    <div className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors duration-300">
-      <feature.icon size={20} className="text-primary" />
-    </div>
-    <div>
-      <h3 className="font-semibold text-foreground mb-1 text-[15px]">{feature.title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
-    </div>
-  </motion.div>
-);
-
 const FeaturesSection = () => {
   return (
     <section id="features" className="py-24 section-gradient">
@@ -54,26 +32,31 @@ const FeaturesSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">What It Can Do</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Core <span className="text-gradient">Capabilities</span>
+            <span className="text-gradient">Core Capabilities</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             From AI-powered survey creation to real-time sentiment analysis — AgentVista covers the entire feedback lifecycle.
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-x-8 gap-y-1">
-          <div className="space-y-1">
-            {leftFeatures.map((f, i) => (
-              <FeatureRow key={f.title} feature={f} index={i} align="left" />
-            ))}
-          </div>
-          <div className="space-y-1">
-            {rightFeatures.map((f, i) => (
-              <FeatureRow key={f.title} feature={f} index={i} align="right" />
-            ))}
-          </div>
+        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.04, duration: 0.35 }}
+              className="group relative p-5 rounded-xl border border-transparent hover:border-primary/20 hover:bg-background hover:shadow-lg transition-all duration-300"
+            >
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                <f.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-1.5 text-[14px]">{f.title}</h3>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">{f.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

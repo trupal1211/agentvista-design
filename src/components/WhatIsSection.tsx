@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import owlImg from "@/assets/owl-mascot.png";
+import heroImg from "@/assets/agentvista-hero.jpg";
 
 const WhatIsSection = () => {
   return (
@@ -14,9 +14,10 @@ const WhatIsSection = () => {
             className="flex justify-center"
           >
             <img
-              src={owlImg}
-              alt="AgentVista AI Owl"
-              className="w-full max-w-sm h-auto drop-shadow-xl"
+              src={heroImg}
+              alt="AgentVista AI Platform"
+              className="w-full max-w-md h-auto rounded-2xl shadow-xl"
+              loading="lazy"
             />
           </motion.div>
 
@@ -26,7 +27,6 @@ const WhatIsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">About</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               What is <span className="text-gradient">AgentVista</span>?
             </h2>

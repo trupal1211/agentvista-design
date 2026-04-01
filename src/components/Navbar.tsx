@@ -8,8 +8,8 @@ const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Features", href: "#features" },
-  { label: "Use Cases", href: "#use-cases" },
   { label: "Benefits", href: "#benefits" },
+  { label: "Use Cases", href: "#use-cases" },
   { label: "Contact Us", href: "#contact" },
 ];
 
@@ -41,49 +41,57 @@ const Navbar = () => {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[820px]"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? "py-2" : "py-4"
+        }`}
       >
         <div
-          className={`flex items-center justify-between rounded-full px-5 py-2.5 border transition-all duration-300 ${
+          className={`transition-all duration-500 ${
             scrolled
-              ? "bg-foreground/70 backdrop-blur-xl border-white/15 shadow-2xl"
-              : "bg-foreground/50 backdrop-blur-xl border-white/10 shadow-lg"
+              ? "max-w-[820px] mx-auto rounded-full px-5 py-2.5 bg-background/80 backdrop-blur-xl border border-border/60 shadow-lg"
+              : "max-w-[1400px] mx-auto px-8 py-3"
           }`}
         >
-          <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">
-            <img src={logo} alt="AgentVista" className="h-7" />
-          </a>
+          <div className="flex items-center justify-between">
+            <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">
+              <img src={logo} alt="AgentVista" className="h-7" />
+            </a>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-[13px] font-medium text-white/70 hover:text-white transition-colors whitespace-nowrap"
+            {/* Desktop links */}
+            <div className="hidden md:flex items-center gap-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`text-[13px] font-medium transition-colors whitespace-nowrap ${
+                    scrolled
+                      ? "text-foreground/70 hover:text-primary"
+                      : "text-foreground/60 hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="hidden md:flex items-center">
+              <button
+                onClick={() => setDemoOpen(true)}
+                className="px-5 py-2 text-[13px] font-semibold rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
               >
-                {link.label}
-              </a>
-            ))}
-          </div>
+                Request a Demo
+              </button>
+            </div>
 
-          <div className="hidden md:flex items-center">
+            {/* Mobile toggle */}
             <button
-              onClick={() => setDemoOpen(true)}
-              className="px-5 py-2 text-[13px] font-semibold rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="md:hidden text-foreground/80"
+              onClick={() => setMobileOpen(true)}
             >
-              Request a Demo
+              <Menu size={22} />
             </button>
           </div>
-
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden text-white/80"
-            onClick={() => setMobileOpen(true)}
-          >
-            <Menu size={22} />
-          </button>
         </div>
       </motion.nav>
 
@@ -95,7 +103,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-foreground/30 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[60] bg-foreground/20 backdrop-blur-sm md:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
