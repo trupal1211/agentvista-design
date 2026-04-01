@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Headphones, UserCheck, TrendingUp, Globe2, Brain, Settings2, Building2,
+  Headphones, UserCheck, TrendingUp, Globe2, Brain, Settings2, Building2, Megaphone,
 } from "lucide-react";
 
 const useCases = [
@@ -14,6 +14,17 @@ const useCases = [
       "Trigger feedback workflows on closed-lost opportunities",
       "Summarize seller comments to detect pipeline risk or urgency",
       "Query: 'Which accounts have the most negative feedback in 60 days?'",
+    ],
+  },
+  {
+    id: "marketing",
+    icon: Megaphone,
+    label: "Marketing & Campaign",
+    items: [
+      "Send post-webinar feedback surveys automatically",
+      "Measure campaign effectiveness through targeted response forms",
+      "Track event satisfaction with lifecycle-triggered surveys",
+      "Auto-analyze marketing sentiment across channels",
     ],
   },
   {
@@ -97,8 +108,9 @@ const UseCasesSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            Use Cases
+          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Real-World Applications</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Use <span className="text-gradient">Cases</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             AgentVista adapts to your business needs across sales, support, HR, marketing, and more.
@@ -156,7 +168,6 @@ const UseCasesSection = () => {
                   ))}
                 </ul>
               </div>
-              {/* Illustration */}
               <div className="hidden md:flex w-40 h-40 rounded-2xl bg-accent/50 items-center justify-center">
                 <activeCase.icon size={64} className="text-primary/30" />
               </div>

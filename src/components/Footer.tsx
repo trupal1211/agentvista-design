@@ -1,6 +1,9 @@
 import logo from "@/assets/agent-vista-logo.svg";
+import { Instagram, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
 
 const quickLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Features", href: "#features" },
   { label: "Use Cases", href: "#use-cases" },
   { label: "Benefits", href: "#benefits" },
@@ -12,6 +15,25 @@ const companyLinks = [
   { label: "Our Customers", href: "https://surveyvista.com/our-customers/" },
   { label: "Resources", href: "https://surveyvista.com/resources/" },
 ];
+
+const socialLinks = [
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Twitter, href: "#", label: "X (Twitter)" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Youtube, href: "#", label: "YouTube" },
+];
+
+const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (!href.startsWith("#")) return;
+  e.preventDefault();
+  const id = href.replace("#", "");
+  if (id === "home") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 const Footer = () => {
   return (
@@ -25,14 +47,14 @@ const Footer = () => {
               100% Native Salesforce Surveys, Forms, and Assessments — Seamless Data Collection with AI-Powered Insights to Drive Better Results.
             </p>
             <div className="flex items-center gap-3 mt-5">
-              {["instagram", "facebook", "x", "linkedin", "youtube"].map((s) => (
+              {socialLinks.map((s) => (
                 <a
-                  key={s}
-                  href="#"
-                  className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                  aria-label={s}
+                  key={s.label}
+                  href={s.href}
+                  className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  aria-label={s.label}
                 >
-                  <SocialIcon name={s} />
+                  <s.icon size={16} />
                 </a>
               ))}
             </div>
@@ -44,7 +66,11 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {quickLinks.map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <a
+                    href={l.href}
+                    onClick={(e) => handleNavClick(e, l.href)}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
                     {l.label}
                   </a>
                 </li>
@@ -72,14 +98,14 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <span>🌐</span>
-                <a href="https://www.surveyvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  www.surveyvista.com
+                <a href="https://www.agentvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  www.agentvista.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <span>✉️</span>
-                <a href="mailto:info@surveyvista.com" className="hover:text-primary transition-colors">
-                  info@surveyvista.com
+                <a href="mailto:info@agentvista.com" className="hover:text-primary transition-colors">
+                  info@agentvista.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -97,7 +123,7 @@ const Footer = () => {
       <div className="border-t border-border">
         <div className="container mx-auto px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} SurveyVista. All Rights Reserved.
+            © {new Date().getFullYear()} AgentVista. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Use</a>
@@ -107,17 +133,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-const SocialIcon = ({ name }: { name: string }) => {
-  const icons: Record<string, string> = {
-    instagram: "📷",
-    facebook: "f",
-    x: "𝕏",
-    linkedin: "in",
-    youtube: "▶",
-  };
-  return <span className="text-xs font-bold">{icons[name] || name[0]}</span>;
 };
 
 export default Footer;
