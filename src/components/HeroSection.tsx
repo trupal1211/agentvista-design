@@ -2,18 +2,20 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import DemoRequestForm from "./DemoRequestForm";
+import owlHero from "@/assets/owl-hero.png";
 
 const HeroSection = () => {
   const [demoOpen, setDemoOpen] = useState(false);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center hero-gradient overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden pt-16">
       {/* Decorative blobs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/8 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/8 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
+          {/* Left - Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -24,7 +26,7 @@ const HeroSection = () => {
               Powered by Salesforce Agentforce
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-foreground">
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-tight mb-6 text-foreground">
               AgentVista – SurveyVista Copilot
               <br />
               <span className="text-gradient">for Intelligent Surveys,</span>
@@ -32,11 +34,11 @@ const HeroSection = () => {
               <span className="text-gradient">Forms & Assessments</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed">
               Use natural language and AI to create, distribute, understand, and act on feedback — all within Salesforce. No code required.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setDemoOpen(true)}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-opacity"
@@ -51,6 +53,42 @@ const HeroSection = () => {
                 Explore Features
               </a>
             </div>
+          </motion.div>
+
+          {/* Right - Owl Image with floating cards */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="relative flex justify-center items-center"
+          >
+            <img
+              src={owlHero}
+              alt="AgentVista AI Owl Mascot"
+              className="w-full max-w-md lg:max-w-lg drop-shadow-xl"
+            />
+
+            {/* Floating card - AI Survey */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="absolute top-4 right-0 lg:-right-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
+            >
+              <p className="text-xs font-bold text-foreground">AI Survey Generated</p>
+              <p className="text-[11px] text-muted-foreground">12 questions • 3 sec</p>
+            </motion.div>
+
+            {/* Floating card - Sentiment */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              className="absolute bottom-12 left-0 lg:-left-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
+            >
+              <p className="text-xs font-bold text-secondary">Sentiment: Positive 92%</p>
+              <p className="text-[11px] text-muted-foreground">Real-time analysis</p>
+            </motion.div>
           </motion.div>
         </div>
       </div>
