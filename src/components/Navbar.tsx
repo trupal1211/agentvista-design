@@ -6,7 +6,6 @@ import DemoRequestForm from "./DemoRequestForm";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
   { label: "Features", href: "#features" },
   { label: "Benefits", href: "#benefits" },
   { label: "Use Cases", href: "#use-cases" },
@@ -42,13 +41,13 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "py-2" : "py-4"
+          scrolled ? "py-3" : "py-4"
         }`}
       >
         <div
           className={`transition-all duration-500 ${
             scrolled
-              ? "max-w-[820px] mx-auto rounded-full px-5 py-2.5 bg-background/80 backdrop-blur-xl border border-border/60 shadow-lg"
+              ? "max-w-[900px] mx-auto rounded-2xl px-6 py-2.5 bg-background/85 backdrop-blur-xl border border-border/50 shadow-lg"
               : "max-w-[1400px] mx-auto px-8 py-3"
           }`}
         >
@@ -58,7 +57,7 @@ const Navbar = () => {
             </a>
 
             {/* Desktop links */}
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-7">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
@@ -78,7 +77,7 @@ const Navbar = () => {
             <div className="hidden md:flex items-center">
               <button
                 onClick={() => setDemoOpen(true)}
-                className="px-5 py-2 text-[13px] font-semibold rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="px-6 py-2.5 text-[13px] font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 Request a Demo
               </button>
