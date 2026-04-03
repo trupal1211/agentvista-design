@@ -137,15 +137,15 @@ const UseCasesSection = () => {
             transition={{ duration: 0.3 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,340px] items-stretch">
-              <div className="p-8">
-                <div className="flex items-center gap-3 mb-6">
+            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,280px] items-stretch gap-0">
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <activeCase.icon size={20} className="text-primary" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground">{activeCase.label}</h3>
                 </div>
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {activeCase.items.map((item, i) => (
                     <motion.li
                       key={i}
@@ -160,11 +160,11 @@ const UseCasesSection = () => {
                   ))}
                 </ul>
               </div>
-              <div className="hidden md:block">
+              <div className="hidden md:flex items-center justify-center p-4">
                 <img
                   src={activeCase.image}
                   alt={activeCase.label}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto max-h-[260px] object-contain rounded-xl"
                   loading="lazy"
                 />
               </div>

@@ -22,7 +22,6 @@ const Navbar = () => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Determine active section
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       let current = "home";
       for (const id of sections) {
@@ -52,69 +51,65 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "py-3" : "py-4"
-        }`}
-      >
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center" style={{ padding: scrolled ? '12px 0' : '16px 0' }}>
         <div
-          className={`transition-all duration-500 mx-auto ${
-            scrolled
-              ? "w-[80%] rounded-2xl px-6 py-2.5 bg-background/85 backdrop-blur-xl border border-border/50 shadow-lg"
-              : "max-w-[1400px] px-8 py-3"
-          }`}
+          className="flex items-center justify-between"
+          style={{
+            width: scrolled ? '80%' : '100%',
+            maxWidth: scrolled ? '1400px' : '1400px',
+            padding: scrolled ? '10px 24px' : '12px 32px',
+            borderRadius: scrolled ? '16px' : '0',
+            background: scrolled ? 'rgba(255,255,255,0.85)' : 'transparent',
+            backdropFilter: scrolled ? 'blur(20px)' : 'none',
+            WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+            border: scrolled ? '1px solid rgba(0,0,0,0.06)' : '1px solid transparent',
+            boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.08)' : 'none',
+            transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
         >
-          <div className="flex items-center justify-between">
-            <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">
-              <img src={logo} alt="AgentVista" className="h-7" />
-            </a>
+          <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">
+            <img src={logo} alt="AgentVista" className="h-7" />
+          </a>
 
-            {/* Desktop links */}
-            <div className="hidden md:flex items-center gap-7">
-              {navLinks.map((link) => {
-                const sectionId = link.href.replace("#", "");
-                const isActive = activeSection === sectionId;
-                return (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className={`text-sm font-medium transition-colors whitespace-nowrap ${
-                      isActive
-                        ? "text-primary"
-                        : scrolled
-                        ? "text-foreground/70 hover:text-primary"
-                        : "text-foreground/60 hover:text-foreground"
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-            </div>
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-7">
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace("#", "");
+              const isActive = activeSection === sectionId;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-[15px] font-medium transition-colors whitespace-nowrap"
+                  style={{
+                    color: isActive ? 'hsl(199 76% 52%)' : 'hsl(215 25% 35%)',
+                  }}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </div>
 
-            <div className="hidden md:flex items-center">
-              <button
-                onClick={() => setDemoOpen(true)}
-                className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
-              >
-                Request a Demo
-              </button>
-            </div>
-
-            {/* Mobile toggle */}
+          <div className="hidden md:flex items-center">
             <button
-              className="md:hidden text-foreground/80"
-              onClick={() => setMobileOpen(true)}
+              onClick={() => setDemoOpen(true)}
+              className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
             >
-              <Menu size={22} />
+              Request a Demo
             </button>
           </div>
+
+          {/* Mobile toggle */}
+          <button
+            className="md:hidden text-foreground/80"
+            onClick={() => setMobileOpen(true)}
+          >
+            <Menu size={22} />
+          </button>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile sidebar */}
       <AnimatePresence>
