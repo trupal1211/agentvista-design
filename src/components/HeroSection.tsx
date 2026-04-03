@@ -77,9 +77,8 @@ const HeroSection = () => {
 
             {/* Floating card - AI Survey */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, ...floatingAnimation }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              animate={{ opacity: 1, y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-4 right-0 lg:-right-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
             >
               <p className="text-xs font-bold text-foreground">AI Survey Generated</p>
