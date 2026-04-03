@@ -137,7 +137,7 @@ const UseCasesSection = () => {
             transition={{ duration: 0.3 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,320px] items-stretch">
+            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,340px] items-stretch">
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
