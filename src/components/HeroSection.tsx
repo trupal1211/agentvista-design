@@ -2,20 +2,28 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import DemoRequestForm from "./DemoRequestForm";
-import owlHero from "@/assets/owl-hero.png";
+import heroImg from "@/assets/agentvista-hero.jpg";
+
+const floatingAnimation = {
+  y: [0, -10, 0],
+  transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+};
+
+const floatingAnimation2 = {
+  y: [0, 8, 0],
+  transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+};
 
 const HeroSection = () => {
   const [demoOpen, setDemoOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden pt-16">
-      {/* Decorative blobs */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/8 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/8 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 lg:px-8 py-12">
         <div className="grid lg:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
-          {/* Left - Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -55,7 +63,6 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Right - Owl Image with floating cards */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -63,15 +70,15 @@ const HeroSection = () => {
             className="relative flex justify-center items-center"
           >
             <img
-              src={owlHero}
-              alt="AgentVista AI Owl Mascot"
-              className="w-full max-w-md lg:max-w-lg drop-shadow-xl"
+              src={heroImg}
+              alt="AgentVista AI Platform"
+              className="w-full max-w-md lg:max-w-lg rounded-2xl shadow-xl"
             />
 
             {/* Floating card - AI Survey */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, ...floatingAnimation }}
               transition={{ duration: 0.5, delay: 0.8 }}
               className="absolute top-4 right-0 lg:-right-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
             >
@@ -82,7 +89,7 @@ const HeroSection = () => {
             {/* Floating card - Sentiment */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, ...floatingAnimation2 }}
               transition={{ duration: 0.5, delay: 1.0 }}
               className="absolute bottom-12 left-0 lg:-left-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
             >

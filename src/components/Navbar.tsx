@@ -16,10 +16,26 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      // Determine active section
+      const sections = navLinks.map((l) => l.href.replace("#", ""));
+      let current = "home";
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) current = id;
+        }
+      }
+      setActiveSection(current);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -45,10 +61,10 @@ const Navbar = () => {
         }`}
       >
         <div
-          className={`transition-all duration-500 ${
+          className={`transition-all duration-500 mx-auto ${
             scrolled
-              ? "max-w-[900px] mx-auto rounded-2xl px-6 py-2.5 bg-background/85 backdrop-blur-xl border border-border/50 shadow-lg"
-              : "max-w-[1400px] mx-auto px-8 py-3"
+              ? "w-[80%] rounded-2xl px-6 py-2.5 bg-background/85 backdrop-blur-xl border border-border/50 shadow-lg"
+              : "max-w-[1400px] px-8 py-3"
           }`}
         >
           <div className="flex items-center justify-between">
@@ -58,26 +74,32 @@ const Navbar = () => {
 
             {/* Desktop links */}
             <div className="hidden md:flex items-center gap-7">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`text-[13px] font-medium transition-colors whitespace-nowrap ${
-                    scrolled
-                      ? "text-foreground/70 hover:text-primary"
-                      : "text-foreground/60 hover:text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const sectionId = link.href.replace("#", "");
+                const isActive = activeSection === sectionId;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`text-sm font-medium transition-colors whitespace-nowrap ${
+                      isActive
+                        ? "text-primary"
+                        : scrolled
+                        ? "text-foreground/70 hover:text-primary"
+                        : "text-foreground/60 hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
 
             <div className="hidden md:flex items-center">
               <button
                 onClick={() => setDemoOpen(true)}
-                className="px-6 py-2.5 text-[13px] font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 Request a Demo
               </button>
@@ -119,16 +141,24 @@ const Navbar = () => {
                 </button>
               </div>
               <div className="flex flex-col gap-1 p-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent rounded-lg px-4 py-3 transition-colors"
-                    onClick={(e) => handleNavClick(e, link.href)}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {navLinks.map((link) => {
+                  const sectionId = link.href.replace("#", "");
+                  const isActive = activeSection === sectionId;
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className={`text-sm font-medium rounded-lg px-4 py-3 transition-colors ${
+                        isActive
+                          ? "text-primary bg-primary/5"
+                          : "text-muted-foreground hover:text-primary hover:bg-accent"
+                      }`}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
                 <button
                   onClick={() => {
                     setMobileOpen(false);

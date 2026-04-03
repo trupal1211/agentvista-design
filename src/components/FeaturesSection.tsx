@@ -22,6 +22,10 @@ const features = [
   { icon: Copy, title: "Prompt-Based Cloning", desc: "Duplicate or update surveys using plain language commands." },
 ];
 
+// Split into two rows for a clean alternating layout
+const row1 = features.slice(0, 7);
+const row2 = features.slice(7);
+
 const FeaturesSection = () => {
   return (
     <section id="features" className="py-24 section-gradient">
@@ -40,23 +44,49 @@ const FeaturesSection = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {features.map((f, i) => (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.04, duration: 0.35 }}
-              className="group relative p-5 rounded-xl border border-transparent hover:border-primary/20 hover:bg-background hover:shadow-lg transition-all duration-300"
-            >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                <f.icon size={20} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-1.5 text-[14px]">{f.title}</h3>
-              <p className="text-[13px] text-muted-foreground leading-relaxed">{f.desc}</p>
-            </motion.div>
-          ))}
+        <div className="max-w-6xl mx-auto space-y-3">
+          {/* Row 1 - 7 items */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {row1.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.04, duration: 0.35 }}
+                className="group flex items-center gap-3 px-5 py-3.5 rounded-full border border-border/60 bg-background hover:border-primary/40 hover:shadow-md hover:bg-primary/5 transition-all duration-300 cursor-default"
+              >
+                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                  <f.icon size={16} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground text-[13px] leading-tight">{f.title}</h3>
+                  <p className="text-[11px] text-muted-foreground leading-snug max-w-[220px]">{f.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          {/* Row 2 - 7 items */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {row2.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.04, duration: 0.35 }}
+                className="group flex items-center gap-3 px-5 py-3.5 rounded-full border border-border/60 bg-background hover:border-primary/40 hover:shadow-md hover:bg-primary/5 transition-all duration-300 cursor-default"
+              >
+                <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                  <f.icon size={16} className="text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground text-[13px] leading-tight">{f.title}</h3>
+                  <p className="text-[11px] text-muted-foreground leading-snug max-w-[220px]">{f.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
