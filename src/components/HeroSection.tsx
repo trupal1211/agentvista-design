@@ -87,9 +87,8 @@ const HeroSection = () => {
 
             {/* Floating card - Sentiment */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, ...floatingAnimation2 }}
-              transition={{ duration: 0.5, delay: 1.0 }}
+              animate={{ opacity: 1, y: [0, 8, 0] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               className="absolute bottom-12 left-0 lg:-left-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
             >
               <p className="text-xs font-bold text-secondary">Sentiment: Positive 92%</p>
