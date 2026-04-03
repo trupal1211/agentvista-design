@@ -2,17 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import DemoRequestForm from "./DemoRequestForm";
-import heroImg from "@/assets/agentvista-hero.jpg";
-
-const floatingAnimation = {
-  y: [0, -10, 0],
-  transition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-};
-
-const floatingAnimation2 = {
-  y: [0, 8, 0],
-  transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
-};
+import heroImg from "@/assets/owl-hero.png";
 
 const HeroSection = () => {
   const [demoOpen, setDemoOpen] = useState(false);
@@ -72,12 +62,12 @@ const HeroSection = () => {
             <img
               src={heroImg}
               alt="AgentVista AI Platform"
-              className="w-full max-w-md lg:max-w-lg rounded-2xl shadow-xl"
+              className="w-full max-w-md lg:max-w-lg"
             />
 
             {/* Floating card - AI Survey */}
             <motion.div
-              animate={{ opacity: 1, y: [0, -10, 0] }}
+              animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-4 right-0 lg:-right-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
             >
@@ -87,7 +77,7 @@ const HeroSection = () => {
 
             {/* Floating card - Sentiment */}
             <motion.div
-              animate={{ opacity: 1, y: [0, 8, 0] }}
+              animate={{ y: [0, 8, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               className="absolute bottom-12 left-0 lg:-left-4 bg-background/90 backdrop-blur-sm border border-border rounded-xl px-4 py-2.5 shadow-lg"
             >
