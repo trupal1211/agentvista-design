@@ -1,27 +1,12 @@
 import logo from "@/assets/agent-vista-logo.svg";
-import { Instagram, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
   { label: "Features", href: "#features" },
   { label: "Use Cases", href: "#use-cases" },
   { label: "Benefits", href: "#benefits" },
   { label: "Contact Us", href: "#contact" },
-];
-
-const companyLinks = [
-  { label: "About Us", href: "https://surveyvista.com/about-us/" },
-  { label: "Our Customers", href: "https://surveyvista.com/our-customers/" },
-  { label: "Resources", href: "https://surveyvista.com/resources/" },
-];
-
-const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "X (Twitter)" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" },
 ];
 
 const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -39,25 +24,13 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 lg:px-8 py-14">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
             <img src={logo} alt="AgentVista" className="h-9 mb-4" />
             <p className="text-sm text-muted-foreground leading-relaxed">
               100% Native Salesforce Surveys, Forms, and Assessments — Seamless Data Collection with AI-Powered Insights to Drive Better Results.
             </p>
-            <div className="flex items-center gap-3 mt-5">
-              {socialLinks.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  className="w-9 h-9 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                  aria-label={s.label}
-                >
-                  <s.icon size={16} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -71,20 +44,6 @@ const Footer = () => {
                     onClick={(e) => handleNavClick(e, l.href)}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h4 className="font-bold text-foreground mb-4">Company</h4>
-            <ul className="space-y-2.5">
-              {companyLinks.map((l) => (
-                <li key={l.label}>
-                  <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                     {l.label}
                   </a>
                 </li>
@@ -126,8 +85,8 @@ const Footer = () => {
             © {new Date().getFullYear()} AgentVista. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Use</a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a>
+            <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Use</Link>
+            <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
