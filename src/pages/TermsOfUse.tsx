@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const TermsOfUse = () => {
   useEffect(() => {
@@ -9,7 +11,8 @@ const TermsOfUse = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 lg:px-8 py-12 max-w-4xl">
+      <Navbar />
+      <div className="container mx-auto px-4 lg:px-8 py-12 max-w-4xl pt-28">
         <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline mb-8">
           <ArrowLeft size={16} />
           Back to Home
@@ -116,6 +119,7 @@ const TermsOfUse = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

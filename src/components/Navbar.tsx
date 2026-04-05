@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import logo from "@/assets/agent-vista-logo.svg";
 import DemoRequestForm from "./DemoRequestForm";
 
@@ -17,30 +18,38 @@ const Navbar = () => {
   const [demoOpen, setDemoOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
-      let current = "home";
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) current = id;
+      if (isHome) {
+        const sections = navLinks.map((l) => l.href.replace("#", ""));
+        let current = "home";
+        for (const id of sections) {
+          const el = document.getElementById(id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 120) current = id;
+          }
         }
+        setActiveSection(current);
       }
-      setActiveSection(current);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const id = href.replace("#", "");
+    if (!isHome) {
+      window.location.href = "/" + href;
+      return;
+    }
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -55,8 +64,8 @@ const Navbar = () => {
         <div
           className="flex items-center justify-between"
           style={{
-            width: scrolled ? '80%' : '100%',
-            maxWidth: scrolled ? '1400px' : '1400px',
+            width: scrolled ? 'min(80%, 1200px)' : '100%',
+            maxWidth: '1200px',
             padding: scrolled ? '10px 24px' : '12px 32px',
             borderRadius: scrolled ? '16px' : '0',
             background: scrolled ? 'rgba(255,255,255,0.85)' : 'transparent',
@@ -75,7 +84,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => {
               const sectionId = link.href.replace("#", "");
-              const isActive = activeSection === sectionId;
+              const isActive = isHome && activeSection === sectionId;
               return (
                 <a
                   key={link.label}
@@ -138,7 +147,7 @@ const Navbar = () => {
               <div className="flex flex-col gap-1 p-4">
                 {navLinks.map((link) => {
                   const sectionId = link.href.replace("#", "");
-                  const isActive = activeSection === sectionId;
+                  const isActive = isHome && activeSection === sectionId;
                   return (
                     <a
                       key={link.label}

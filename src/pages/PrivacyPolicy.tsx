@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
@@ -9,7 +11,8 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 lg:px-8 py-12 max-w-4xl">
+      <Navbar />
+      <div className="container mx-auto px-4 lg:px-8 py-12 max-w-4xl pt-28">
         <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline mb-8">
           <ArrowLeft size={16} />
           Back to Home
@@ -47,6 +50,7 @@ const PrivacyPolicy = () => {
             <li>job role (e.g., Finance, Human Resources, Information Technology, etc.), and</li>
             <li>comments or messages provided in free text boxes.</li>
           </ul>
+          <p>When you provide us Personal Information, we may combine that Personal Information from other data we have collected about you to learn more about you and to provide additional services.</p>
           <p>You may provide us Personal Information when you:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>request information,</li>
@@ -57,15 +61,16 @@ const PrivacyPolicy = () => {
             <li>subscribe to our emails, and</li>
             <li>register yourself with our Website.</li>
           </ul>
+          <p>The information that you provide in each case will vary. In some cases, we may ask you to create a username and password that should only be known to you.</p>
 
           <h3 className="text-lg font-semibold text-foreground !mt-6">Automated Information Collection</h3>
           <p>
-            In addition to the information that you provide to us, we may also collect information about you during your visit to our Website. We collect this information using automated tools that are detailed below.
+            In addition to the information that you provide to us, we may also collect information about you during your visit to our Website. We collect this information using automated tools that are detailed below. These tools may collect information about your behavior and your computer system, such as your internet address (IP Address), the pages you have viewed, and the actions you have taken while using our Website.
           </p>
 
           <h4 className="text-base font-semibold text-foreground !mt-4">(a) Cookies</h4>
           <p>
-            A "cookie" is a small data file transmitted from a website to your computer's hard drive. Cookies are not used to run programs or deliver viruses to your computer. Instead, we use cookies to help you personalize your online experience.
+            A "cookie" is a small data file transmitted from a website to your computer's hard drive. Cookies are not used to run programs or deliver viruses to your computer. Instead, we use cookies to help you personalize your online experience. One of the primary purposes of cookies is to provide a convenience feature to save you time.
           </p>
           <p>Cookies are usually defined in one of two ways, and we may use both of them:</p>
           <ul className="list-disc pl-6 space-y-1">
@@ -74,15 +79,16 @@ const PrivacyPolicy = () => {
           </ul>
           <p>We may use the following categories of cookies on our Website:</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Strictly Necessary Cookies.</strong> Essential to enable you to move around the Website and use its features.</li>
-            <li><strong>Performance Cookies.</strong> Collect anonymous information on how people use our Website to help us understand how you arrive at our site.</li>
-            <li><strong>Functionality Cookies.</strong> Remember choices you make such as the country from which you visit our Website, your preferred language, and your search parameters.</li>
-            <li><strong>Targeting Cookies or Advertising Cookies.</strong> Collect information about your browsing habits in order to make advertising more relevant to you and your interests.</li>
+            <li><strong>Strictly Necessary Cookies.</strong> These cookies are essential in order to enable you to move around the Website and use its features.</li>
+            <li><strong>Performance Cookies.</strong> These cookies collect anonymous information on how people use our Website to help us understand how you arrive at our site, browse or use our Website and highlight areas where we can improve.</li>
+            <li><strong>Functionality Cookies.</strong> These cookies remember choices you make such as the country from which you visit our Website, your preferred language, and your search parameters.</li>
+            <li><strong>Targeting Cookies or Advertising Cookies.</strong> These cookies collect information about your browsing habits in order to make advertising more relevant to you and your interests.</li>
           </ul>
+          <p>Of course, if you do not wish to have cookies on your devices, you may turn them off at any time by modifying your internet browser's settings. However, by disabling cookies on your device, you may be prohibited from full use of the Website's features or lose access to some functionality.</p>
 
           <h4 className="text-base font-semibold text-foreground !mt-4">(b) Embedded Web Links</h4>
           <p>
-            Links provided in our emails and, in some cases, on third-party websites may include tracking technology embedded in the link. The tracking system allows us to understand how the link is being used by email recipients.
+            Links provided in our emails and, in some cases, on third-party websites may include tracking technology embedded in the link. The tracking system allows us to understand how the link is being used by email recipients. Some of these links will enable us to identify that you have personally clicked on the link and this may be attached to the Personal Information that we hold about you.
           </p>
 
           <h4 className="text-base font-semibold text-foreground !mt-4">(c) Third-Party Websites and Services</h4>
@@ -92,26 +98,30 @@ const PrivacyPolicy = () => {
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Do Not Track Disclosure</h2>
           <p>
-            We may use cookies or other technologies to enable us to serve AgentVista advertisements to you on trusted third party websites. However, no Personal Information is shared in such advertisement placements. Our Website recognizes and responds to Do Not Track ("DNT") signals from your internet web browser.
+            We may use cookies or other technologies to enable us to serve AgentVista advertisements to you on trusted third party websites. However, no Personal Information is shared in such advertisement placements. Our Website recognizes and responds to Do Not Track ("DNT") signals from your internet web browser. If you choose to enable such DNT features, you will not receive such advertisements on third party websites.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Your Choices and Selecting Your Privacy Preferences</h2>
           <p>
-            We want to provide you with relevant information that you have requested. You may opt-out of receiving communications from us at any time by selecting the "unsubscribe" link at the bottom of each email.
+            We want to provide you with relevant information that you have requested. When you initially make contact with us, such as through requesting a white paper or requesting a demonstration of a product, we will add your information to our communications list. If we provide subscription-based services, such as email newsletters, we will always allow you to make choices about what information you provide at the point of information collection or at any time after you have received a communication from us while you are subscribed to the service.
+          </p>
+          <p>
+            You may opt-out of receiving communications from us at any time by selecting the "unsubscribe" link at the bottom of each email. Please note that by opting out or unsubscribing you might affect other services you have requested we provide to you, in which email communication is a requirement of the service provided.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Accuracy and Access to Your Personal Information</h2>
           <p>
-            We strive to maintain and process your information accurately. Should you have any questions about your Personal Information, please e-mail us at privacy@agentvista.com.
+            We strive to maintain and process your information accurately. We have processes in place to maintain all of our information in accordance with relevant data governance frameworks and legal requirements. We employ technologies designed to help us maintain information accuracy on input and processing.
           </p>
+          <p>Should you have any questions about your Personal Information, please e-mail us at <a href="mailto:legal@ardira.com" className="text-primary hover:underline">legal@ardira.com</a>.</p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Information of Minors</h2>
           <p>
-            We do not actively seek to gather information from individuals under the age of eighteen (18). We do not target our Website to minors, and would not expect them to be engaging with our websites or services.
+            We do not actively seek to gather information from individuals under the age of eighteen (18). We do not target our Website to minors, and would not expect them to be engaging with our websites or services. We encourage parents and guardians to provide adequate protection measures to prevent minors from providing information unwillingly on the internet. If we are aware of any Personal Information that we have collected about minors, we will take steps to securely remove it from our systems.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">How We Use Your Information</h2>
-          <p>The information we gather and that you provide is collected to provide you information and the services you request, including, but not limited to:</p>
+          <p>The information we gather and that you provide is collected to provide you information and the services you request, in addition to various other purposes, including, but not limited to:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Assisting you with items such as personalized experiences, facilitation of product usage, and enforcement of Terms of Use.</li>
             <li>Preventing malicious activity and providing you with a secure experience.</li>
@@ -125,10 +135,13 @@ const PrivacyPolicy = () => {
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">How We Share Your Information</h2>
           <p>
-            We do not sell or lease your information to any third party. We may disclose your Personal Information to our trusted third-party business partners in accordance with this Policy.
+            We do not sell or lease your information to any third party. We may disclose your Personal Information to our trusted third-party business partners in accordance with this Policy. We work with a number of partners that help us process your requests, deliver customer service and support, send email marketing communications, and provide experiences that you have come to expect from us.
           </p>
           <p>
             One such trusted third-party partner is Google Analytics. The Website sends aggregated, non-Personal Information to Google Analytics for the purpose of providing us with the ability to conduct technical and statistical analysis on the Website's performance. For more information on how Google Analytics supports the Website and uses information sent from the Website, please review Google's privacy policy available at <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://policies.google.com/technologies/partner-sites</a>.
+          </p>
+          <p>
+            <strong>California Residents.</strong> As already disclosed, we may market our services to you on third party websites by showing you advertisements for AgentVista products or services. We will not share your Personal Information with such third parties for the purposes of any third party marketing of its products to you without your prior consent.
           </p>
           <p>Except as described in this Policy, we will not share your information with third parties without your notice and consent, unless it is under one of the following circumstances:</p>
           <ul className="list-disc pl-6 space-y-1">
@@ -138,25 +151,28 @@ const PrivacyPolicy = () => {
             <li>Enforcing or protecting the rights and properties of AgentVista or its subsidiaries.</li>
             <li>Protecting the rights or personal safety of AgentVista's employees.</li>
           </ul>
+          <p>
+            There are circumstances where AgentVista may decide to buy, sell, or reorganize its business in selected countries. Under these circumstances, it may be necessary to share or receive Personal Information with prospective or actual partners or affiliates. In such circumstances, AgentVista will ensure your information is used in accordance with this Policy.
+          </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Third-Party Websites</h2>
           <p>
-            This Policy does not apply to websites or other domains that are maintained or operated by third parties or our affiliates. Our Website may link to third-party websites and services, but these links are not endorsements of these sites, and this Policy does not extend to them.
+            This Policy does not apply to websites or other domains that are maintained or operated by third parties or our affiliates. Our Website may link to third-party websites and services, but these links are not endorsements of these sites, and this Policy does not extend to them. Because this Policy is not enforced on these third-party websites, we encourage you to read any posted privacy policy of the third-party website before using the service or site and providing any information.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">International</h2>
           <p>
-            We do not currently market or sell our goods and services to customers outside the United States or Canada. Regardless of the country in which such information is stored or from which you access our Website, we will process your Personal Information in accordance with this Policy.
+            We do not currently market or sell our goods and services to customers outside the United States or Canada. Accordingly, we do not warrant or represent our use of your Personal Information as described in this Policy will necessarily comply with laws of countries other than the United States or Canada. However, we understand many visitors to our Website may be located outside the United States or Canada. Regardless of the country in which such information is stored or from which you access our Website, we will process your Personal Information in accordance with this Policy.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Safeguarding the Information We Collect</h2>
           <p>
-            We take reasonable technical, administrative, and physical safeguards in order to protect your Personal Information against accidental loss and from unauthorized access, use, alteration, and disclosure. However, we can never promise 100% security.
+            We take reasonable technical, administrative, and physical safeguards in order to protect your Personal Information against accidental loss and from unauthorized access, use, alteration, and disclosure. However, we can never promise 100% security. You have a responsibility, as well, to safeguard your information through the proper use and security of any online credentials used to access your Personal Information, such as a username and password. If you believe your credentials have been compromised, please change your password. Please also notify us of any unauthorized use.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Changes to this Policy</h2>
           <p>
-            If we make any changes to this Policy, a revised Policy will be posted on this webpage and the date of the change will be reported in the "Last Revised" block. You can get to this page from our Website by clicking on the "Privacy Policy" link.
+            If we make any changes to this Policy, a revised Policy will be posted on this webpage and the date of the change will be reported in the "Last Revised" block. You can get to this page from our Website by clicking on the "Privacy Policy" link (usually at the bottom of the screen).
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">How to Contact Us</h2>
@@ -170,6 +186,7 @@ const PrivacyPolicy = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

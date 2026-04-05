@@ -2,10 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import DemoRequestForm from "./DemoRequestForm";
+import AppExchangeForm from "./AppExchangeForm";
 import heroImg from "@/assets/owl-hero.png";
 
 const HeroSection = () => {
   const [demoOpen, setDemoOpen] = useState(false);
+  const [appExOpen, setAppExOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden pt-16">
@@ -44,12 +46,12 @@ const HeroSection = () => {
                 Request a Demo
                 <ArrowRight size={20} />
               </button>
-              <a
-                href="#features"
+              <button
+                onClick={() => setAppExOpen(true)}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-border text-foreground font-semibold text-lg hover:bg-muted transition-colors"
               >
-                Explore Features
-              </a>
+                AppExchange
+              </button>
             </div>
           </motion.div>
 
@@ -89,6 +91,7 @@ const HeroSection = () => {
       </div>
 
       <DemoRequestForm open={demoOpen} onClose={() => setDemoOpen(false)} />
+      <AppExchangeForm open={appExOpen} onClose={() => setAppExOpen(false)} />
     </section>
   );
 };
