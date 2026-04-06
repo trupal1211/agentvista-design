@@ -4,12 +4,12 @@ import {
   Headphones, UserCheck, TrendingUp, Globe2, Brain, Settings2, Building2, Megaphone,
 } from "lucide-react";
 
-import salesImg from "@/assets/usecase-sales.jpg";
+import salesImg from "@/assets/AV-sales.png";
 import marketingImg from "@/assets/usecase-marketing.jpg";
-import cxImg from "@/assets/usecase-cx.jpg";
-import employeeImg from "@/assets/usecase-employee.jpg";
+import cxImg from "@/assets/AV-customer.png";
+import employeeImg from "@/assets/AV-employee.png";
 import partnerImg from "@/assets/usecase-partner.jpg";
-import insightsImg from "@/assets/usecase-insights.jpg";
+import insightsImg from "@/assets/AV-knowledge_insight.png";
 import adminImg from "@/assets/usecase-admin.jpg";
 import industryImg from "@/assets/usecase-industry.jpg";
 
@@ -93,36 +93,37 @@ const UseCasesSection = () => {
   const activeCase = useCases.find((u) => u.id === active)!;
 
   return (
-    <section id="use-cases" className="py-24 section-gradient">
+    <section id="use-cases" className="py-16 md:py-24 section-gradient">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-14"
+          className="text-center max-w-2xl mx-auto mb-10 md:mb-14"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="text-gradient">Use Cases</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base md:text-lg">
             AgentVista adapts to your business needs across sales, support, HR, marketing, and more.
           </p>
         </motion.div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mb-8 md:mb-10">
           {useCases.map((u) => (
             <button
               key={u.id}
               onClick={() => setActive(u.id)}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`inline-flex items-center gap-1.5 px-3 py-2 md:px-4 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-200 ${
                 active === u.id
                   ? "bg-primary text-primary-foreground shadow-md"
                   : "bg-background border border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
               }`}
             >
-              <u.icon size={16} />
-              {u.label}
+              <u.icon size={14} />
+              <span className="hidden sm:inline">{u.label}</span>
+              <span className="sm:hidden">{u.label.split(" ")[0]}</span>
             </button>
           ))}
         </div>
@@ -137,22 +138,22 @@ const UseCasesSection = () => {
             transition={{ duration: 0.3 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,280px] items-stretch gap-0">
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <activeCase.icon size={20} className="text-primary" />
+            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,240px] items-stretch">
+              <div className="p-5 md:p-7">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <activeCase.icon size={18} className="text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground">{activeCase.label}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">{activeCase.label}</h3>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {activeCase.items.map((item, i) => (
                     <motion.li
                       key={i}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.08 }}
-                      className="flex items-start gap-3"
+                      className="flex items-start gap-2.5"
                     >
                       <span className="mt-1.5 w-2 h-2 rounded-full bg-secondary shrink-0" />
                       <span className="text-muted-foreground text-sm leading-relaxed">{item}</span>
@@ -160,11 +161,11 @@ const UseCasesSection = () => {
                   ))}
                 </ul>
               </div>
-              <div className="hidden md:flex items-center justify-center p-4">
+              <div className="hidden md:flex items-center justify-center p-3 bg-muted/20">
                 <img
                   src={activeCase.image}
                   alt={activeCase.label}
-                  className="w-full h-auto max-h-[260px] object-contain rounded-xl"
+                  className="w-full h-full max-h-[240px] object-contain rounded-xl"
                   loading="lazy"
                 />
               </div>

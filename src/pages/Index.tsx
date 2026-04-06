@@ -5,6 +5,7 @@ import FeaturesSection from "@/components/FeaturesSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import UseCasesSection from "@/components/UseCasesSection";
 import CTASection from "@/components/CTASection";
+import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -19,6 +20,7 @@ const Index = () => {
       <BenefitsSection />
       <UseCasesSection />
       <CTASection />
+      <FAQSection />
       <ContactSection />
       <Footer />
       <ScrollToTop />
