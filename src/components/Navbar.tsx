@@ -60,20 +60,20 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center" style={{ padding: scrolled ? '12px 0' : '16px 0' }}>
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 md:px-6 lg:px-8"
+        style={{ paddingTop: scrolled ? '10px' : '0px', transition: 'padding 0.4s ease' }}
+      >
         <div
-          className="flex items-center justify-between"
+          className="flex items-center justify-between w-full transition-all duration-500 ease-out"
           style={{
-            width: scrolled ? 'min(80%, 1200px)' : '100%',
             maxWidth: '1200px',
-            padding: scrolled ? '10px 24px' : '12px 32px',
+            padding: scrolled ? '10px 24px' : '14px 32px',
             borderRadius: scrolled ? '16px' : '0',
-            background: scrolled ? 'rgba(255,255,255,0.85)' : 'transparent',
+            background: scrolled ? 'rgba(255,255,255,0.92)' : 'transparent',
             backdropFilter: scrolled ? 'blur(20px)' : 'none',
             WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
             border: scrolled ? '1px solid rgba(0,0,0,0.06)' : '1px solid transparent',
             boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.08)' : 'none',
-            transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
           }}
         >
           <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">

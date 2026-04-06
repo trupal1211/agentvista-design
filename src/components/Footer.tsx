@@ -23,13 +23,13 @@ const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =>
 const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 lg:px-8 py-14">
+      <div className="container mx-auto px-4 lg:px-8 py-10 md:py-14">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
             <img src={logo} alt="AgentVista" className="h-9 mb-4" />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              100% Native Salesforce Surveys, Forms, and Assessments — Seamless Data Collection with AI-Powered Insights to Drive Better Results.
+              Empowering Agent Operations on Salesforce with Smart Automation, Better Insights, and Seamless Management.
             </p>
           </div>
 
