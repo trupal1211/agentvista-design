@@ -34,62 +34,62 @@ const ContactSection = () => {
         </motion.div>
 
         {/* Main Contact Grid */}
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[40%_60%] gap-8 mb-8">
-          {/* Left: Quick Contact */}
+        <div className="mx-auto grid lg:grid-cols-[40%_56%] gap-8 md:gap-12 mb-8 max-w-6xl px-4 lg:px-0 auto-rows-max">
+          {/* Left: Quick Contact - Sticky */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-6 w-full lg:sticky lg:top-24 h-fit"
           >
-            <div>
-              <h3 className="text-lg md:text-xl font-bold text-foreground mb-6">Quick Contact</h3>
-              <p className="text-muted-foreground text-sm mb-6">Get in touch with a SurveyVista representative to see a demo or simply learn more about our products.</p>
-            </div>
-
-            {/* Contact Info Cards */}
-            <div className="space-y-4">
-              {/* Address */}
-              <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-4 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer">
-                <div className="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center shrink-0 flex-shrink-0">
-                  <MapPin size={18} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground text-sm">Address</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">2040 Marlin Ave, Santa Clara, CA 95050<br/>United States</p>
-                </div>
-              </a>
-
-              {/* Phone */}
-              <a href="tel:16697776838" className="flex items-start gap-4 p-4 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer">
-                <div className="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center shrink-0 flex-shrink-0">
-                  <Phone size={18} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground text-sm">Phone</p>
-                  <p className="text-xs text-muted-foreground">1 669 777.6838</p>
-                </div>
-              </a>
-
-              {/* Email */}
-              <a href="mailto:info@ardira.com" className="flex items-start gap-4 p-4 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer">
-                <div className="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center shrink-0 flex-shrink-0">
-                  <Mail size={18} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-foreground text-sm">Email</p>
-                  <p className="text-xs text-muted-foreground">info@ardira.com</p>
-                </div>
-              </a>
-            </div>
-
-            {/* Support Note */}
-            <div className="flex items-start gap-3 p-4 rounded-xl border border-secondary/20 bg-secondary/5">
-              <div className="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-sm font-bold flex-shrink-0">✓</div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at <a href="mailto:support@ardira.com" className="text-primary hover:underline">support@ardira.com</a></p>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-6">Quick Contact</h3>
+                <p className="text-muted-foreground text-sm mb-6">Get in touch with a SurveyVista representative to see a demo or simply learn more about our products.</p>
               </div>
-            </div>
+
+              {/* Contact Info Cards */}
+              <div className="space-y-4 w-full">
+                {/* Address */}
+                <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-5 rounded-2xl border border-primary/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                  <div className="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center shrink-0">
+                    <MapPin size={20} />
+                  </div>
+                  <div className="flex-1 min-w-0 py-1">
+                    <p className="font-semibold text-foreground text-sm">Address</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed break-words mt-1">2040 Marlin Ave, Santa Clara, CA 95050<br/>United States</p>
+                  </div>
+                </a>
+
+                {/* Phone */}
+                <a href="tel:16697776838" className="flex items-start gap-4 p-5 rounded-2xl border border-primary/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                  <div className="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center shrink-0">
+                    <Phone size={20} />
+                  </div>
+                  <div className="flex-1 min-w-0 py-1">
+                    <p className="font-semibold text-foreground text-sm">Phone</p>
+                    <p className="text-xs text-muted-foreground mt-1">1 669 777.6838</p>
+                  </div>
+                </a>
+
+                {/* Email */}
+                <a href="mailto:info@ardira.com" className="flex items-start gap-4 p-5 rounded-2xl border border-primary/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                  <div className="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center shrink-0">
+                    <Mail size={20} />
+                  </div>
+                  <div className="flex-1 min-w-0 py-1">
+                    <p className="font-semibold text-foreground text-sm">Email</p>
+                    <p className="text-xs text-muted-foreground mt-1">info@ardira.com</p>
+                  </div>
+                </a>
+              </div>
+
+              {/* Support Note */}
+              <div className="flex items-start gap-3 p-5 rounded-2xl border border-secondary/20 bg-secondary/5 w-full min-w-0 shadow-sm">
+                <div className="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at <a href="mailto:support@ardira.com" className="text-primary hover:underline font-medium">support@ardira.com</a></p>
+                </div>
+              </div>
           </motion.div>
 
           {/* Right: Contact Form */}
@@ -97,6 +97,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="w-full min-w-0"
           >
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-16 bg-card rounded-2xl border border-border">
@@ -107,7 +108,7 @@ const ContactSection = () => {
                 <p className="text-muted-foreground text-sm mt-1">We'll get back to you shortly.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border p-6 md:p-8 space-y-5">
+              <form onSubmit={handleSubmit} style={{ boxSizing: 'border-box' }} className="bg-card rounded-2xl border border-border p-6 md:p-8 space-y-5">
                 <div>
                   <h3 className="text-lg font-bold text-foreground mb-1">Fill out the form and we'll be in touch shortly!</h3>
                   <p className="text-xs text-muted-foreground">Note: fields marked with <span className="text-red-500">(*)</span> are mandatory</p>
