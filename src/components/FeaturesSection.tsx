@@ -38,6 +38,7 @@ const FeaturesSection = () => {
   const [isMobile, setIsMobile] = useState(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const mobileVisualRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Check if mobile on mount and resize
@@ -104,6 +105,18 @@ const FeaturesSection = () => {
     }
   }, [isMobile]);
 
+  // Auto-scroll visual into view on mobile when active index changes
+  useEffect(() => {
+    if (isMobile && mobileVisualRef.current) {
+      setTimeout(() => {
+        mobileVisualRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 100);
+    }
+  }, [activeIndex, isMobile]);
+
   const activeVisualIndex = features[activeIndex]?.visualIndex ?? 0;
 
   const handleCardClick = (index: number) => {
@@ -142,27 +155,42 @@ const FeaturesSection = () => {
         {/* Mobile layout */}
         <div className="lg:hidden max-w-md mx-auto space-y-4 pb-12">
           {/* Mobile Visual Container - shows only active card visual */}
-          <div className="rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8">
+          <motion.div 
+            ref={mobileVisualRef}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8 relative"
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="w-full h-full"
               >
                 {visuals[features[activeIndex]?.visualIndex ?? 0]}
               </motion.div>
             </AnimatePresence>
-          </div>
+
+            {/* Subtle glow effect on image change */}
+            <motion.div
+              key={`glow-${activeIndex}`}
+              initial={{ opacity: 0.6, scale: 1 }}
+              animate={{ opacity: 0, scale: 1.1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="absolute inset-0 pointer-events-none rounded-xl border border-primary/40"
+            />
+          </motion.div>
 
           {/* Mobile Feature Cards */}
           <div ref={containerRef} className="space-y-3">
             {features.map((f, i) => {
               const isActive = i === activeIndex;
               return (
-                <div
+                <motion.div
                   key={f.title}
                   ref={(el) => { cardRefs.current[i] = el; }}
                   className="flex items-start gap-3 p-4 rounded-xl border transition-all duration-500 ease-out cursor-pointer"
@@ -174,6 +202,8 @@ const FeaturesSection = () => {
                     transform: isActive ? "scale(1)" : "scale(0.98)",
                   }}
                   onClick={() => setActiveIndex(i)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <div
                     className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-500"
@@ -191,7 +221,7 @@ const FeaturesSection = () => {
                     <h3 className="font-semibold text-foreground text-sm leading-tight mb-0.5">{f.title}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
