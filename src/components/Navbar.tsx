@@ -73,11 +73,11 @@ const Navbar = () => {
             maxWidth: '80rem',
             padding: scrolled ? '14px 24px' : '20px 4px',
             borderRadius: scrolled ? '16px' : '0',
-            background: scrolled ? 'rgba(255,255,255,0.92)' : 'transparent',
-            backdropFilter: scrolled ? 'blur(20px)' : 'none',
-            WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-            border: scrolled ? '1px solid rgba(0,0,0,0.06)' : '1px solid transparent',
-            boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.08)' : 'none',
+            background: scrolled ? 'rgba(255,255,255,0.7)' : 'transparent',
+            backdropFilter: scrolled ? 'blur(40px) saturate(180%)' : 'none',
+            WebkitBackdropFilter: scrolled ? 'blur(40px) saturate(180%)' : 'none',
+            border: scrolled ? '1px solid rgba(255,255,255,0.5)' : '1px solid transparent',
+            boxShadow: scrolled ? '0 8px 32px rgba(0,0,0,0.06)' : 'none',
           }}
         >
           <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">
