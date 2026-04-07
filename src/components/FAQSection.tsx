@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -30,6 +31,8 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  const [openValue, setOpenValue] = useState<string | null>(null);
+
   return (
     <section className="py-12 md:py-16 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
@@ -53,12 +56,14 @@ const FAQSection = () => {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          <Accordion type="single" collapsible className="space-y-3">
+          <Accordion type="single" value={openValue} onValueChange={setOpenValue} collapsible className="space-y-3">
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
                 className="border border-border/60 rounded-xl px-5 md:px-6 bg-background data-[state=open]:shadow-md transition-shadow"
+                onMouseEnter={() => setOpenValue(`faq-${i}`)}
+                onMouseLeave={() => setOpenValue(null)}
               >
                 <AccordionTrigger className="text-sm md:text-[15px] font-semibold text-foreground text-left hover:no-underline py-4 md:py-5">
                   {faq.question}

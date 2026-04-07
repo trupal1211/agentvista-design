@@ -9,7 +9,7 @@ const quickLinks = [
   { label: "Contact Us", href: "#contact" },
 ];
 
-const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+const handleNavClick = (e: React.MouseEvent<HTMLElement>, href: string) => {
   if (!href.startsWith("#")) return;
   e.preventDefault();
   const id = href.replace("#", "");
@@ -23,18 +23,25 @@ const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =>
 const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
-      <div className="container mx-auto px-4 lg:px-8 py-10 md:py-14">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <img src={logo} alt="AgentVista" className="h-9 mb-4" />
+      <div className="mx-auto max-w-6xl px-4 lg:px-8 py-10 md:py-14">
+        {/* Main Footer Content - Flexbox with specific column widths and space-between */}
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-8 md:gap-12 lg:gap-0">
+          {/* Brand Column - 35% width on lg */}
+          <div className="w-full lg:w-[35%] flex-shrink-0">
+            <button
+              onClick={(e) => handleNavClick(e, "#home")}
+              className="cursor-pointer hover:opacity-80 transition-opacity mb-4 flex items-center"
+              aria-label="Go to home"
+            >
+              <img src={logo} alt="AgentVista" className="h-9" />
+            </button>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Empowering Agent Operations on Salesforce with Smart Automation, Better Insights, and Seamless Management.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Quick Links Column - 15% width on lg */}
+          <div className="w-full lg:w-[15%] flex-shrink-0">
             <h4 className="font-bold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2.5">
               {quickLinks.map((l) => (
@@ -51,8 +58,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
+          {/* Contact Info Column - 18% width on lg */}
+          <div className="w-full lg:w-[18%] flex-shrink-0">
             <h4 className="font-bold text-foreground mb-4">Contact Info</h4>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
@@ -80,7 +87,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-border">
-        <div className="container mx-auto px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-sm text-muted-foreground">
             © 2026 Ardira Corporation. All Rights Reserved.
           </p>
