@@ -61,13 +61,17 @@ const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 md:px-6 lg:px-8"
-        style={{ paddingTop: scrolled ? '10px' : '0px', transition: 'padding 0.4s ease' }}
+        style={{ 
+          paddingTop: scrolled ? '10px' : '0px',
+          paddingBottom: scrolled ? '10px' : '0px',
+          transition: 'padding 0.4s ease' 
+        }}
       >
         <div
           className="flex items-center justify-between w-full transition-all duration-500 ease-out"
           style={{
-            maxWidth: '1200px',
-            padding: scrolled ? '10px 24px' : '14px 32px',
+            maxWidth: '80rem',
+            padding: scrolled ? '14px 24px' : '20px 4px',
             borderRadius: scrolled ? '16px' : '0',
             background: scrolled ? 'rgba(255,255,255,0.92)' : 'transparent',
             backdropFilter: scrolled ? 'blur(20px)' : 'none',
