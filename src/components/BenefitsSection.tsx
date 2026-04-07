@@ -26,7 +26,7 @@ const BenefitsSection = () => {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gradient">Why AgentVista</span>
+            <span className="text-gradient">Why AgentVista?</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             AgentVista isn't just a tool — it's a paradigm shift in how enterprises handle feedback.

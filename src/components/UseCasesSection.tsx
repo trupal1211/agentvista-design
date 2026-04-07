@@ -138,36 +138,31 @@ const UseCasesSection = () => {
             transition={{ duration: 0.3 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-background rounded-2xl border border-border/60 shadow-sm overflow-hidden grid md:grid-cols-[1fr,240px] items-stretch">
-              <div className="p-5 md:p-7">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <activeCase.icon size={18} className="text-primary" />
-                  </div>
-                  <h3 className="text-lg md:text-xl font-bold text-foreground">{activeCase.label}</h3>
-                </div>
-                <ul className="space-y-2.5">
+            <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-primary/20 shadow-lg overflow-hidden grid md:grid-cols-[260px,1fr] items-stretch">
+              <div className="hidden md:flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-primary/10">
+                <img
+                  src={activeCase.image}
+                  alt={activeCase.label}
+                  className="w-full h-full max-h-[200px] object-contain rounded-lg"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6 md:p-7 flex flex-col justify-center">
+                <h3 className="text-xl md:text-2xl font-bold text-primary mb-5">{activeCase.label}</h3>
+                <ul className="space-y-3">
                   {activeCase.items.map((item, i) => (
                     <motion.li
                       key={i}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.08 }}
-                      className="flex items-start gap-2.5"
+                      className="flex items-start gap-3"
                     >
-                      <span className="mt-1.5 w-2 h-2 rounded-full bg-secondary shrink-0" />
-                      <span className="text-muted-foreground text-sm leading-relaxed">{item}</span>
+                      <span className="mt-1 w-2.5 h-2.5 rounded-full bg-primary shrink-0 shadow-sm" />
+                      <span className="text-muted-foreground text-base leading-relaxed font-medium">{item}</span>
                     </motion.li>
                   ))}
                 </ul>
-              </div>
-              <div className="hidden md:flex items-center justify-center p-3 bg-muted/20">
-                <img
-                  src={activeCase.image}
-                  alt={activeCase.label}
-                  className="w-full h-full max-h-[240px] object-contain rounded-xl"
-                  loading="lazy"
-                />
               </div>
             </div>
           </motion.div>
