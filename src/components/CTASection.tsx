@@ -26,7 +26,7 @@ const CTASection = () => {
             onClick={() => setDemoOpen(true)}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-opacity"
           >
-            Request a Demo
+            Book a Demo
             <ArrowRight size={20} />
           </button>
         </motion.div>
