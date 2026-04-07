@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -167,7 +168,7 @@ const ContactSection = () => {
                 </button>
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  We're committed to your privacy. SurveyVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <a href="/privacy-policy" className="text-primary hover:underline">Privacy Policy</a>.
+                  We're committed to your privacy. SurveyVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>.
                 </p>
 
                 {/* Map at bottom of form */}
