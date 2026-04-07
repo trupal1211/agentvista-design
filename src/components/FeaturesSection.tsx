@@ -50,7 +50,7 @@ const FeaturesSection = () => {
 
   useEffect(() => {
     if (isMobile) {
-      // Mobile scroll detection
+      // Mobile scroll detection - adjust for sticky image height
       const handleScroll = () => {
         let closestIndex = 0;
         let closestDistance = Infinity;
@@ -60,7 +60,8 @@ const FeaturesSection = () => {
           
           const cardRect = card.getBoundingClientRect();
           const cardCenter = cardRect.top + cardRect.height / 2;
-          const viewportCenter = window.innerHeight / 2;
+          // Use image + gap height (250px + 32px margin = 282px) as offset
+          const viewportCenter = 282 + (window.innerHeight - 282) / 2;
           const distance = Math.abs(cardCenter - viewportCenter);
 
           if (distance < closestDistance) {
@@ -232,7 +233,7 @@ const FeaturesSection = () => {
           <div className="flex gap-12">
             {/* Sticky left – image only */}
             <div className="w-[580px] shrink-0">
-              <div className="sticky top-1/2 -translate-y-1/2">
+              <div className="sticky top-28">
                 <div className="relative w-full h-[420px] rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30">
                   <AnimatePresence mode="wait">
                     <motion.div
