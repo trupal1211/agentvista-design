@@ -3,7 +3,7 @@ const barHeights = [40, 62, 48, 78, 60, 92, 70];
 const barDelays = [0.05, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42];
 
 const AiInsightsVisual = () => (
-  <div className="w-full aspect-[16/9] flex flex-col gap-[9px] p-3.5 rounded-xl overflow-hidden" style={{ background: "#F2F8FC" }}>
+  <div className="w-full h-full flex flex-col gap-[9px] p-3.5 overflow-hidden" style={{ background: "#F2F8FC" }}>
     {/* Top row */}
     <div className="flex gap-[9px] flex-1 min-h-0">
       {/* Bar chart */}

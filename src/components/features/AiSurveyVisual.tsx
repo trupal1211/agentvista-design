@@ -1,6 +1,6 @@
 /** Concept C – AI Survey Generation visual (converted from HTML) */
 const AiSurveyVisual = () => (
-  <div className="w-full aspect-[16/9] flex flex-row items-stretch overflow-hidden rounded-xl"
+  <div className="w-full h-full flex flex-row items-stretch overflow-hidden"
     style={{ background: "#F7FBFE" }}>
     {/* Left – prompt */}
     <div className="flex-1 flex flex-col justify-center gap-2.5 px-4 py-5 border-r"

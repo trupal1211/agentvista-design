@@ -6,7 +6,7 @@ const floatBadges = [
 ];
 
 const PdfFormVisual = () => (
-  <div className="w-full aspect-[16/9] flex items-center justify-center gap-4 px-5 py-5 rounded-xl overflow-hidden"
+  <div className="w-full h-full flex items-center justify-center gap-4 px-5 py-5 overflow-hidden"
     style={{ background: "linear-gradient(145deg,#EBF5FB 0%,#F5FBFF 100%)" }}>
     {/* Drop zone */}
     <div className="relative w-40 h-[105px] rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-[7px] shrink-0"

@@ -36,32 +36,54 @@ const features = [
 const FeaturesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = [];
+    const container = containerRef.current;
+    if (!container) return;
 
-    features.forEach((_, i) => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveIndex(i);
-          }
-        },
-        {
-          rootMargin: "-40% 0px -40% 0px",
-          threshold: 0.1,
+    const handleScroll = () => {
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.top + cardRect.height / 2;
+        const viewportCenter = window.innerHeight / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
         }
-      );
+      });
 
-      const el = cardRefs.current[i];
-      if (el) observer.observe(el);
-      observers.push(observer);
-    });
+      setActiveIndex(closestIndex);
+    };
 
-    return () => observers.forEach((o) => o.disconnect());
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const activeVisualIndex = features[activeIndex]?.visualIndex ?? 0;
+
+  const handleCardClick = (index: number) => {
+    setActiveIndex(index);
+    const card = cardRefs.current[index];
+    if (card) {
+      const cardRect = card.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const cardCenter = cardRect.top + cardRect.height / 2;
+      const scrollOffset = cardCenter - viewportCenter;
+      
+      window.scrollBy({
+        top: scrollOffset,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <section id="features" className="py-8 md:py-16 section-gradient">
@@ -88,19 +110,20 @@ const FeaturesSection = () => {
         </div>
 
         {/* Desktop sticky scroll layout */}
-        <div className="hidden lg:block max-w-5xl mx-auto">
-          <div className="flex gap-8">
+        <div className="hidden lg:block max-w-6xl mx-auto">
+          <div className="flex gap-12">
             {/* Sticky left – image only */}
-            <div className="w-[440px] shrink-0">
+            <div className="w-[580px] shrink-0">
               <div className="sticky top-28">
-                <div className="relative w-full rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30">
+                <div className="relative w-full h-[420px] rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeVisualIndex}
-                      initial={{ opacity: 0, scale: 1.04 }}
+                      initial={{ opacity: 0, scale: 1.05 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.96 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="w-full h-full"
                     >
                       {visuals[activeVisualIndex]}
                     </motion.div>
@@ -110,53 +133,57 @@ const FeaturesSection = () => {
             </div>
 
             {/* Scrolling right cards */}
-            <div className="flex-1 space-y-3 py-[25vh]">
+            <div className="flex-1 space-y-4 py-[20vh]" ref={containerRef}>
               {features.map((f, i) => {
                 const distance = Math.abs(i - activeIndex);
-                let opacity = 0.3;
-                let borderColor = "hsl(var(--border) / 0.3)";
+                let opacity = 0.25;
+                let borderColor = "hsl(var(--border) / 0.2)";
                 let bg = "hsl(var(--background))";
                 let shadow = "none";
-                let iconBg = "hsl(199 76% 52% / 0.08)";
-                let iconColor = "hsl(199 76% 52% / 0.4)";
+                let iconBg = "hsl(199 76% 52% / 0.06)";
+                let iconColor = "hsl(199 76% 52% / 0.35)";
+                let scale = "0.95";
 
                 if (distance === 0) {
                   opacity = 1;
-                  borderColor = "hsl(199 76% 52% / 0.4)";
-                  bg = "hsl(199 76% 52% / 0.04)";
-                  shadow = "0 4px 24px hsl(199 76% 52% / 0.1)";
+                  borderColor = "hsl(199 76% 52% / 0.5)";
+                  bg = "hsl(199 76% 52% / 0.08)";
+                  shadow = "0 8px 32px hsl(199 76% 52% / 0.15)";
                   iconBg = "hsl(199 76% 52%)";
                   iconColor = "white";
+                  scale = "1";
                 } else if (distance === 1) {
-                  opacity = 0.55;
-                  borderColor = "hsl(199 76% 52% / 0.15)";
-                  iconBg = "hsl(199 76% 52% / 0.12)";
-                  iconColor = "hsl(199 76% 52% / 0.6)";
+                  opacity = 0.65;
+                  borderColor = "hsl(199 76% 52% / 0.25)";
+                  bg = "hsl(199 76% 52% / 0.03)";
+                  iconBg = "hsl(199 76% 52% / 0.15)";
+                  iconColor = "hsl(199 76% 52% / 0.7)";
+                  scale = "0.97";
                 }
 
                 return (
                   <div
                     key={f.title}
                     ref={(el) => { cardRefs.current[i] = el; }}
-                    className="flex items-start gap-4 p-4 rounded-xl border transition-all duration-500 ease-out cursor-pointer"
+                    className="flex items-start gap-5 p-5 rounded-xl border transition-all duration-700 ease-out cursor-pointer"
                     style={{
                       opacity,
                       borderColor,
                       backgroundColor: bg,
                       boxShadow: shadow,
-                      transform: distance === 0 ? "scale(1)" : "scale(0.98)",
+                      transform: `scale(${scale})`,
                     }}
-                    onClick={() => setActiveIndex(i)}
+                    onClick={() => handleCardClick(i)}
                   >
                     <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-500"
+                      className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 transition-all duration-700"
                       style={{ backgroundColor: iconBg }}
                     >
-                      <f.icon size={16} style={{ color: iconColor }} className="transition-colors duration-500" />
+                      <f.icon size={18} style={{ color: iconColor }} className="transition-colors duration-700" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-foreground text-sm leading-tight mb-0.5">{f.title}</h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
+                      <h3 className="font-semibold text-foreground text-base leading-tight mb-1">{f.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
                     </div>
                   </div>
                 );
@@ -205,7 +232,7 @@ const MobileFeatureCard = ({ feature, index }: { feature: typeof features[0]; in
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
             {visuals[feature.visualIndex]}
