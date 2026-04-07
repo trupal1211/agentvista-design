@@ -83,3 +83,12 @@
 html {
   scroll-behavior: smooth;
 }
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+@keyframes barUp {
+  to { transform: scaleY(1); }
+}
