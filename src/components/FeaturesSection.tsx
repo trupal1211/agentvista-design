@@ -50,7 +50,7 @@ const FeaturesSection = () => {
 
   useEffect(() => {
     if (isMobile) {
-      // Mobile scroll detection - detect middle card visible on screen
+      // Mobile scroll detection
       const handleScroll = () => {
         let closestIndex = 0;
         let closestDistance = Infinity;
@@ -60,7 +60,6 @@ const FeaturesSection = () => {
           
           const cardRect = card.getBoundingClientRect();
           const cardCenter = cardRect.top + cardRect.height / 2;
-          // Find card closest to center of screen
           const viewportCenter = window.innerHeight / 2;
           const distance = Math.abs(cardCenter - viewportCenter);
 
@@ -73,9 +72,6 @@ const FeaturesSection = () => {
         setActiveIndex(closestIndex);
       };
 
-      // Call on mount to set initial active card
-      handleScroll();
-      
       window.addEventListener("scroll", handleScroll, { passive: true });
       return () => window.removeEventListener("scroll", handleScroll);
     } else {
@@ -104,9 +100,6 @@ const FeaturesSection = () => {
         setActiveIndex(closestIndex);
       };
 
-      // Call on mount to set initial active card
-      handleScroll();
-      
       window.addEventListener("scroll", handleScroll, { passive: true });
       return () => window.removeEventListener("scroll", handleScroll);
     }
@@ -167,7 +160,7 @@ const FeaturesSection = () => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="sticky top-20 z-20 rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8 relative"
+            className="rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8 relative"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -239,7 +232,7 @@ const FeaturesSection = () => {
           <div className="flex gap-12">
             {/* Sticky left – image only */}
             <div className="w-[580px] shrink-0">
-              <div className="sticky top-1/2 -translate-y-1/2">
+              <div className="sticky top-28">
                 <div className="relative w-full h-[420px] rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30">
                   <AnimatePresence mode="wait">
                     <motion.div

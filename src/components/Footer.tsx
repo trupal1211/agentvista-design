@@ -63,8 +63,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <span>✉️</span>
-                <a href="mailto:info@agentvista.com" className="hover:text-primary transition-colors">
-                  info@agentvista.com
+                <a href="mailto:info@ardira.com" className="hover:text-primary transition-colors">
+                  info@ardira.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -82,7 +82,7 @@ const Footer = () => {
       <div className="border-t border-border">
         <div className="container mx-auto px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} AgentVista. All Rights Reserved.
+            © 2026 Ardira Corporation. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Use</Link>

@@ -106,7 +106,7 @@ const Navbar = () => {
               onClick={() => setDemoOpen(true)}
               className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
             >
-              Request a Demo
+              Book a Demo
             </button>
           </div>
 
@@ -170,7 +170,7 @@ const Navbar = () => {
                   }}
                   className="mt-3 px-4 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground text-center"
                 >
-                  Request a Demo
+                  Book a Demo
                 </button>
               </div>
             </motion.div>

@@ -177,7 +177,7 @@ const PrivacyPolicy = () => {
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">How to Contact Us</h2>
           <p>We value your opinions and welcome your feedback. To contact us about this Policy or your Personal Information, please contact us at:</p>
-          <div className="bg-muted/50 rounded-lg p-4 mt-2">
+          <div className="space-y-1 mt-2">
             <p className="font-medium text-foreground">Legal, AgentVista</p>
             <p>2040 Martin Ave</p>
             <p>Santa Clara, CA 95050</p>

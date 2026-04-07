@@ -71,13 +71,13 @@ const ContactSection = () => {
               </a>
 
               {/* Email */}
-              <a href="mailto:info@agentvista.com" className="flex items-start gap-4 p-4 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer">
+              <a href="mailto:info@ardira.com" className="flex items-start gap-4 p-4 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer">
                 <div className="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center shrink-0 flex-shrink-0">
                   <Mail size={18} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-foreground text-sm">Email</p>
-                  <p className="text-xs text-muted-foreground">info@agentvista.com</p>
+                  <p className="text-xs text-muted-foreground">info@ardira.com</p>
                 </div>
               </a>
             </div>
@@ -86,7 +86,7 @@ const ContactSection = () => {
             <div className="flex items-start gap-3 p-4 rounded-xl border border-secondary/20 bg-secondary/5">
               <div className="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-sm font-bold flex-shrink-0">✓</div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at <a href="mailto:support@agentvista.com" className="text-primary hover:underline">support@agentvista.com</a></p>
+                <p className="text-xs text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at <a href="mailto:support@ardira.com" className="text-primary hover:underline">support@ardira.com</a></p>
               </div>
             </div>
           </motion.div>

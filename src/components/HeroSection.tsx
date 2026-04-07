@@ -43,14 +43,14 @@ const HeroSection = () => {
                 onClick={() => setDemoOpen(true)}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-opacity"
               >
-                Request a Demo
+                Book a Demo
                 <ArrowRight size={20} />
               </button>
               <button
                 onClick={() => setAppExOpen(true)}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-border text-foreground font-semibold text-lg hover:bg-muted transition-colors"
               >
-                Get It Now
+                View on AppExchange
               </button>
             </div>
           </motion.div>
