@@ -35,37 +35,74 @@ const features = [
 
 const FeaturesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleScroll = () => {
-      let closestIndex = 0;
-      let closestDistance = Infinity;
-
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return;
-        
-        const cardRect = card.getBoundingClientRect();
-        const cardCenter = cardRect.top + cardRect.height / 2;
-        const viewportCenter = window.innerHeight / 2;
-        const distance = Math.abs(cardCenter - viewportCenter);
-
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = i;
-        }
-      });
-
-      setActiveIndex(closestIndex);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Check if mobile on mount and resize
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      // Mobile scroll detection
+      const handleScroll = () => {
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        cardRefs.current.forEach((card, i) => {
+          if (!card) return;
+          
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.top + cardRect.height / 2;
+          const viewportCenter = window.innerHeight / 2;
+          const distance = Math.abs(cardCenter - viewportCenter);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+
+        setActiveIndex(closestIndex);
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
+    } else {
+      // Desktop scroll detection
+      const container = containerRef.current;
+      if (!container) return;
+
+      const handleScroll = () => {
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        cardRefs.current.forEach((card, i) => {
+          if (!card) return;
+          
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.top + cardRect.height / 2;
+          const viewportCenter = window.innerHeight / 2;
+          const distance = Math.abs(cardCenter - viewportCenter);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        });
+
+        setActiveIndex(closestIndex);
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, [isMobile]);
 
   const activeVisualIndex = features[activeIndex]?.visualIndex ?? 0;
 
@@ -103,10 +140,61 @@ const FeaturesSection = () => {
         </motion.div>
 
         {/* Mobile layout */}
-        <div className="lg:hidden max-w-md mx-auto space-y-4">
-          {features.map((f, i) => (
-            <MobileFeatureCard key={f.title} feature={f} index={i} />
-          ))}
+        <div className="lg:hidden max-w-md mx-auto space-y-4 pb-12">
+          {/* Mobile Visual Container - shows only active card visual */}
+          <div className="rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="w-full h-full"
+              >
+                {visuals[features[activeIndex]?.visualIndex ?? 0]}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile Feature Cards */}
+          <div ref={containerRef} className="space-y-3">
+            {features.map((f, i) => {
+              const isActive = i === activeIndex;
+              return (
+                <div
+                  key={f.title}
+                  ref={(el) => { cardRefs.current[i] = el; }}
+                  className="flex items-start gap-3 p-4 rounded-xl border transition-all duration-500 ease-out cursor-pointer"
+                  style={{
+                    opacity: isActive ? 1 : 0.5,
+                    borderColor: isActive ? "hsl(199 76% 52% / 0.4)" : "hsl(var(--border) / 0.3)",
+                    backgroundColor: isActive ? "hsl(199 76% 52% / 0.08)" : "hsl(var(--background))",
+                    boxShadow: isActive ? "0 4px 16px hsl(199 76% 52% / 0.1)" : "none",
+                    transform: isActive ? "scale(1)" : "scale(0.98)",
+                  }}
+                  onClick={() => setActiveIndex(i)}
+                >
+                  <div
+                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-500"
+                    style={{
+                      backgroundColor: isActive ? "hsl(199 76% 52%)" : "hsl(199 76% 52% / 0.1)",
+                    }}
+                  >
+                    <f.icon
+                      size={16}
+                      style={{ color: isActive ? "white" : "hsl(199 76% 52%)" }}
+                      className="transition-colors duration-500"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-foreground text-sm leading-tight mb-0.5">{f.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Desktop sticky scroll layout */}
@@ -193,72 +281,6 @@ const FeaturesSection = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-/** Mobile card with visual that reveals on scroll */
-const MobileFeatureCard = ({ feature, index }: { feature: typeof features[0]; index: number }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsActive(entry.isIntersecting),
-      { rootMargin: "-30% 0px -30% 0px", threshold: 0 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: Math.min(index * 0.04, 0.2) }}
-      className="rounded-xl border overflow-hidden transition-all duration-400"
-      style={{
-        borderColor: isActive ? "hsl(199 76% 52% / 0.3)" : "hsl(var(--border) / 0.5)",
-        backgroundColor: isActive ? "hsl(199 76% 52% / 0.03)" : "hsl(var(--background))",
-        boxShadow: isActive ? "0 4px 20px hsl(199 76% 52% / 0.08)" : "none",
-        opacity: isActive ? 1 : 0.75,
-      }}
-    >
-      {/* Visual that shows when active */}
-      <AnimatePresence>
-        {isActive && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
-            {visuals[feature.visualIndex]}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="flex items-start gap-3 p-4">
-        <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
-          style={{
-            backgroundColor: isActive ? "hsl(199 76% 52%)" : "hsl(199 76% 52% / 0.1)",
-          }}
-        >
-          <feature.icon
-            size={16}
-            className="transition-colors duration-300"
-            style={{ color: isActive ? "white" : "hsl(199 76% 52%)" }}
-          />
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-foreground text-sm leading-tight mb-0.5">{feature.title}</h3>
-          <p className="text-xs text-muted-foreground leading-relaxed">{feature.desc}</p>
-        </div>
-      </div>
-    </motion.div>
   );
 };
 
