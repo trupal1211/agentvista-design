@@ -160,7 +160,7 @@ const FeaturesSection = () => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="sticky top-0 z-20 rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8 relative"
+            className="sticky top-20 z-20 rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8 relative"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -229,10 +229,10 @@ const FeaturesSection = () => {
 
         {/* Desktop sticky scroll layout */}
         <div className="hidden lg:block max-w-6xl mx-auto">
-          <div className="flex gap-12 items-stretch">
+          <div className="flex gap-12">
             {/* Sticky left – image only */}
-            <div className="w-[580px] shrink-0 flex items-center">
-              <div className="sticky top-1/2 -translate-y-1/2 w-full">
+            <div className="w-[580px] shrink-0">
+              <div className="sticky top-1/2 -translate-y-1/2">
                 <div className="relative w-full h-[420px] rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30">
                   <AnimatePresence mode="wait">
                     <motion.div
