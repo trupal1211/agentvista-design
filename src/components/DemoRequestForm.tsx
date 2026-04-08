@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send } from "lucide-react";
+import { X } from "lucide-react";
 
 interface DemoRequestFormProps {
   open: boolean;
@@ -8,18 +8,37 @@ interface DemoRequestFormProps {
 }
 
 const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
-  const [form, setForm] = useState({ name: "", email: "", company: "", datetime: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const scriptLoadedRef = useRef(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({ name: "", email: "", company: "", datetime: "" });
-      onClose();
-    }, 2000);
-  };
+  useEffect(() => {
+    if (open && !scriptLoadedRef.current) {
+      // Only load Calendly script when modal opens (lazy loading for SEO)
+      scriptLoadedRef.current = true;
+
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      script.onload = () => {
+        // Initialize Calendly widget after script loads
+        const Calendly = (window as any).Calendly;
+        if (Calendly && Calendly.initInlineWidget) {
+          Calendly.initInlineWidget({
+            url: "https://calendly.com/d/zzy-699-f8v/book-a-demo?embed_domain=agentvista.com&embed_type=Inline",
+            parentElement: document.getElementById("calendly-container"),
+          });
+        }
+      };
+      document.body.appendChild(script);
+
+      return () => {
+        // Clean up - remove script only if modal is being fully closed
+        // Note: We keep scriptLoadedRef true to avoid reloading
+        if (!open) {
+          document.body.removeChild(script);
+        }
+      };
+    }
+  }, [open]);
 
   return (
     <AnimatePresence>
@@ -36,82 +55,22 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25 }}
-            className="relative w-full max-w-md bg-background rounded-2xl border border-border shadow-2xl p-8"
+            className="relative w-screen max-w-[95vw] sm:max-w-5xl lg:max-w-6xl h-[90vh] max-h-[900px] rounded-2xl border border-border shadow-2xl overflow-hidden bg-white flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors z-10 p-2 hover:bg-gray-100 rounded-lg"
+              aria-label="Close modal"
             >
-              <X size={20} />
+              <X size={24} />
             </button>
 
-            <h3 className="text-xl font-bold text-foreground mb-1">Request a Demo</h3>
-            <p className="text-sm text-muted-foreground mb-6">
-              Fill in your details and we'll schedule a personalized demo.
-            </p>
-
-            {submitted ? (
-              <div className="text-center py-8">
-                <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
-                  <Send size={24} className="text-secondary" />
-                </div>
-                <p className="font-semibold text-foreground">Thank you!</p>
-                <p className="text-sm text-muted-foreground">We'll be in touch soon.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Full Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Work Email</label>
-                  <input
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
-                    placeholder="john@company.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Company Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={form.company}
-                    onChange={(e) => setForm({ ...form, company: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
-                    placeholder="Acme Inc."
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Preferred Date & Time</label>
-                  <input
-                    type="datetime-local"
-                    required
-                    value={form.datetime}
-                    onChange={(e) => setForm({ ...form, datetime: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity mt-2"
-                >
-                  Schedule Demo
-                </button>
-              </form>
-            )}
+            {/* Calendly container - only renders when modal is open */}
+            <div
+              id="calendly-container"
+              className="w-full flex-1 overflow-auto"
+            />
           </motion.div>
         </motion.div>
       )}
