@@ -60,8 +60,8 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <span>🌐</span>
-                <a href="https://www.agentvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  www.agentvista.com
+                <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  www.agentsvista.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
