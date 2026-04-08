@@ -5,18 +5,18 @@ import {
   Zap, MessageCircle, BarChart3, CheckCircle2, Search, Clipboard, Filter,
 } from "lucide-react";
 
-import salesImg from "@/assets/AV-sales.png";
-import marketingImg from "@/assets/usecase-marketing.jpg";
-import cxImg from "@/assets/AV-customer.png";
-import employeeImg from "@/assets/AV-employee.png";
-import partnerImg from "@/assets/usecase-partner.jpg";
-import insightsImg from "@/assets/AV-knowledge_insight.png";
-import adminImg from "@/assets/usecase-admin.jpg";
-import industryImg from "@/assets/usecase-industry.jpg";
+import SalesRevenueVisual from "./usecase-visuals/SalesRevenueVisual";
+import MarketingCampaignVisual from "./usecase-visuals/MarketingCampaignVisual";
+import CustomerExperienceVisual from "./usecase-visuals/CustomerExperienceVisual";
+import EmployeeExperienceVisual from "./usecase-visuals/EmployeeExperienceVisual";
+import PartnerVendorVisual from "./usecase-visuals/PartnerVendorVisual";
+import KnowledgeInsightsVisual from "./usecase-visuals/KnowledgeInsightsVisual";
+import AdminOpsVisual from "./usecase-visuals/AdminOpsVisual";
+import CrossIndustryVisual from "./usecase-visuals/CrossIndustryVisual";
 
 const useCases = [
   {
-    id: "sales", icon: TrendingUp, label: "Sales & Revenue", image: salesImg,
+    id: "sales", icon: TrendingUp, label: "Sales & Revenue", visual: SalesRevenueVisual,
     items: [
       { icon: Zap, text: "Auto-generate surveys using meeting summaries from Zoom or call logs" },
       { icon: CheckCircle2, text: "Trigger feedback workflows on closed-lost opportunities" },
@@ -25,7 +25,7 @@ const useCases = [
     ],
   },
   {
-    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", image: marketingImg,
+    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", visual: MarketingCampaignVisual,
     items: [
       { icon: Zap, text: "Send post-webinar feedback surveys automatically" },
       { icon: BarChart3, text: "Measure campaign effectiveness through targeted response forms" },
@@ -34,7 +34,7 @@ const useCases = [
     ],
   },
   {
-    id: "cx", icon: Headphones, label: "Customer Experience", image: cxImg,
+    id: "cx", icon: Headphones, label: "Customer Experience", visual: CustomerExperienceVisual,
     items: [
       { icon: Zap, text: "Auto-send CSAT surveys post-case closure" },
       { icon: MessageCircle, text: "AI-driven follow-up based on customer sentiment" },
@@ -43,7 +43,7 @@ const useCases = [
     ],
   },
   {
-    id: "employee", icon: UserCheck, label: "Employee Experience", image: employeeImg,
+    id: "employee", icon: UserCheck, label: "Employee Experience", visual: EmployeeExperienceVisual,
     items: [
       { icon: Zap, text: "Automate onboarding & exit surveys at lifecycle stages" },
       { icon: CheckCircle2, text: "Trigger manager effectiveness feedback based on team structure" },
@@ -52,7 +52,7 @@ const useCases = [
     ],
   },
   {
-    id: "partner", icon: Globe2, label: "Partner & Vendor", image: partnerImg,
+    id: "partner", icon: Globe2, label: "Partner & Vendor", visual: PartnerVendorVisual,
     items: [
       { icon: Zap, text: "Automate feedback during partner enablement journeys" },
       { icon: Search, text: "Query: 'Which partners reported friction in the last quarter?'" },
@@ -61,7 +61,7 @@ const useCases = [
     ],
   },
   {
-    id: "insights", icon: Brain, label: "Knowledge & Insights", image: insightsImg,
+    id: "insights", icon: Brain, label: "Knowledge & Insights", visual: KnowledgeInsightsVisual,
     items: [
       { icon: BarChart3, text: "AI-generated summary dashboards for executives" },
       { icon: TrendingUp, text: "Auto-surface top drivers of low satisfaction" },
@@ -70,7 +70,7 @@ const useCases = [
     ],
   },
   {
-    id: "admin", icon: Settings2, label: "Platform Admin & Ops", image: adminImg,
+    id: "admin", icon: Settings2, label: "Platform Admin & Ops", visual: AdminOpsVisual,
     items: [
       { icon: Zap, text: "'Clone onboarding survey, change theme to green, translate to French'" },
       { icon: Search, text: "Detect duplicate feedback and flag unstructured responses" },
@@ -79,7 +79,7 @@ const useCases = [
     ],
   },
   {
-    id: "industry", icon: Building2, label: "Cross-Industry", image: industryImg,
+    id: "industry", icon: Building2, label: "Cross-Industry", visual: CrossIndustryVisual,
     items: [
       { icon: Clipboard, text: "Public sector: feedback on service requests at key checkpoints" },
       { icon: MessageCircle, text: "Healthcare: post-appointment follow-up surveys" },
@@ -156,8 +156,46 @@ const UseCasesSection = () => {
             AgentVista adapts to every feedback program across industries</p>
         </motion.div>
 
-        {/* Carousel Container */}
-        <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+        {/* Mobile Single Tab */}
+        <div className="lg:hidden flex items-center justify-center gap-4 mb-8">
+          <button
+            onClick={handlePrev}
+            className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-all"
+            aria-label="Previous use cases"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="flex-1 max-w-sm">
+            <div className="flex gap-2 justify-center">
+              {useCases.map((u) => (
+                <button
+                  key={u.id}
+                  onClick={() => handleItemClick(u.id, useCases.findIndex((uc) => uc.id === u.id))}
+                  className={`flex-shrink-0 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-300 inline-flex items-center justify-center gap-1.5 ${
+                    active === u.id
+                      ? "bg-primary text-primary-foreground shadow-lg"
+                      : "hidden"
+                  }`}
+                >
+                  <u.icon size={16} className="flex-shrink-0" />
+                  <span className="truncate">{u.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={handleNext}
+            className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-all"
+            aria-label="Next use cases"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Desktop Carousel Container */}
+        <div className="hidden lg:flex items-center justify-center gap-4 mb-8 md:mb-10">
           <button
             onClick={handlePrev}
             className="p-2 rounded-lg bg-brand-blue/10 text-brand-blue hover:bg-brand-blue/20 transition-all"
@@ -217,27 +255,89 @@ const UseCasesSection = () => {
           </button>
         </div>
 
-        {/* Content */}
-        <AnimatePresence mode="wait">
+        {/* Mobile Visual Container */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="lg:hidden max-w-md mx-auto mb-8 overflow-hidden rounded-2xl border border-border/50 bg-background shadow-lg h-[240px] sm:h-[280px]"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.22, ease: "easeInOut" }}
+              className="w-full h-full bg-background"
+            >
+              {activeCase.visual && <activeCase.visual />}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Subtle glow effect on visual change */}
           <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.3 }}
-            className="max-w-5xl mx-auto"
-          >
-            <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-brand-blue/20 shadow-lg overflow-hidden grid md:grid-cols-[260px,1fr] items-stretch">
-              <div className="hidden md:flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-brand-blue/10">
-                <img
-                  src={activeCase.image}
-                  alt={activeCase.label}
-                  className="w-full h-full max-h-[200px] object-contain rounded-lg"
-                  loading="lazy"
-                />
+            key={`glow-${active}`}
+            initial={{ opacity: 0.6, scale: 1 }}
+            animate={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute inset-0 pointer-events-none rounded-xl border border-primary/40"
+          />
+        </motion.div>
+
+        {/* Desktop Content */}
+        <div className="hidden lg:block">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.3 }}
+              className="max-w-5xl mx-auto"
+            >
+              <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-primary/20 shadow-lg overflow-hidden grid grid-cols-[260px,1fr] items-stretch">
+                <div className="flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-primary/10 rounded-lg overflow-hidden">
+                  {activeCase.visual && <activeCase.visual />}
+                </div>
+                <div className="p-6 md:p-7 flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl font-bold text-primary mb-5">{activeCase.label}</h3>
+                  <ul className="space-y-3">
+                    {activeCase.items.map((item, i) => {
+                      const ItemIcon = item.icon;
+                      return (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.08 }}
+                        className="flex items-start gap-3"
+                      >
+                        <ItemIcon className="mt-1 w-5 h-5 text-primary shrink-0 shadow-sm" />
+                        <span className="text-muted-foreground text-base leading-relaxed font-medium">{item.text}</span>
+                      </motion.li>
+                      );
+                    })}
+                  </ul>
+                </div>
               </div>
-              <div className="p-6 md:p-7 flex flex-col justify-center">
-                <h3 className="text-xl md:text-2xl font-bold text-brand-blue mb-5">{activeCase.label}</h3>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Mobile Content */}
+        <div className="lg:hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.3 }}
+              className="max-w-md mx-auto"
+            >
+              <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-primary/20 shadow-lg overflow-hidden p-6">
+                <h3 className="text-lg md:text-xl font-bold text-primary mb-4">{activeCase.label}</h3>
                 <ul className="space-y-3">
                   {activeCase.items.map((item, i) => {
                     const ItemIcon = item.icon;
@@ -249,16 +349,16 @@ const UseCasesSection = () => {
                       transition={{ delay: i * 0.08 }}
                       className="flex items-start gap-3"
                     >
-                      <ItemIcon className="mt-1 w-5 h-5 text-brand-blue shrink-0 shadow-sm" />
-                      <span className="text-muted-foreground text-base leading-relaxed font-medium">{item.text}</span>
+                      <ItemIcon className="mt-1 w-5 h-5 text-primary shrink-0 shadow-sm" />
+                      <span className="text-muted-foreground text-sm leading-relaxed font-medium">{item.text}</span>
                     </motion.li>
                     );
                   })}
                 </ul>
               </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
