@@ -22,10 +22,13 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
         // Initialize Calendly widget after script loads
         const Calendly = (window as any).Calendly;
         if (Calendly && Calendly.initInlineWidget) {
-          Calendly.initInlineWidget({
-            url: "https://calendly.com/d/zzy-699-f8v/book-a-demo?embed_domain=agentvista.com&embed_type=Inline",
-            parentElement: document.getElementById("calendly-container"),
-          });
+          // Add slight delay to ensure DOM is ready on mobile
+          setTimeout(() => {
+            Calendly.initInlineWidget({
+              url: "https://calendly.com/d/zzy-699-f8v/book-a-demo?embed_domain=agentvista.com&embed_type=Inline",
+              parentElement: document.getElementById("calendly-container"),
+            });
+          }, 100);
         }
       };
       document.body.appendChild(script);
@@ -47,7 +50,7 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/40 backdrop-blur-sm px-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/40 backdrop-blur-sm px-2 sm:px-4"
           onClick={onClose}
         >
           <motion.div
@@ -55,15 +58,15 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25 }}
-            className="relative w-screen max-w-[95vw] sm:max-w-5xl lg:max-w-6xl h-[90vh] max-h-[900px] rounded-2xl border border-border shadow-2xl overflow-hidden bg-white flex flex-col"
+            className="relative w-full max-w-full sm:max-w-2xl md:max-w-5xl lg:max-w-6xl h-[85vh] sm:h-[80vh] md:h-[90vh] max-h-[900px] rounded-lg sm:rounded-2xl border border-border shadow-2xl overflow-hidden bg-white flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors z-10 p-2 hover:bg-gray-100 rounded-lg"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-600 hover:text-gray-900 transition-colors z-10 p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg"
               aria-label="Close modal"
             >
-              <X size={24} />
+              <X size={20} className="sm:w-6 sm:h-6" />
             </button>
 
             {/* Calendly container - only renders when modal is open */}

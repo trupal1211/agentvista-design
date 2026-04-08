@@ -38,17 +38,17 @@ const HeroSection = () => {
               Use natural language and AI to create, distribute, understand, and act on feedback — all within Salesforce. No code required.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 onClick={() => setDemoOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-brand-blue text-white font-semibold text-lg hover:opacity-85 transition-opacity"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg bg-brand-blue text-white font-semibold text-base sm:text-lg hover:opacity-85 active:opacity-75 transition-opacity cursor-pointer"
               >
                 Book a Demo
-                <ArrowRight size={20} />
+                <ArrowRight size={18} className="sm:w-5 sm:h-5" />
               </button>
               <button
                 onClick={() => setAppExOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-border text-foreground font-semibold text-lg hover:bg-muted transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg border border-border text-foreground font-semibold text-base sm:text-lg hover:bg-muted active:bg-muted transition-colors cursor-pointer"
               >
                 View on AppExchange
               </button>
