@@ -43,11 +43,12 @@ const BenefitsSection = () => {
               transition={{ delay: i * 0.06, duration: 0.4 }}
               className="group relative rounded-2xl bg-background border border-border/50 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
-              {/* Top gradient line */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-brand-blue to-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              {/* Top line - brand color */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-blue/10 to-secondary/10 flex items-center justify-center mb-4 group-hover:from-brand-blue/20 group-hover:to-secondary/20 transition-all duration-300">
-                <b.icon size={22} className="text-brand-blue" />
+              {/* Icon with brand color highlight */}
+              <div className="w-12 h-12 rounded-xl bg-brand-blue/5 flex items-center justify-center mb-4 group-hover:bg-brand-blue transition-colors duration-300 border border-brand-blue/20 group-hover:border-brand-blue">
+                <b.icon size={22} className="text-brand-blue group-hover:text-white transition-colors duration-300" />
               </div>
               <h3 className="font-semibold text-foreground mb-2 text-[15px]">{b.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
