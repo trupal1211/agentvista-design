@@ -45,7 +45,7 @@ const Footer = () => {
                   <a
                     href={l.href}
                     onClick={(e) => handleNavClick(e, l.href)}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm text-muted-foreground hover:text-brand-blue transition-colors"
                   >
                     {l.label}
                   </a>
@@ -60,19 +60,19 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <span>🌐</span>
-                <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue transition-colors">
                   www.agentsvista.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <span>✉️</span>
-                <a href="mailto:info@ardira.com" className="hover:text-primary transition-colors">
+                <a href="mailto:info@ardira.com" className="hover:text-brand-blue transition-colors">
                   info@ardira.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <span>📞</span>
-                <a href="tel:16697776838" className="hover:text-primary transition-colors">
+                <a href="tel:16697776838" className="hover:text-brand-blue transition-colors">
                   1.669.777.6838
                 </a>
               </li>
@@ -85,11 +85,11 @@ const Footer = () => {
       <div className="border-t border-border">
         <div className="mx-auto max-w-6xl px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-sm text-muted-foreground">
-            © 2026 Ardira Corporation. All Rights Reserved.
+            © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Use</Link>
-            <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Terms of Use</Link>
+            <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>

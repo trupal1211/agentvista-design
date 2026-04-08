@@ -9,16 +9,12 @@ import {
 
 const faqs = [
   {
-    question: "Is AgentVista 100% native to Salesforce?",
-    answer: "Yes, AgentVista is built entirely on the Salesforce platform using Agentforce. It requires no external integrations, APIs, or third-party tools — your data stays within Salesforce at all times, ensuring full compliance with your org's security and governance policies.",
-  },
+    question:"Is AgentVista 100% native to Salesforce? ",
+    answer: "Yes, AgentVista is built entirely on the Salesforce platform using Agentforce. It requires no external integrations, APIs, or third-party tools — your data stays within Salesforce at all times, ensuring full compliance with your org's security and governance policies."  
+    },
   {
     question: "Do I need coding skills to use AgentVista?",
     answer: "Not at all. AgentVista is designed for business users. You can create surveys, trigger feedback workflows, analyze sentiment, and generate insights using simple natural language prompts — no code, formulas, or technical expertise required.",
-  },
-  {
-    question: "How does AgentVista use AI to analyze feedback?",
-    answer: "AgentVista leverages Salesforce's built-in AI capabilities to perform real-time sentiment analysis, summarize open-ended responses, detect trends across large datasets, and recommend follow-up actions — all automatically and within your Salesforce environment.",
   },
   {
     question: "Can AgentVista integrate with my existing Salesforce workflows?",

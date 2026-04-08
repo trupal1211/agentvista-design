@@ -14,11 +14,11 @@ const TermsOfUse = () => {
       <Navbar />
       <div className="mx-auto px-4 lg:px-8 py-12 max-w-6xl pt-28">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
-          <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline">
+          <Link to="/" className="inline-flex items-center gap-2 text-brand-blue hover:underline">
             <ArrowLeft size={16} />
             Back to Home
           </Link>
-          <a href="https://surveyvista.com/terms-of-use/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-medium">
+          <a href="https://surveyvista.com/terms-of-use/" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline text-sm font-medium">
             Ardira AppExchange App Terms and Conditions
           </a>
         </div>
@@ -28,7 +28,7 @@ const TermsOfUse = () => {
 
         <div className="prose prose-sm max-w-none text-foreground/80 space-y-6 text-justify">
           <p>
-            The website located at <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">www.agentsvista.com</a>, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("AgentVista", "the Company," "we," "us," and "our"). These Terms of Use (the "Terms") govern your access to and use of the Website.
+            The website located at <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline font-medium">www.agentsvista.com</a>, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("AgentVista", "the Company," "we," "us," and "our"). These Terms of Use (the "Terms") govern your access to and use of the Website.
           </p>
           <p>
             By accessing, browsing, submitting information to and/or using the Website, you agree and acknowledge on your own behalf (referred to throughout the Terms as "you") that you have read, understand and agree to be bound by these Terms and to comply with all applicable laws including, without limitation, all federal, state and local tax and tariff laws, regulations, and/or directives. If you do not agree to the Terms, please do not use the Website.
@@ -69,7 +69,7 @@ const TermsOfUse = () => {
             The Website and Content are protected by copyrights, trademarks, or are subject to other proprietary rights. Accordingly, you are not permitted to use the Website or Content in any manner, except as expressly permitted by the Company in these Terms. The Website or Content may not be copied, reproduced, modified, published, uploaded, posted, transmitted, performed, or distributed in any way, and you agree not to modify, rent, lease, loan, sell, distribute, transmit, broadcast, or create derivatives with the express written consent of the Company or applicable owner.
           </p>
           <p>
-            Questions regarding the use of any intellectual property provided on the Website should be directed to <a href="mailto:legal@ardira.com" className="text-primary hover:underline font-medium">legal@ardira.com</a>.
+            Questions regarding the use of any intellectual property provided on the Website should be directed to <a href="mailto:legal@ardira.com" className="text-brand-blue hover:underline font-medium">legal@ardira.com</a>.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Disclaimer</h2>

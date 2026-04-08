@@ -68,7 +68,7 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
                     placeholder="John Doe"
                   />
                 </div>
@@ -79,7 +79,7 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
                     placeholder="john@company.com"
                   />
                 </div>
@@ -90,7 +90,7 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
                     required
                     value={form.company}
                     onChange={(e) => setForm({ ...form, company: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
                     placeholder="Acme Inc."
                   />
                 </div>
@@ -101,12 +101,12 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
                     required
                     value={form.datetime}
                     onChange={(e) => setForm({ ...form, datetime: e.target.value })}
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity mt-2"
+                  className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity mt-2"
                 >
                   Schedule Demo
                 </button>

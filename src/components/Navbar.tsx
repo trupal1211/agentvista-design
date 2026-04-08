@@ -108,7 +108,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center">
             <button
               onClick={() => setDemoOpen(true)}
-              className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity whitespace-nowrap"
+              className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-brand-blue text-white hover:opacity-85 transition-opacity whitespace-nowrap"
             >
               Book a Demo
             </button>
@@ -158,8 +158,8 @@ const Navbar = () => {
                       href={link.href}
                       className={`text-sm font-medium rounded-lg px-4 py-3 transition-colors ${
                         isActive
-                          ? "text-primary bg-primary/5"
-                          : "text-muted-foreground hover:text-primary hover:bg-accent"
+                          ? "text-brand-blue bg-brand-blue/5"
+                          : "text-muted-foreground hover:text-brand-blue hover:bg-accent"
                       }`}
                       onClick={(e) => handleNavClick(e, link.href)}
                     >
@@ -172,7 +172,7 @@ const Navbar = () => {
                     setMobileOpen(false);
                     setDemoOpen(true);
                   }}
-                  className="mt-3 px-4 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground text-center"
+                  className="mt-3 px-4 py-3 text-sm font-semibold rounded-lg bg-brand-blue text-white text-center"
                 >
                   Book a Demo
                 </button>

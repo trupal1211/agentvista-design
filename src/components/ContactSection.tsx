@@ -25,6 +25,7 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-12"
         >
+        
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="text-gradient">Contact Us</span>
           </h2>
@@ -50,8 +51,8 @@ const ContactSection = () => {
               {/* Contact Info Cards */}
               <div className="space-y-4 w-full">
                 {/* Address */}
-                <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-5 rounded-2xl border border-primary/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
-                  <div className="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center shrink-0">
+                <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-5 rounded-2xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                  <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0">
                     <MapPin size={20} />
                   </div>
                   <div className="flex-1 min-w-0 py-1">
@@ -61,8 +62,8 @@ const ContactSection = () => {
                 </a>
 
                 {/* Phone */}
-                <a href="tel:16697776838" className="flex items-start gap-4 p-5 rounded-2xl border border-primary/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
-                  <div className="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center shrink-0">
+                <a href="tel:16697776838" className="flex items-start gap-4 p-5 rounded-2xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                  <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0">
                     <Phone size={20} />
                   </div>
                   <div className="flex-1 min-w-0 py-1">
@@ -72,8 +73,8 @@ const ContactSection = () => {
                 </a>
 
                 {/* Email */}
-                <a href="mailto:info@ardira.com" className="flex items-start gap-4 p-5 rounded-2xl border border-primary/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
-                  <div className="w-12 h-12 rounded-lg bg-primary text-white flex items-center justify-center shrink-0">
+                <a href="mailto:info@ardira.com" className="flex items-start gap-4 p-5 rounded-2xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                  <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0">
                     <Mail size={20} />
                   </div>
                   <div className="flex-1 min-w-0 py-1">
@@ -87,7 +88,7 @@ const ContactSection = () => {
               <div className="flex items-start gap-3 p-5 rounded-2xl border border-secondary/20 bg-secondary/5 w-full min-w-0 shadow-sm">
                 <div className="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at <a href="mailto:support@ardira.com" className="text-primary hover:underline font-medium">support@ardira.com</a></p>
+                  <p className="text-xs text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at <a href="mailto:support@ardira.com" className="text-brand-blue hover:underline font-medium">support@ardira.com</a></p>
                 </div>
               </div>
           </motion.div>
@@ -121,7 +122,7 @@ const ContactSection = () => {
                     required 
                     value={form.name} 
                     onChange={(e) => setForm({ ...form, name: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors" 
                     placeholder="Enter your name" 
                   />
                 </div>
@@ -133,7 +134,7 @@ const ContactSection = () => {
                     required 
                     value={form.email} 
                     onChange={(e) => setForm({ ...form, email: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors" 
                     placeholder="Enter your email" 
                   />
                 </div>
@@ -145,7 +146,7 @@ const ContactSection = () => {
                     required 
                     value={form.phone} 
                     onChange={(e) => setForm({ ...form, phone: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors" 
                     placeholder="Enter your phone number" 
                   />
                 </div>
@@ -156,20 +157,20 @@ const ContactSection = () => {
                     rows={5} 
                     value={form.message} 
                     onChange={(e) => setForm({ ...form, message: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors resize-none" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors resize-none" 
                     placeholder="Lets talk! Tell us about yourself." 
                   />
                 </div>
 
                 <button 
                   type="submit" 
-                  className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+                  className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity\"
                 >
                   Send Message
                 </button>
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>.
+                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-brand-blue hover:underline\">Privacy Policy</Link>.
                 </p>
 
                 {/* Map at bottom of form */}

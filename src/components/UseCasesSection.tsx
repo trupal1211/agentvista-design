@@ -146,19 +146,21 @@ const UseCasesSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-10 md:mb-14"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-blue/20 bg-brand-blue/5 text-brand-blue text-xs font-semibold mb-4 tracking-widest uppercase">
+            Use Cases
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gradient">Use Cases</span>
+            <span className="text-gradient">Built for Every Team</span>
           </h2>
           <p className="text-muted-foreground text-base md:text-lg">
-            AgentVista adapts to your business needs across sales, support, HR, marketing, and more.
-          </p>
+            AgentVista adapts to every feedback program across industries</p>
         </motion.div>
 
         {/* Carousel Container */}
         <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
           <button
             onClick={handlePrev}
-            className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-all"
+            className="p-2 rounded-lg bg-brand-blue/10 text-brand-blue hover:bg-brand-blue/20 transition-all"
             aria-label="Previous use cases"
           >
             <ChevronLeft size={24} />
@@ -176,8 +178,8 @@ const UseCasesSection = () => {
                   onClick={() => handleItemClick(u.id, index)}
                   className={`flex-shrink-0 rounded-lg px-3 py-2.5 md:px-4 md:py-3 text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap inline-flex items-center justify-center gap-1.5 ${
                     active === u.id
-                      ? "bg-primary text-primary-foreground shadow-lg"
-                      : "bg-background border border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
+                      ? "bg-brand-blue text-white shadow-lg"
+                      : "bg-background border border-border text-muted-foreground hover:text-foreground hover:border-brand-blue/30"
                   }`}
                   style={{ width: `${itemWidth}%` }}
                 >
@@ -193,8 +195,8 @@ const UseCasesSection = () => {
                   onClick={() => handleItemClick(u.id, index)}
                   className={`flex-shrink-0 rounded-lg px-3 py-2.5 md:px-4 md:py-3 text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap inline-flex items-center justify-center gap-1.5 ${
                     active === u.id
-                      ? "bg-primary text-primary-foreground shadow-lg"
-                      : "bg-background border border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
+                      ? "bg-brand-blue text-white shadow-lg"
+                      : "bg-background border border-border text-muted-foreground hover:text-foreground hover:border-brand-blue/30"
                   }`}
                   style={{ width: `${itemWidth}%` }}
                 >
@@ -208,7 +210,7 @@ const UseCasesSection = () => {
 
           <button
             onClick={handleNext}
-            className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-all"
+            className="p-2 rounded-lg bg-brand-blue/10 text-brand-blue hover:bg-brand-blue/20 transition-all\"
             aria-label="Next use cases"
           >
             <ChevronRight size={24} />
@@ -225,8 +227,8 @@ const UseCasesSection = () => {
             transition={{ duration: 0.3 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-primary/20 shadow-lg overflow-hidden grid md:grid-cols-[260px,1fr] items-stretch">
-              <div className="hidden md:flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-primary/10">
+            <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-brand-blue/20 shadow-lg overflow-hidden grid md:grid-cols-[260px,1fr] items-stretch">
+              <div className="hidden md:flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-brand-blue/10">
                 <img
                   src={activeCase.image}
                   alt={activeCase.label}
@@ -235,7 +237,7 @@ const UseCasesSection = () => {
                 />
               </div>
               <div className="p-6 md:p-7 flex flex-col justify-center">
-                <h3 className="text-xl md:text-2xl font-bold text-primary mb-5">{activeCase.label}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-brand-blue mb-5">{activeCase.label}</h3>
                 <ul className="space-y-3">
                   {activeCase.items.map((item, i) => {
                     const ItemIcon = item.icon;
@@ -247,7 +249,7 @@ const UseCasesSection = () => {
                       transition={{ delay: i * 0.08 }}
                       className="flex items-start gap-3"
                     >
-                      <ItemIcon className="mt-1 w-5 h-5 text-primary shrink-0 shadow-sm" />
+                      <ItemIcon className="mt-1 w-5 h-5 text-brand-blue shrink-0 shadow-sm" />
                       <span className="text-muted-foreground text-base leading-relaxed font-medium">{item.text}</span>
                     </motion.li>
                     );

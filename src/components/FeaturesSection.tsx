@@ -141,8 +141,11 @@ const FeaturesSection = () => {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-8 md:mb-12"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-blue/20 bg-brand-blue/5 text-brand-blue text-xs font-semibold mb-4 tracking-widest uppercase">
+            Core Capabilities
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gradient">Core Capabilities</span>
+            <span className="text-gradient">From First Prompt to Final Action</span>
           </h2>
           <p className="text-muted-foreground text-base md:text-lg">
             From AI-powered survey creation to real-time sentiment analysis — AgentVista covers the entire feedback lifecycle.
@@ -179,7 +182,7 @@ const FeaturesSection = () => {
               initial={{ opacity: 0.6, scale: 1 }}
               animate={{ opacity: 0, scale: 1.1 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="absolute inset-0 pointer-events-none rounded-xl border border-primary/40"
+              className="absolute inset-0 pointer-events-none rounded-xl border border-brand-blue/40"
             />
           </motion.div>
 

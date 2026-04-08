@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden pt-16">
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/8 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-brand-blue/8 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/8 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 lg:px-8 py-12">
@@ -21,8 +21,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-sm font-semibold mb-8 tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 text-brand-blue text-sm font-semibold mb-8 tracking-wide">
+              <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
               Powered by Salesforce Agentforce
             </div>
 
@@ -41,7 +41,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setDemoOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold text-lg hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-brand-blue text-white font-semibold text-lg hover:opacity-85 transition-opacity"
               >
                 Book a Demo
                 <ArrowRight size={20} />
