@@ -169,7 +169,7 @@ const ContactSection = () => {
                 </button>
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  We're committed to your privacy. SurveyVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>.
+                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-primary hover:underline">Privacy Policy</Link>.
                 </p>
 
                 {/* Map at bottom of form */}

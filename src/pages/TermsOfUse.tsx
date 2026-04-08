@@ -19,7 +19,7 @@ const TermsOfUse = () => {
             Back to Home
           </Link>
           <a href="https://surveyvista.com/terms-of-use/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-medium">
-            Ardira AppExchange App Terms and Conditions →
+            Ardira AppExchange App Terms and Conditions
           </a>
         </div>
 

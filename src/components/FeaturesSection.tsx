@@ -157,7 +157,7 @@ const FeaturesSection = () => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="sticky z-20 mb-5 overflow-hidden rounded-2xl border border-border/50 bg-muted/30 shadow-lg h-[240px] sm:h-[260px]"
+            className="sticky z-20 mb-5 overflow-hidden rounded-2xl border border-border/50 bg-background shadow-lg h-[240px] sm:h-[260px]"
             style={{ top: `${(mobileNavbarHeight || 72) + 12}px` }}
           >
             <AnimatePresence mode="wait">
@@ -166,8 +166,8 @@ const FeaturesSection = () => {
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-full h-full"
+                transition={{ duration: 0.22, ease: "easeInOut" }}
+                className="w-full h-full bg-background"
               >
                 {visuals[features[activeIndex]?.visualIndex ?? 0]}
               </motion.div>
@@ -178,7 +178,7 @@ const FeaturesSection = () => {
               key={`glow-${activeIndex}`}
               initial={{ opacity: 0.6, scale: 1 }}
               animate={{ opacity: 0, scale: 1.1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="absolute inset-0 pointer-events-none rounded-xl border border-primary/40"
             />
           </motion.div>

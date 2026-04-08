@@ -13,10 +13,15 @@ const PrivacyPolicy = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <div className="mx-auto px-4 lg:px-8 py-12 max-w-6xl pt-28">
-        <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline mb-8">
-          <ArrowLeft size={16} />
-          Back to Home
-        </Link>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+          <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline">
+            <ArrowLeft size={16} />
+            Back to Home
+          </Link>
+          <a href="https://surveyvista.com/terms-of-use/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-medium">
+            Ardira AppExchange App Terms and Conditions
+          </a>
+        </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Privacy Notice</h1>
         <p className="text-sm text-muted-foreground mb-8">AgentVista Privacy Policy</p>
