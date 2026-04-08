@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import DemoRequestForm from "./DemoRequestForm";
 import AppExchangeForm from "./AppExchangeForm";
-import heroImg from "@/assets/owl-hero.png";
+import heroImg from "@/assets/owl-hero.webp";
 
 const HeroSection = () => {
   const [demoOpen, setDemoOpen] = useState(false);
