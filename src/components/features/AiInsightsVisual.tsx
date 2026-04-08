@@ -165,22 +165,22 @@ const AiInsightsVisual = () => (
             { emoji: "📊", bg: "rgba(39,168,224,0.1)",   bar1c: "rgba(39,168,224,0.25)",  w1: 68, w2: 42 },
             { emoji: "⚡", bg: "rgba(115,207,225,0.15)", bar1c: "rgba(115,207,225,0.4)",  w1: 52, w2: 35 },
           ].map((a) => (
-            <div key={a.emoji} className="flex items-center" style={{ gap: "4%" }}>
+            <div key={a.emoji} className="flex items-center" style={{ gap: "clamp(8px, 3%, 16px)" }}>
               <div
                 className="flex items-center justify-center shrink-0"
                 style={{
-                  width: "clamp(14px, 3cqw, 22px)",
-                  height: "clamp(14px, 3cqw, 22px)",
-                  borderRadius: "clamp(3px, 0.6cqw, 6px)",
+                  width: "clamp(18px, 4.5cqw, 32px)",
+                  height: "clamp(18px, 4.5cqw, 32px)",
+                  borderRadius: "clamp(4px, 0.8cqw, 8px)",
                   background: a.bg,
-                  fontSize: "clamp(8px, 1.6cqw, 13px)",
+                  fontSize: "clamp(10px, 2.2cqw, 18px)",
                 }}
               >
                 {a.emoji}
               </div>
-              <div className="flex flex-col flex-1" style={{ gap: "15%" }}>
-                <div style={{ height: "clamp(3px, 0.7cqw, 6px)", borderRadius: 3, width: `${a.w1}%`, background: a.bar1c }} />
-                <div style={{ height: "clamp(3px, 0.7cqw, 6px)", borderRadius: 3, width: `${a.w2}%`, background: "rgba(0,92,144,0.1)" }} />
+              <div className="flex flex-col flex-1" style={{ gap: "clamp(8px, 1.2cqw, 12px)" }}>
+                <div style={{ height: "clamp(4px, 1cqw, 8px)", borderRadius: 3, width: `${a.w1}%`, background: a.bar1c }} />
+                <div style={{ height: "clamp(4px, 1cqw, 8px)", borderRadius: 3, width: `${a.w2}%`, background: "rgba(0,92,144,0.1)" }} />
               </div>
             </div>
           ))}

@@ -110,7 +110,7 @@ const PdfFormVisual = () => (
     {/* ── Form Output ── */}
     <div
       className="flex flex-col"
-      style={{ flex: 1, gap: "5%", minWidth: 0 }}
+      style={{ flex: 1, gap: "6%", minWidth: 0 }}
     >
       <span
         style={{
@@ -134,6 +134,7 @@ const PdfFormVisual = () => (
             border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(6px, 1.2cqw, 12px)",
             padding: "3% 5%",
+            margin: "2.5% 0",
             display: "flex",
             flexDirection: "column",
             gap: "15%",
