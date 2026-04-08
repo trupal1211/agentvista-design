@@ -61,9 +61,8 @@ const FAQSection = () => {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="border border-border/60 rounded-xl px-5 md:px-6 bg-background data-[state=open]:shadow-md transition-shadow"
+                className="border border-border/60 rounded-xl px-5 md:px-6 bg-background data-[state=open]:shadow-md transition-shadow duration-200"
                 onMouseEnter={() => setOpenValue(`faq-${i}`)}
-                onMouseLeave={() => setOpenValue(null)}
               >
                 <AccordionTrigger className="text-sm md:text-[15px] font-semibold text-foreground text-left hover:no-underline py-4 md:py-5">
                   {faq.question}

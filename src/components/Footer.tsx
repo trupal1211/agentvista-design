@@ -1,26 +1,22 @@
 import logo from "@/assets/agent-vista-logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Features", href: "#features" },
-  { label: "Use Cases", href: "#use-cases" },
-  { label: "Benefits", href: "#benefits" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/home" },
+  { label: "Features", href: "/features" },
+  { label: "Use Cases", href: "/use-cases" },
+  { label: "Benefits", href: "/benefits" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
-const handleNavClick = (e: React.MouseEvent<HTMLElement>, href: string) => {
-  if (!href.startsWith("#")) return;
-  e.preventDefault();
-  const id = href.replace("#", "");
-  if (id === "home") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  } else {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLElement>, href: string) => {
+    e.preventDefault();
+    navigate(href);
+  };
   return (
     <footer className="bg-card border-t border-border">
       <div className="mx-auto max-w-6xl px-4 lg:px-8 py-10 md:py-14">
@@ -29,7 +25,7 @@ const Footer = () => {
           {/* Brand Column - 35% width on lg */}
           <div className="w-full lg:w-[35%] flex-shrink-0">
             <button
-              onClick={(e) => handleNavClick(e, "#home")}
+              onClick={(e) => handleNavClick(e, "/home")}
               className="cursor-pointer hover:opacity-80 transition-opacity mb-4 flex items-center"
               aria-label="Go to home"
             >

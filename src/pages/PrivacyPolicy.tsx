@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="container mx-auto px-4 lg:px-8 py-12 max-w-4xl pt-28">
+      <div className="mx-auto px-4 lg:px-8 py-12 max-w-6xl pt-28">
         <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline mb-8">
           <ArrowLeft size={16} />
           Back to Home
@@ -21,13 +21,13 @@ const PrivacyPolicy = () => {
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Privacy Notice</h1>
         <p className="text-sm text-muted-foreground mb-8">AgentVista Privacy Policy</p>
 
-        <div className="prose prose-sm max-w-none text-muted-foreground space-y-6">
+        <div className="prose prose-sm max-w-none text-foreground/80 space-y-6 text-justify">
           <p>
-            The website located at www.agentvista.com, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("AgentVista," "the Company," "we," "us," and "our"). AgentVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website Terms of Use, into which this Policy is incorporated by reference.
+            The website located at <a href="https://www.agentvista.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">www.agentvista.com</a>, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("AgentVista," "the Company," "we," "us," and "our"). AgentVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website Terms of Use, into which this Policy is incorporated by reference.
           </p>
           <p>This Policy describes:</p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>The types of information we collect from you or that you may provide when you visit our website available at: agentvista.com ("our Website").</li>
+            <li>The types of information we collect from you or that you may provide when you visit our website available at: <a href="https://www.agentvista.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">agentvista.com</a> ("our Website").</li>
             <li>Our practices for collecting, using, maintaining, protecting, and disclosing that information.</li>
           </ul>
           <p>
@@ -113,7 +113,7 @@ const PrivacyPolicy = () => {
           <p>
             We strive to maintain and process your information accurately. We have processes in place to maintain all of our information in accordance with relevant data governance frameworks and legal requirements. We employ technologies designed to help us maintain information accuracy on input and processing.
           </p>
-          <p>Should you have any questions about your Personal Information, please e-mail us at <a href="mailto:legal@ardira.com" className="text-primary hover:underline">legal@ardira.com</a>.</p>
+          <p>Should you have any questions about your Personal Information, please e-mail us at <a href="mailto:legal@ardira.com" className="text-primary hover:underline font-medium">legal@ardira.com</a>.</p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Information of Minors</h2>
           <p>
@@ -182,7 +182,7 @@ const PrivacyPolicy = () => {
             <p>2040 Martin Ave</p>
             <p>Santa Clara, CA 95050</p>
             <p>1-669-777-6838</p>
-            <p><a href="mailto:legal@ardira.com" className="text-primary hover:underline">legal@ardira.com</a></p>
+            <p><a href="mailto:legal@ardira.com" className="text-primary hover:underline font-medium">legal@ardira.com</a></p>
           </div>
         </div>
       </div>
