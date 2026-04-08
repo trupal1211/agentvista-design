@@ -5,18 +5,18 @@ import {
   Zap, MessageCircle, BarChart3, CheckCircle2, Search, Clipboard, Filter,
 } from "lucide-react";
 
-import salesImg from "@/assets/AV-sales.png";
-import marketingImg from "@/assets/usecase-marketing.jpg";
-import cxImg from "@/assets/AV-customer.png";
-import employeeImg from "@/assets/AV-employee.png";
-import partnerImg from "@/assets/usecase-partner.jpg";
-import insightsImg from "@/assets/AV-knowledge_insight.png";
-import adminImg from "@/assets/usecase-admin.jpg";
-import industryImg from "@/assets/usecase-industry.jpg";
+import SalesRevenueVisual from "./usecase-visuals/SalesRevenueVisual";
+import MarketingCampaignVisual from "./usecase-visuals/MarketingCampaignVisual";
+import CustomerExperienceVisual from "./usecase-visuals/CustomerExperienceVisual";
+import EmployeeExperienceVisual from "./usecase-visuals/EmployeeExperienceVisual";
+import PartnerVendorVisual from "./usecase-visuals/PartnerVendorVisual";
+import KnowledgeInsightsVisual from "./usecase-visuals/KnowledgeInsightsVisual";
+import AdminOpsVisual from "./usecase-visuals/AdminOpsVisual";
+import CrossIndustryVisual from "./usecase-visuals/CrossIndustryVisual";
 
 const useCases = [
   {
-    id: "sales", icon: TrendingUp, label: "Sales & Revenue", image: salesImg,
+    id: "sales", icon: TrendingUp, label: "Sales & Revenue", visual: SalesRevenueVisual,
     items: [
       { icon: Zap, text: "Auto-generate surveys using meeting summaries from Zoom or call logs" },
       { icon: CheckCircle2, text: "Trigger feedback workflows on closed-lost opportunities" },
@@ -25,7 +25,7 @@ const useCases = [
     ],
   },
   {
-    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", image: marketingImg,
+    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", visual: MarketingCampaignVisual,
     items: [
       { icon: Zap, text: "Send post-webinar feedback surveys automatically" },
       { icon: BarChart3, text: "Measure campaign effectiveness through targeted response forms" },
@@ -34,7 +34,7 @@ const useCases = [
     ],
   },
   {
-    id: "cx", icon: Headphones, label: "Customer Experience", image: cxImg,
+    id: "cx", icon: Headphones, label: "Customer Experience", visual: CustomerExperienceVisual,
     items: [
       { icon: Zap, text: "Auto-send CSAT surveys post-case closure" },
       { icon: MessageCircle, text: "AI-driven follow-up based on customer sentiment" },
@@ -43,7 +43,7 @@ const useCases = [
     ],
   },
   {
-    id: "employee", icon: UserCheck, label: "Employee Experience", image: employeeImg,
+    id: "employee", icon: UserCheck, label: "Employee Experience", visual: EmployeeExperienceVisual,
     items: [
       { icon: Zap, text: "Automate onboarding & exit surveys at lifecycle stages" },
       { icon: CheckCircle2, text: "Trigger manager effectiveness feedback based on team structure" },
@@ -52,7 +52,7 @@ const useCases = [
     ],
   },
   {
-    id: "partner", icon: Globe2, label: "Partner & Vendor", image: partnerImg,
+    id: "partner", icon: Globe2, label: "Partner & Vendor", visual: PartnerVendorVisual,
     items: [
       { icon: Zap, text: "Automate feedback during partner enablement journeys" },
       { icon: Search, text: "Query: 'Which partners reported friction in the last quarter?'" },
@@ -61,7 +61,7 @@ const useCases = [
     ],
   },
   {
-    id: "insights", icon: Brain, label: "Knowledge & Insights", image: insightsImg,
+    id: "insights", icon: Brain, label: "Knowledge & Insights", visual: KnowledgeInsightsVisual,
     items: [
       { icon: BarChart3, text: "AI-generated summary dashboards for executives" },
       { icon: TrendingUp, text: "Auto-surface top drivers of low satisfaction" },
@@ -70,7 +70,7 @@ const useCases = [
     ],
   },
   {
-    id: "admin", icon: Settings2, label: "Platform Admin & Ops", image: adminImg,
+    id: "admin", icon: Settings2, label: "Platform Admin & Ops", visual: AdminOpsVisual,
     items: [
       { icon: Zap, text: "'Clone onboarding survey, change theme to green, translate to French'" },
       { icon: Search, text: "Detect duplicate feedback and flag unstructured responses" },
@@ -79,7 +79,7 @@ const useCases = [
     ],
   },
   {
-    id: "industry", icon: Building2, label: "Cross-Industry", image: industryImg,
+    id: "industry", icon: Building2, label: "Cross-Industry", visual: CrossIndustryVisual,
     items: [
       { icon: Clipboard, text: "Public sector: feedback on service requests at key checkpoints" },
       { icon: MessageCircle, text: "Healthcare: post-appointment follow-up surveys" },
@@ -226,13 +226,8 @@ const UseCasesSection = () => {
             className="max-w-5xl mx-auto"
           >
             <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-primary/20 shadow-lg overflow-hidden grid md:grid-cols-[260px,1fr] items-stretch">
-              <div className="hidden md:flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-primary/10">
-                <img
-                  src={activeCase.image}
-                  alt={activeCase.label}
-                  className="w-full h-full max-h-[200px] object-contain rounded-lg"
-                  loading="lazy"
-                />
+              <div className="hidden md:flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-primary/10 rounded-lg overflow-hidden">
+                {activeCase.visual && <activeCase.visual />}
               </div>
               <div className="p-6 md:p-7 flex flex-col justify-center">
                 <h3 className="text-xl md:text-2xl font-bold text-primary mb-5">{activeCase.label}</h3>
