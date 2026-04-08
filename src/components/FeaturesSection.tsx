@@ -9,17 +9,19 @@ import {
 import AiSurveyVisual from "./features/AiSurveyVisual";
 import PdfFormVisual from "./features/PdfFormVisual";
 import AiInsightsVisual from "./features/AiInsightsVisual";
+import PromptCloningVisual from "./features/PromptCloningVisual";
 
 const visuals = [
   <AiSurveyVisual key="survey" />,
   <PdfFormVisual key="pdf" />,
   <AiInsightsVisual key="insights" />,
+  <PromptCloningVisual key="cloning" />,
 ];
 
 const features = [
   { icon: Sparkles, title: "AI Survey Generation", desc: "Instantly generate surveys, forms, and assessments using natural language prompts.", visualIndex: 0 },
   { icon: FileText, title: "Form Creation from PDFs", desc: "Upload documents to auto-generate structured forms in seconds.", visualIndex: 1 },
-  { icon: Copy, title: "Prompt-Based Cloning", desc: "Duplicate or update surveys using plain language commands.", visualIndex: 0 },
+  { icon: Copy, title: "Prompt-Based Cloning", desc: "Duplicate or update surveys using plain language commands.", visualIndex: 3 },
   { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 1 },
   { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 2 },
   { icon: BarChart3, title: "AI-Generated Insights", desc: "Summarize all responses to uncover trends and action areas instantly.", visualIndex: 2 },

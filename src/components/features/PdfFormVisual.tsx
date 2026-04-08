@@ -1,49 +1,198 @@
-/** Concept D – Drag-&-Drop / PDF Form visual (converted from HTML) */
+/**
+ * Concept D – PDF / Drag-and-Drop Form Visual
+ * RESPONSIVE: all layout via flex percentages + clamp() font/size values.
+ * Drop zone and output panel both flex to fill the card.
+ */
+
 const floatBadges = [
-  { emoji: "📄", label: "PDF", color: "#0981B5", border: "rgba(9,129,181,0.2)", pos: { top: -12, left: -8 }, delay: "0s" },
-  { emoji: "🖼", label: "Image", color: "#27A8E0", border: "rgba(39,168,224,0.2)", pos: { top: -10, right: -10 }, delay: "0.7s" },
-  { emoji: "📋", label: "DOCX", color: "#005C90", border: "rgba(0,92,144,0.18)", pos: { bottom: -10, left: 10 }, delay: "1.4s" },
+  { emoji: "📄", label: "PDF",   color: "#0981B5", border: "rgba(9,129,181,0.22)",  style: { top: "-12%",  left: "4%"  }, delay: "0s"   },
+  { emoji: "🖼",  label: "Image", color: "#27A8E0", border: "rgba(39,168,224,0.22)", style: { top: "-12%",  right: "4%" }, delay: "0.8s" },
+  { emoji: "📋", label: "DOCX",  color: "#005C90", border: "rgba(0,92,144,0.2)",    style: { bottom: "-11%", left: "50%", transform: "translateX(-50%)" }, delay: "1.6s" },
 ];
 
 const PdfFormVisual = () => (
-  <div className="w-full h-full flex items-center justify-center gap-4 px-5 py-5 overflow-hidden"
-    style={{ background: "linear-gradient(145deg,#EBF5FB 0%,#F5FBFF 100%)" }}>
-    {/* Drop zone */}
-    <div className="relative w-40 h-[105px] rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-[7px] shrink-0"
-      style={{ borderColor: "rgba(9,129,181,0.35)", background: "rgba(255,255,255,0.8)", boxShadow: "0 4px 20px rgba(0,38,73,0.06)" }}>
+  <div
+    className="w-full h-full flex items-center justify-center overflow-hidden"
+    style={{
+      background: "linear-gradient(145deg,#EBF5FB 0%,#F5FBFF 100%)",
+      padding: "4% 5%",
+      gap: "5%",
+    }}
+  >
+    {/* ── Drop Zone ── */}
+    <div
+      className="relative flex flex-col items-center justify-center"
+      style={{
+        flex: "0 0 42%",
+        aspectRatio: "1 / 0.72",
+        borderRadius: "clamp(10px, 2cqw, 20px)",
+        border: "2.5px dashed rgba(9,129,181,0.35)",
+        background: "rgba(255,255,255,0.85)",
+        boxShadow: "0 4px 20px rgba(0,38,73,0.07)",
+        gap: "6%",
+        padding: "5% 6%",
+      }}
+    >
+      {/* Floating file badges */}
       {floatBadges.map((b) => (
-        <div key={b.label}
-          className="absolute rounded-lg bg-white border px-2 py-1 text-[8px] font-bold flex items-center gap-1 animate-[floatBadge_3s_ease-in-out_infinite] whitespace-nowrap"
-          style={{ color: b.color, borderColor: b.border, boxShadow: "0 2px 10px rgba(0,38,73,0.08)", animationDelay: b.delay, ...b.pos } as React.CSSProperties}>
+        <div
+          key={b.label}
+          className="absolute flex items-center"
+          style={{
+            ...b.style,
+            background: "#fff",
+            border: `1.5px solid ${b.border}`,
+            borderRadius: "clamp(5px, 1cqw, 10px)",
+            padding: "1.5% 4%",
+            fontSize: "clamp(7px, 1.5cqw, 12px)",
+            fontWeight: 700,
+            color: b.color,
+            fontFamily: "Poppins, sans-serif",
+            gap: "6%",
+            boxShadow: "0 2px 10px rgba(0,38,73,0.09)",
+            whiteSpace: "nowrap",
+            animation: `floatBadge 3s ease-in-out ${b.delay} infinite`,
+            zIndex: 2,
+          } as React.CSSProperties}
+        >
           <span>{b.emoji}</span> {b.label}
         </div>
       ))}
-      <div className="w-[34px] h-[34px] rounded-[10px] flex items-center justify-center"
-        style={{ background: "linear-gradient(135deg,#0981B5,#27A8E0)", boxShadow: "0 3px 12px rgba(9,129,181,0.3)" }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M12 15V4M12 4L8 8M12 4L16 8" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M4 17v1a2 2 0 002 2h12a2 2 0 002-2v-1" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+
+      {/* Upload icon */}
+      <div
+        className="flex items-center justify-center"
+        style={{
+          width: "clamp(28px, 7cqw, 56px)",
+          height: "clamp(28px, 7cqw, 56px)",
+          borderRadius: "clamp(8px, 1.5cqw, 16px)",
+          background: "linear-gradient(135deg,#0981B5,#27A8E0)",
+          boxShadow: "0 4px 16px rgba(9,129,181,0.32)",
+          flexShrink: 0,
+        }}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ width: "50%", height: "50%" }}
+        >
+          <path d="M12 15V4M12 4L8 8M12 4L16 8" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M4 17v1a2 2 0 002 2h12a2 2 0 002-2v-1" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </div>
-      <span className="text-[9px] font-semibold text-center" style={{ color: "#005C90" }}>Drop your file here</span>
-      <span className="text-[7.5px] font-medium text-center uppercase tracking-[0.08em]" style={{ color: "#0981B5" }}>PDF · Image · DOCX</span>
+
+      <span
+        style={{
+          fontSize: "clamp(8px, 1.7cqw, 14px)",
+          fontWeight: 600,
+          color: "#005C90",
+          fontFamily: "Poppins, sans-serif",
+          textAlign: "center",
+        }}
+      >
+        Drop your file here
+      </span>
+      <span
+        style={{
+          fontSize: "clamp(6px, 1.3cqw, 11px)",
+          fontWeight: 500,
+          color: "#0981B5",
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+          fontFamily: "Poppins, sans-serif",
+          textAlign: "center",
+        }}
+      >
+        PDF · Image · DOCX
+      </span>
     </div>
 
-    {/* Output */}
-    <div className="flex flex-col gap-[7px]">
-      <span className="text-[8px] font-bold uppercase tracking-[0.12em]" style={{ color: "#39B44A" }}>Form Generated</span>
-      {[50, 65, 40].map((w, i) => (
-        <div key={i} className="w-32 bg-white border rounded-lg px-2.5 py-1.5 flex flex-col gap-[3px]"
-          style={{ borderColor: "rgba(0,92,144,0.11)", boxShadow: "0 1px 6px rgba(0,38,73,0.04)" }}>
-          <div className="h-1 rounded-sm" style={{ width: `${w}%`, background: "rgba(9,129,181,0.2)" }} />
-          <div className="rounded-[5px] border" style={{ height: i === 2 ? 20 : 14, background: "#F2F8FC", borderColor: "rgba(9,129,181,0.12)" }} />
+    {/* ── Form Output ── */}
+    <div
+      className="flex flex-col"
+      style={{ flex: 1, gap: "5%", minWidth: 0 }}
+    >
+      <span
+        style={{
+          fontSize: "clamp(7px, 1.5cqw, 12px)",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "0.12em",
+          color: "#39B44A",
+          fontFamily: "Poppins, sans-serif",
+          flexShrink: 0,
+        }}
+      >
+        Form Generated
+      </span>
+
+      {[{ w: 50 }, { w: 65 }, { w: 40, tall: true }].map((f, i) => (
+        <div
+          key={i}
+          style={{
+            background: "#fff",
+            border: "1px solid rgba(0,92,144,0.11)",
+            borderRadius: "clamp(6px, 1.2cqw, 12px)",
+            padding: "3% 5%",
+            display: "flex",
+            flexDirection: "column",
+            gap: "15%",
+            boxShadow: "0 1px 6px rgba(0,38,73,0.04)",
+          }}
+        >
+          <div
+            style={{
+              height: "clamp(4px, 0.9cqw, 7px)",
+              borderRadius: 3,
+              width: `${f.w}%`,
+              background: "rgba(9,129,181,0.2)",
+            }}
+          />
+          <div
+            style={{
+              height: f.tall ? "clamp(14px, 3.5cqw, 28px)" : "clamp(9px, 2cqw, 16px)",
+              borderRadius: "clamp(4px, 0.8cqw, 8px)",
+              background: "#F2F8FC",
+              border: "1px solid rgba(9,129,181,0.12)",
+            }}
+          />
         </div>
       ))}
-      <div className="w-32 h-[22px] rounded-[7px] flex items-center justify-center text-[8px] font-bold uppercase tracking-[0.1em] text-white"
-        style={{ background: "linear-gradient(90deg,#39B44A,#4DC95E)", boxShadow: "0 3px 10px rgba(57,180,74,0.28)" }}>
+
+      {/* CTA button */}
+      <div
+        style={{
+          height: "clamp(22px, 5cqw, 40px)",
+          borderRadius: "clamp(6px, 1.2cqw, 12px)",
+          background: "linear-gradient(90deg,#39B44A,#4DC95E)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "clamp(7px, 1.4cqw, 12px)",
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+          color: "#fff",
+          boxShadow: "0 3px 12px rgba(57,180,74,0.3)",
+          fontFamily: "Poppins, sans-serif",
+          flexShrink: 0,
+          cursor: "pointer",
+        }}
+      >
         Use This Form →
       </div>
     </div>
+
+    <style>{`
+      @keyframes floatBadge {
+        0%,100% { transform: translateY(0); opacity: 0.85; }
+        50%      { transform: translateY(-5px); opacity: 1; }
+      }
+      @keyframes floatBadgeCenter {
+        0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.85; }
+        50%      { transform: translateX(-50%) translateY(-5px); opacity: 1; }
+      }
+    `}</style>
   </div>
 );
 
