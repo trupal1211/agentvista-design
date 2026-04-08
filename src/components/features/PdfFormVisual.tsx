@@ -134,7 +134,7 @@ const PdfFormVisual = () => (
             border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(6px, 1.2cqw, 12px)",
             padding: "3% 5%",
-            margin: "2.5% 0",
+            margin: "2% 0",
             display: "flex",
             flexDirection: "column",
             gap: "15%",
@@ -164,6 +164,7 @@ const PdfFormVisual = () => (
       <div
         style={{
           height: "clamp(22px, 5cqw, 40px)",
+          margin: "2% 0 0 0",
           borderRadius: "clamp(6px, 1.2cqw, 12px)",
           background: "linear-gradient(90deg,#39B44A,#4DC95E)",
           display: "flex",
