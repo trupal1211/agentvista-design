@@ -17,26 +17,7 @@ interface IndexProps {
 
 const Index = ({ section }: IndexProps) => {
   useEffect(() => {
-    if (section && section !== "home") {
-      // Map section names to their corresponding IDs
-      const sectionMap: { [key: string]: string } = {
-        features: "features",
-        benefits: "benefits",
-        "use-cases": "use-cases",
-        contact: "contact",
-        faq: "faq",
-      };
-
-      const elementId = sectionMap[section];
-      if (elementId) {
-        setTimeout(() => {
-          const element = document.getElementById(elementId);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 100);
-      }
-    } else if (section === "home") {
+    if (section === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [section]);

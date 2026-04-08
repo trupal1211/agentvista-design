@@ -36,9 +36,11 @@ const features = [
 const FeaturesSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [mobileNavbarHeight, setMobileNavbarHeight] = useState(0);
+  const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
-  const mobileVisualRef = useRef<HTMLDivElement>(null);
+  const mobileStickyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Check if mobile on mount and resize
@@ -49,79 +51,74 @@ const FeaturesSection = () => {
   }, []);
 
   useEffect(() => {
-    if (isMobile) {
-      // Mobile scroll detection
-      const handleScroll = () => {
-        let closestIndex = 0;
-        let closestDistance = Infinity;
+    if (!isMobile) return;
 
-        cardRefs.current.forEach((card, i) => {
-          if (!card) return;
-          
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.top + cardRect.height / 2;
-          const viewportCenter = window.innerHeight / 2;
-          const distance = Math.abs(cardCenter - viewportCenter);
+    const updateNavbarHeight = () => {
+      const navbar = document.querySelector("nav");
+      if (!navbar) return;
 
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = i;
-          }
-        });
+      const nextHeight = Math.round(navbar.getBoundingClientRect().height);
+      setMobileNavbarHeight((current) => (current === nextHeight ? current : nextHeight));
+    };
 
-        setActiveIndex(closestIndex);
-      };
+    updateNavbarHeight();
+    window.addEventListener("resize", updateNavbarHeight);
 
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      return () => window.removeEventListener("scroll", handleScroll);
-    } else {
-      // Desktop scroll detection
-      const container = containerRef.current;
-      if (!container) return;
-
-      const handleScroll = () => {
-        let closestIndex = 0;
-        let closestDistance = Infinity;
-
-        cardRefs.current.forEach((card, i) => {
-          if (!card) return;
-          
-          const cardRect = card.getBoundingClientRect();
-          const cardCenter = cardRect.top + cardRect.height / 2;
-          const viewportCenter = window.innerHeight / 2;
-          const distance = Math.abs(cardCenter - viewportCenter);
-
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestIndex = i;
-          }
-        });
-
-        setActiveIndex(closestIndex);
-      };
-
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
+    return () => {
+      window.removeEventListener("resize", updateNavbarHeight);
+    };
   }, [isMobile]);
 
-  // Auto-scroll visual into view on mobile when active index changes
   useEffect(() => {
-    if (isMobile && mobileVisualRef.current) {
-      setTimeout(() => {
-        mobileVisualRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }, 100);
-    }
-  }, [activeIndex, isMobile]);
+    const getNavbarHeight = () => {
+      const navbar = document.querySelector("nav");
+      return navbar ? Math.round(navbar.getBoundingClientRect().height) : 72;
+    };
+
+    const handleScroll = () => {
+      const navbarHeight = getNavbarHeight();
+      const stickyHeight = isMobile ? mobileStickyRef.current?.getBoundingClientRect().height ?? 0 : 0;
+      const activationPoint = isMobile
+        ? navbarHeight + stickyHeight + Math.max(window.innerHeight - navbarHeight - stickyHeight, 0) / 2
+        : window.innerHeight / 2;
+      const activeCardRefs = isMobile ? mobileCardRefs.current : desktopCardRefs.current;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      activeCardRefs.forEach((card, i) => {
+        if (!card) return;
+
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.top + cardRect.height / 2;
+        const distance = Math.abs(cardCenter - activationPoint);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [isMobile]);
 
   const activeVisualIndex = features[activeIndex]?.visualIndex ?? 0;
 
   const handleCardClick = (index: number) => {
     setActiveIndex(index);
-    const card = cardRefs.current[index];
+    if (isMobile) return;
+
+    const card = desktopCardRefs.current[index];
     if (card) {
       const cardRect = card.getBoundingClientRect();
       const viewportCenter = window.innerHeight / 2;
@@ -153,14 +150,15 @@ const FeaturesSection = () => {
         </motion.div>
 
         {/* Mobile layout */}
-        <div className="lg:hidden max-w-md mx-auto space-y-4 pb-12">
+        <div className="lg:hidden max-w-md mx-auto pb-14">
           {/* Mobile Visual Container - shows only active card visual */}
           <motion.div 
-            ref={mobileVisualRef}
+            ref={mobileStickyRef}
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30 h-[250px] mb-8 relative"
+            className="sticky z-20 mb-5 overflow-hidden rounded-2xl border border-border/50 bg-muted/30 shadow-lg h-[240px] sm:h-[260px]"
+            style={{ top: `${(mobileNavbarHeight || 72) + 12}px` }}
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -192,8 +190,8 @@ const FeaturesSection = () => {
               return (
                 <motion.div
                   key={f.title}
-                  ref={(el) => { cardRefs.current[i] = el; }}
-                  className="flex items-start gap-3 p-4 rounded-xl border transition-all duration-500 ease-out cursor-pointer"
+                  ref={(el) => { mobileCardRefs.current[i] = el; }}
+                  className="flex items-start gap-3.5 p-4 rounded-2xl border transition-all duration-500 ease-out cursor-pointer"
                   style={{
                     opacity: isActive ? 1 : 0.5,
                     borderColor: isActive ? "hsl(199 76% 52% / 0.4)" : "hsl(var(--border) / 0.3)",
@@ -206,20 +204,20 @@ const FeaturesSection = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <div
-                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-500"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-500"
                     style={{
                       backgroundColor: isActive ? "hsl(199 76% 52%)" : "hsl(199 76% 52% / 0.1)",
                     }}
                   >
                     <f.icon
-                      size={16}
+                      size={17}
                       style={{ color: isActive ? "white" : "hsl(199 76% 52%)" }}
                       className="transition-colors duration-500"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-foreground text-sm leading-tight mb-0.5">{f.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
+                    <h3 className="font-semibold text-foreground text-[15px] leading-snug mb-1">{f.title}</h3>
+                    <p className="text-[13px] text-muted-foreground leading-relaxed">{f.desc}</p>
                   </div>
                 </motion.div>
               );
@@ -232,7 +230,7 @@ const FeaturesSection = () => {
           <div className="flex gap-12">
             {/* Sticky left – image only */}
             <div className="w-[580px] shrink-0">
-              <div className="sticky top-28">
+              <div className="sticky top-[calc(50vh-175px)]">
                 <div className="relative w-full h-[420px] rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30">
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -282,7 +280,7 @@ const FeaturesSection = () => {
                 return (
                   <div
                     key={f.title}
-                    ref={(el) => { cardRefs.current[i] = el; }}
+                    ref={(el) => { desktopCardRefs.current[i] = el; }}
                     className="flex items-start gap-5 p-5 rounded-xl border transition-all duration-700 ease-out cursor-pointer"
                     style={{
                       opacity,
