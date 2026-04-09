@@ -34,7 +34,11 @@ const WhatIsSection = () => {
               The Intelligent Feedback Copilot Built within Salesforce
             </h2>
             <p className="text-muted-foreground leading-relaxed text-[15px]">
-              <strong className="text-foreground">AgentVista</strong> is the intelligent, AI-powered assistant built into SurveyVista, designed to transform how organizations collect, understand, and act on feedback. Powered by Salesforce's Agentforce, it brings natural language automation to the entire customer feedback lifecycle — making it faster and easier to create surveys, engage participants, analyze sentiment, and drive follow-up actions. AgentVista seamlessly integrates with your Salesforce data and workflows to enable dynamic, real-time feedback operations across customer, employee, and partner experiences — all without writing a single line of code.
+              <strong className="text-foreground">AgentVista</strong>  is an AI-powered assistant built into SurveyVista, powered by Salesforce's Agentforce. No coding. No complexity. Just intelligent feedback automation.
+            </p>
+
+            <p className="text-muted-foreground leading-relaxed text-[15px]">
+              From creating surveys to analyzing sentiment and triggering follow-up actions, AgentVista connects your entire feedback process to your Salesforce data and workflows in real time. Whether you are managing customer, employee, or partner feedback, AgentVista makes it faster, smarter, and easier to turn responses into action.
             </p>
           </motion.div>
         </div>
