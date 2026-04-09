@@ -2,18 +2,41 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRecaptcha } from "@/hooks/use-recaptcha";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { getToken } = useRecaptcha();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({ name: "", email: "", phone: "", message: "" });
-    }, 3000);
+    setIsLoading(true);
+
+    try {
+      // Get reCAPTCHA token
+      const token = await getToken("contact_form");
+      
+      if (!token) {
+        console.error("Failed to get reCAPTCHA token");
+        setIsLoading(false);
+        return;
+      }
+
+      // Log successful token generation
+      console.log("Contact form submitted with reCAPTCHA token:", token);
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setForm({ name: "", email: "", phone: "", message: "" });
+        setIsLoading(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -120,9 +143,10 @@ const ContactSection = () => {
                   <input 
                     type="text" 
                     required 
+                    disabled={isLoading}
                     value={form.name} 
                     onChange={(e) => setForm({ ...form, name: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50" 
                     placeholder="Enter your name" 
                   />
                 </div>
@@ -132,9 +156,10 @@ const ContactSection = () => {
                   <input 
                     type="email" 
                     required 
+                    disabled={isLoading}
                     value={form.email} 
                     onChange={(e) => setForm({ ...form, email: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50" 
                     placeholder="Enter your email" 
                   />
                 </div>
@@ -144,9 +169,10 @@ const ContactSection = () => {
                   <input 
                     type="tel" 
                     required 
+                    disabled={isLoading}
                     value={form.phone} 
                     onChange={(e) => setForm({ ...form, phone: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50" 
                     placeholder="Enter your phone number" 
                   />
                 </div>
@@ -155,22 +181,24 @@ const ContactSection = () => {
                   <label className="block text-sm font-semibold text-foreground mb-2">Message</label>
                   <textarea 
                     rows={5} 
+                    disabled={isLoading}
                     value={form.message} 
                     onChange={(e) => setForm({ ...form, message: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors resize-none" 
+                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors resize-none disabled:opacity-50" 
                     placeholder="Lets talk! Tell us about yourself." 
                   />
                 </div>
 
                 <button 
                   type="submit" 
-                  className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity\"
+                  disabled={isLoading}
+                  className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isLoading ? "Sending..." : "Send Message"}
                 </button>
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-brand-blue hover:underline\">Privacy Policy</Link>.
+                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-brand-blue hover:underline">Privacy Policy</Link>.
                 </p>
 
                 {/* Map at bottom of form */}
