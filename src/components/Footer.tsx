@@ -50,7 +50,7 @@ const Footer = () => {
               <img src={logo} alt="AgentVista" className="h-9" loading="lazy" />
             </a>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Empowering Agent Operations on Salesforce with Smart Automation, Better Insights, and Seamless Management.
+              The AI Copilot for Surveys, Forms & Assessments - Natively Powered by Salesforce Agentforce.
             </p>
           </div>
 
@@ -91,7 +91,7 @@ const Footer = () => {
               <li className="flex items-center gap-2">
                 <span>📞</span>
                 <a href="tel:16697776838" className="hover:text-brand-blue transition-colors">
-                  1.669.777.6838
+                  +1-669-777-6838
                 </a>
               </li>
             </ul>

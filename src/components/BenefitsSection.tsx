@@ -29,7 +29,7 @@ const BenefitsSection = () => {
             <span className="text-gradient">Built for Enterprise. Designed for Everyone.</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Not just a survey builder — a feedback intelligence layer for your entire Salesforce org.
+            Not just a survey builder. A feedback intelligence layer that turns every response into action inside Salesforce.
           </p>
         </motion.div>
 
