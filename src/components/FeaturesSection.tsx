@@ -11,6 +11,7 @@ import PdfFormVisual from "./features/PdfFormVisual";
 import AiInsightsVisual from "./features/AiInsightsVisual";
 import PromptCloningVisual from "./features/PromptCloningVisual";
 import BrandingVisual from "./features/BrandingVisual";
+import SentimentIntelligenceVisual from "./features/SentimentIntelligenceVisual";
 
 const visuals = [
   <AiSurveyVisual key="survey" />,
@@ -18,6 +19,7 @@ const visuals = [
   <AiInsightsVisual key="insights" />,
   <PromptCloningVisual key="cloning" />,
   <BrandingVisual key="branding" />,
+  <SentimentIntelligenceVisual key="sentiment" />,
 ];
 
 const features = [
@@ -25,14 +27,14 @@ const features = [
   { icon: FileText, title: "Form Creation from PDFs", desc: "Upload documents to auto-generate structured forms in seconds.", visualIndex: 1 },
   { icon: Copy, title: "Prompt-Based Cloning", desc: "Duplicate or update surveys using plain language commands.", visualIndex: 3 },
   { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 4 },
-  { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 2 },
+  { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 5 },
   { icon: BarChart3, title: "AI-Generated Insights", desc: "Summarize all responses to uncover trends and action areas instantly.", visualIndex: 2 },
-  { icon: Lightbulb, title: "AI Summary of Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 2 },
+  { icon: Lightbulb, title: "AI Summary of Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 5 },
   { icon: TrendingUp, title: "Conversational Analytics", desc: "Retrieve real-time insights using natural language prompts.", visualIndex: 0 },
-  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, and act on survey insights.", visualIndex: 0 },
+  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, and act on survey insights.", visualIndex: 1 },
   { icon: BotMessageSquare, title: "Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses.", visualIndex: 1 },
-  { icon: Zap, title: "Automated Lifecycle Feedback", desc: "Trigger surveys based on CRM or Record Lifecycle Map events.", visualIndex: 1 },
-  { icon: Target, title: "Smart Record Targeting", desc: "Search and assign surveys to contacts, leads, or accounts with precision.", visualIndex: 2 },
+  { icon: Zap, title: "Automated Lifecycle Feedback", desc: "Trigger surveys based on CRM or Record Lifecycle Map events.", visualIndex: 2 },
+  { icon: Target, title: "Smart Record Targeting", desc: "Search and assign surveys to contacts, leads, or accounts with precision.", visualIndex: 4 },
   { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 0 },
   { icon: FileSearch, title: "AI-Based Response Mapping", desc: "Determine if a response warrants task creation or record updates.", visualIndex: 1 },
 ];
