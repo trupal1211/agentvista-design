@@ -90,6 +90,8 @@ const AiInsightsVisual = () => (
           <svg
             viewBox="0 0 42 42"
             style={{ width: "40%", maxWidth: 64, flexShrink: 0 }}
+            aria-label="Sentiment analysis gauge showing 62% positive, 25% neutral, 13% mixed feedback ratings"
+            role="img"
           >
             <circle cx="21" cy="21" r="16" fill="none" stroke="#EBF5FB" strokeWidth="5.5" />
             <circle cx="21" cy="21" r="16" fill="none" stroke="#39B44A" strokeWidth="5.5" strokeDasharray="62 39" strokeDashoffset="-4" strokeLinecap="round" />

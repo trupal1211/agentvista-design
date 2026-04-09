@@ -269,7 +269,7 @@ const UseCasesSection = () => {
             >
               <img 
                 src={activeCase.image} 
-                alt={activeCase.label}
+                alt={`AgentVista ${activeCase.label} use case - AI-powered feedback automation for Salesforce`}
                 className="w-full h-full object-contain"
               />
             </motion.div>
@@ -300,7 +300,7 @@ const UseCasesSection = () => {
                 <div className="flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-primary/10 rounded-lg overflow-hidden">
                   <img 
                     src={activeCase.image} 
-                    alt={activeCase.label}
+                    alt={`AgentVista ${activeCase.label} use case - AI-powered feedback automation for Salesforce`}
                     className="w-full h-full object-cover"
                   />
                 </div>
