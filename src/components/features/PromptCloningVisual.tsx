@@ -76,7 +76,7 @@ const PromptCloningVisual = () => (
               flexShrink: 0,
             }}
           >
-            <svg viewBox="0 0 16 16" fill="none" style={{ width: "52%", height: "52%" }}>
+            <svg viewBox="0 0 16 16" fill="none" style={{ width: "52%", height: "52%" }} aria-label="Text prompt lines icon" role="img">
               <path d="M2 4h12M2 8h8M2 12h5" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
           </div>
@@ -224,7 +224,7 @@ const PromptCloningVisual = () => (
             flexShrink: 0,
           }}
         >
-          <svg viewBox="0 0 16 16" fill="none" style={{ width: "55%", height: "55%" }}>
+          <svg viewBox="0 0 16 16" fill="none" style={{ width: "55%", height: "55%" }} aria-label="Unconfirmed survey template icon" role="img">
             <rect x="2" y="2" width="12" height="12" rx="2.5" stroke="#0981B5" strokeWidth="1.5" />
             <path d="M5 6h6M5 9h4" stroke="#0981B5" strokeWidth="1.4" strokeLinecap="round" />
           </svg>
@@ -318,7 +318,7 @@ const PromptCloningVisual = () => (
             flexShrink: 0,
           }}
         >
-          <svg viewBox="0 0 16 16" fill="none" style={{ width: "55%", height: "55%" }}>
+          <svg viewBox="0 0 16 16" fill="none" style={{ width: "55%", height: "55%" }} aria-label="Confirmed survey ClonedCopied using prompt cloning" role="img">
             <rect x="2" y="2" width="12" height="12" rx="2.5" stroke="#39B44A" strokeWidth="1.5" />
             <path d="M5 6h6M5 9h4" stroke="#39B44A" strokeWidth="1.4" strokeLinecap="round" />
             <circle cx="12" cy="4" r="3" fill="#39B44A" />

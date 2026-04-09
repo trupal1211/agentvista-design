@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroImg from "@/assets/what-is-agentvista.webp";
+import heroImg from "@/assets/agentvista-what-is-features-hero.webp";
 
 const WhatIsSection = () => {
   return (
@@ -15,7 +15,7 @@ const WhatIsSection = () => {
           >
             <img
               src={heroImg}
-              alt="AgentVista AI Platform"
+              alt="AgentVista intelligent feedback copilot interface showcasing AI-powered survey creation and feedback management features"
               className="w-full max-w-sm md:max-w-md h-auto rounded-2xl shadow-xl"
               loading="lazy"
             />

@@ -69,8 +69,9 @@ const HeroSection = () => {
           >
             <img
               src={heroImg}
-              alt="AgentVista AI Platform"
+              alt="AI-powered survey assistant mascot - AgentVista SurveyVista Copilot for intelligent feedback automation"
               className="w-full max-w-md lg:max-w-lg"
+              loading="lazy"
             />
 
             {/* Floating card - AI Survey */}

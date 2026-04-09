@@ -5,18 +5,18 @@ import {
   Zap, MessageCircle, BarChart3, CheckCircle2, Search, Clipboard, Filter,
 } from "lucide-react";
 
-import SalesRevenueVisual from "./usecase-visuals/SalesRevenueVisual";
-import MarketingCampaignVisual from "./usecase-visuals/MarketingCampaignVisual";
-import CustomerExperienceVisual from "./usecase-visuals/CustomerExperienceVisual";
-import EmployeeExperienceVisual from "./usecase-visuals/EmployeeExperienceVisual";
-import PartnerVendorVisual from "./usecase-visuals/PartnerVendorVisual";
-import KnowledgeInsightsVisual from "./usecase-visuals/KnowledgeInsightsVisual";
-import AdminOpsVisual from "./usecase-visuals/AdminOpsVisual";
-import CrossIndustryVisual from "./usecase-visuals/CrossIndustryVisual";
+import salesRevenueImg from "../assets/agentvista-sales-revenue-use-case.webp";
+import marketingImg from "../assets/agentvista-marketing-use-case.webp";
+import customerExperienceImg from "../assets/agentvista-customer-experience-use-case.svg";
+import employeeExperienceImg from "../assets/agentvista-employee-experience-use-case.webp";
+import partnerVendorImg from "../assets/agentvista-partner-vendor-use-case.webp";
+import knowledgeInsightsImg from "../assets/agentvista-knowledge-insights-use-case.webp";
+import adminOpsImg from "../assets/agentvista-platform-admin-ops-use-case.webp";
+import crossIndustryImg from "../assets/agentvista-cross-industry-use-case.webp";
 
 const useCases = [
   {
-    id: "sales", icon: TrendingUp, label: "Sales & Revenue", visual: SalesRevenueVisual,
+    id: "sales", icon: TrendingUp, label: "Sales & Revenue", image: salesRevenueImg,
     items: [
       { icon: Zap, text: "Auto-generate surveys using meeting summaries from Zoom or call logs" },
       { icon: CheckCircle2, text: "Trigger feedback workflows on closed-lost opportunities" },
@@ -25,7 +25,7 @@ const useCases = [
     ],
   },
   {
-    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", visual: MarketingCampaignVisual,
+    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", image: marketingImg,
     items: [
       { icon: Zap, text: "Send post-webinar feedback surveys automatically" },
       { icon: BarChart3, text: "Measure campaign effectiveness through targeted response forms" },
@@ -34,7 +34,7 @@ const useCases = [
     ],
   },
   {
-    id: "cx", icon: Headphones, label: "Customer Experience", visual: CustomerExperienceVisual,
+    id: "cx", icon: Headphones, label: "Customer Experience", image: customerExperienceImg,
     items: [
       { icon: Zap, text: "Auto-send CSAT surveys post-case closure" },
       { icon: MessageCircle, text: "AI-driven follow-up based on customer sentiment" },
@@ -43,7 +43,7 @@ const useCases = [
     ],
   },
   {
-    id: "employee", icon: UserCheck, label: "Employee Experience", visual: EmployeeExperienceVisual,
+    id: "employee", icon: UserCheck, label: "Employee Experience", image: employeeExperienceImg,
     items: [
       { icon: Zap, text: "Automate onboarding & exit surveys at lifecycle stages" },
       { icon: CheckCircle2, text: "Trigger manager effectiveness feedback based on team structure" },
@@ -52,7 +52,7 @@ const useCases = [
     ],
   },
   {
-    id: "partner", icon: Globe2, label: "Partner & Vendor", visual: PartnerVendorVisual,
+    id: "partner", icon: Globe2, label: "Partner & Vendor", image: partnerVendorImg,
     items: [
       { icon: Zap, text: "Automate feedback during partner enablement journeys" },
       { icon: Search, text: "Query: 'Which partners reported friction in the last quarter?'" },
@@ -61,7 +61,7 @@ const useCases = [
     ],
   },
   {
-    id: "insights", icon: Brain, label: "Knowledge & Insights", visual: KnowledgeInsightsVisual,
+    id: "insights", icon: Brain, label: "Knowledge & Insights", image: knowledgeInsightsImg,
     items: [
       { icon: BarChart3, text: "AI-generated summary dashboards for executives" },
       { icon: TrendingUp, text: "Auto-surface top drivers of low satisfaction" },
@@ -70,7 +70,7 @@ const useCases = [
     ],
   },
   {
-    id: "admin", icon: Settings2, label: "Platform Admin & Ops", visual: AdminOpsVisual,
+    id: "admin", icon: Settings2, label: "Platform Admin & Ops", image: adminOpsImg,
     items: [
       { icon: Zap, text: "'Clone onboarding survey, change theme to green, translate to French'" },
       { icon: Search, text: "Detect duplicate feedback and flag unstructured responses" },
@@ -79,7 +79,7 @@ const useCases = [
     ],
   },
   {
-    id: "industry", icon: Building2, label: "Cross-Industry", visual: CrossIndustryVisual,
+    id: "industry", icon: Building2, label: "Cross-Industry", image: crossIndustryImg,
     items: [
       { icon: Clipboard, text: "Public sector: feedback on service requests at key checkpoints" },
       { icon: MessageCircle, text: "Healthcare: post-appointment follow-up surveys" },
@@ -265,9 +265,14 @@ const UseCasesSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.22, ease: "easeInOut" }}
-              className="w-full h-full bg-background"
+              className="w-full h-full bg-background flex items-center justify-center p-4"
             >
-              {activeCase.visual && <activeCase.visual />}
+              <img 
+                src={activeCase.image} 
+                alt={`AgentVista ${activeCase.label} use case - AI-powered feedback automation for Salesforce`}
+                className="w-full h-full object-contain"
+                loading="lazy"
+              />
             </motion.div>
           </AnimatePresence>
 
@@ -294,7 +299,12 @@ const UseCasesSection = () => {
             >
               <div className="bg-gradient-to-br from-background to-muted/10 rounded-2xl border border-primary/20 shadow-lg overflow-hidden grid grid-cols-[260px,1fr] items-stretch">
                 <div className="flex flex-col items-center justify-center p-4 bg-muted/20 border-r border-primary/10 rounded-lg overflow-hidden">
-                  {activeCase.visual && <activeCase.visual />}
+                  <img 
+                    src={activeCase.image} 
+                    alt={`AgentVista ${activeCase.label} use case - AI-powered feedback automation for Salesforce`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="p-6 md:p-7 flex flex-col justify-center">
                   <h3 className="text-xl md:text-2xl font-bold text-primary mb-5">{activeCase.label}</h3>

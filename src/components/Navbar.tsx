@@ -81,7 +81,7 @@ const Navbar = () => {
           }}
         >
           <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">
-            <img src={logo} alt="AgentVista" className="h-7" />
+            <img src={logo} alt="AgentVista" className="h-7" loading="lazy" />
           </a>
 
           {/* Desktop links */}
