@@ -5,9 +5,18 @@ import {
   Zap, MessageCircle, BarChart3, CheckCircle2, Search, Clipboard, Filter,
 } from "lucide-react";
 
+import salesRevenueImg from "../assets/Sales and revenue use case.webp";
+import marketingImg from "../assets/Marketing use case.webp";
+import customerExperienceImg from "../assets/Customer-Experience-Use-Case.svg";
+import employeeExperienceImg from "../assets/Employee Experience use case.webp";
+import partnerVendorImg from "../assets/Partner and vendor use case.webp";
+import knowledgeInsightsImg from "../assets/Knowledge and insights use case.webp";
+import adminOpsImg from "../assets/Platform admin and ops.webp";
+import crossIndustryImg from "../assets/Cross industry use case.webp";
+
 const useCases = [
   {
-    id: "sales", icon: TrendingUp, label: "Sales & Revenue", image: "/src/assets/Sales and revenue use case.webp",
+    id: "sales", icon: TrendingUp, label: "Sales & Revenue", image: salesRevenueImg,
     items: [
       { icon: Zap, text: "Auto-generate surveys using meeting summaries from Zoom or call logs" },
       { icon: CheckCircle2, text: "Trigger feedback workflows on closed-lost opportunities" },
@@ -16,7 +25,7 @@ const useCases = [
     ],
   },
   {
-    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", image: "/src/assets/Marketing use case.webp",
+    id: "marketing", icon: Megaphone, label: "Marketing & Campaign", image: marketingImg,
     items: [
       { icon: Zap, text: "Send post-webinar feedback surveys automatically" },
       { icon: BarChart3, text: "Measure campaign effectiveness through targeted response forms" },
@@ -25,7 +34,7 @@ const useCases = [
     ],
   },
   {
-    id: "cx", icon: Headphones, label: "Customer Experience", image: "/src/assets/Customer-Experience-Use-Case.svg",
+    id: "cx", icon: Headphones, label: "Customer Experience", image: customerExperienceImg,
     items: [
       { icon: Zap, text: "Auto-send CSAT surveys post-case closure" },
       { icon: MessageCircle, text: "AI-driven follow-up based on customer sentiment" },
@@ -34,7 +43,7 @@ const useCases = [
     ],
   },
   {
-    id: "employee", icon: UserCheck, label: "Employee Experience", image: "/src/assets/Employee Experience use case.webp",
+    id: "employee", icon: UserCheck, label: "Employee Experience", image: employeeExperienceImg,
     items: [
       { icon: Zap, text: "Automate onboarding & exit surveys at lifecycle stages" },
       { icon: CheckCircle2, text: "Trigger manager effectiveness feedback based on team structure" },
@@ -43,7 +52,7 @@ const useCases = [
     ],
   },
   {
-    id: "partner", icon: Globe2, label: "Partner & Vendor", image: "/src/assets/Partner and vendor use case.webp",
+    id: "partner", icon: Globe2, label: "Partner & Vendor", image: partnerVendorImg,
     items: [
       { icon: Zap, text: "Automate feedback during partner enablement journeys" },
       { icon: Search, text: "Query: 'Which partners reported friction in the last quarter?'" },
@@ -52,7 +61,7 @@ const useCases = [
     ],
   },
   {
-    id: "insights", icon: Brain, label: "Knowledge & Insights", image: "/src/assets/Knowledge and insights use case.webp",
+    id: "insights", icon: Brain, label: "Knowledge & Insights", image: knowledgeInsightsImg,
     items: [
       { icon: BarChart3, text: "AI-generated summary dashboards for executives" },
       { icon: TrendingUp, text: "Auto-surface top drivers of low satisfaction" },
@@ -61,7 +70,7 @@ const useCases = [
     ],
   },
   {
-    id: "admin", icon: Settings2, label: "Platform Admin & Ops", image: "/src/assets/Platform admin and ops.webp",
+    id: "admin", icon: Settings2, label: "Platform Admin & Ops", image: adminOpsImg,
     items: [
       { icon: Zap, text: "'Clone onboarding survey, change theme to green, translate to French'" },
       { icon: Search, text: "Detect duplicate feedback and flag unstructured responses" },
@@ -70,7 +79,7 @@ const useCases = [
     ],
   },
   {
-    id: "industry", icon: Building2, label: "Cross-Industry", image: "/src/assets/Cross industry use case.webp",
+    id: "industry", icon: Building2, label: "Cross-Industry", image: crossIndustryImg,
     items: [
       { icon: Clipboard, text: "Public sector: feedback on service requests at key checkpoints" },
       { icon: MessageCircle, text: "Healthcare: post-appointment follow-up surveys" },
