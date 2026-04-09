@@ -26,15 +26,19 @@ const HeroSection = () => {
               Powered by Salesforce Agentforce
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold leading-tight mb-6 text-foreground">
-              AgentVista – SurveyVista Copilot
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 text-foreground">
+              AgentVista - SurveyVista Copilot
               <br />
               <span className="text-gradient">for Intelligent Surveys,</span>
               <br />
               <span className="text-gradient">Forms & Assessments</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed">
+            <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-6 mt-6">
+              AI-Powered Automation for Feedback Management & Data Collection.
+            </h2>
+
+            <p className="text-sm md:text-base text-muted-foreground max-w-xl mb-10 leading-relaxed">
               Use natural language and AI to create, distribute, understand, and act on feedback — all within Salesforce. No code required.
             </p>
 
