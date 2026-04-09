@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RecaptchaProvider } from "@/components/recaptcha/RecaptchaProvider";
+import SEOSchema from "@/components/SEOSchema";
 import Index from "./pages/Index.tsx";
 import TermsOfUse from "./pages/TermsOfUse.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
@@ -15,6 +16,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <RecaptchaProvider>
       <TooltipProvider>
+        <SEOSchema />
         <Toaster />
         <Sonner />
         <BrowserRouter>
