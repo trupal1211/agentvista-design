@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink } from "lucide-react";
+import { X } from "lucide-react";
+import { useRecaptcha } from "@/hooks/use-recaptcha";
 
 interface AppExchangeFormProps {
   open: boolean;
@@ -11,12 +12,37 @@ const APPEXCHANGE_URL = "https://appexchange.salesforce.com/appxListingDetail?li
 
 const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
+  const [isLoading, setIsLoading] = useState(false);
+  const { getToken } = useRecaptcha();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setForm({ name: "", email: "", phone: "", company: "" });
-    onClose();
-    window.open(APPEXCHANGE_URL, "_blank", "noopener,noreferrer");
+    setIsLoading(true);
+
+    try {
+      // Get reCAPTCHA token
+      const token = await getToken("appexchange_form");
+      
+      if (!token) {
+        console.error("Failed to get reCAPTCHA token");
+        setIsLoading(false);
+        return;
+      }
+
+      // Log successful token generation
+      console.log("AppExchange form submitted with reCAPTCHA token:", token);
+
+      // Clear form and close modal
+      setForm({ name: "", email: "", phone: "", company: "" });
+      setIsLoading(false);
+      onClose();
+      
+      // Open AppExchange URL
+      window.open(APPEXCHANGE_URL, "_blank", "noopener,noreferrer");
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -55,9 +81,10 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
                 <input
                   type="text"
                   required
+                  disabled={isLoading}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
                   placeholder="John Doe"
                 />
               </div>
@@ -66,9 +93,10 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
                 <input
                   type="email"
                   required
+                  disabled={isLoading}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
                   placeholder="john@company.com"
                 />
               </div>
@@ -77,9 +105,10 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
                 <input
                   type="tel"
                   required
+                  disabled={isLoading}
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
                   placeholder="+1 (555) 000-0000"
                 />
               </div>
@@ -88,17 +117,19 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
                 <input
                   type="text"
                   required
+                  disabled={isLoading}
                   value={form.company}
                   onChange={(e) => setForm({ ...form, company: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
                   placeholder="Acme Inc."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity mt-2 inline-flex items-center justify-center gap-2"
+                disabled={isLoading}
+                className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity mt-2 inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Go to AppExchange
+                {isLoading ? "Processing..." : "Go to AppExchange"}
                 <ExternalLink size={16} />
               </button>
             </form>
