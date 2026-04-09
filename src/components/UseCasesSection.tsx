@@ -5,14 +5,14 @@ import {
   Zap, MessageCircle, BarChart3, CheckCircle2, Search, Clipboard, Filter,
 } from "lucide-react";
 
-import salesRevenueImg from "../assets/Sales and revenue use case.webp";
-import marketingImg from "../assets/Marketing use case.webp";
-import customerExperienceImg from "../assets/Customer-Experience-Use-Case.svg";
-import employeeExperienceImg from "../assets/Employee Experience use case.webp";
-import partnerVendorImg from "../assets/Partner and vendor use case.webp";
-import knowledgeInsightsImg from "../assets/Knowledge and insights use case.webp";
-import adminOpsImg from "../assets/Platform admin and ops.webp";
-import crossIndustryImg from "../assets/Cross industry use case.webp";
+import salesRevenueImg from "../assets/agentvista-sales-revenue-use-case.webp";
+import marketingImg from "../assets/agentvista-marketing-use-case.webp";
+import customerExperienceImg from "../assets/agentvista-customer-experience-use-case.svg";
+import employeeExperienceImg from "../assets/agentvista-employee-experience-use-case.webp";
+import partnerVendorImg from "../assets/agentvista-partner-vendor-use-case.webp";
+import knowledgeInsightsImg from "../assets/agentvista-knowledge-insights-use-case.webp";
+import adminOpsImg from "../assets/agentvista-platform-admin-ops-use-case.webp";
+import crossIndustryImg from "../assets/agentvista-cross-industry-use-case.webp";
 
 const useCases = [
   {

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroImg from "@/assets/what-is-agentvista.webp";
+import heroImg from "@/assets/agentvista-what-is-features-hero.webp";
 
 const WhatIsSection = () => {
   return (
