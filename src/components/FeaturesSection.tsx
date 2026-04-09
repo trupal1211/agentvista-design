@@ -40,19 +40,16 @@ const visuals = [
 
 const features = [
   { icon: Sparkles, title: "AI Survey Generation", desc: "Instantly generate surveys, forms, and assessments using natural language prompts.", visualIndex: 0 },
-  { icon: FileText, title: "Form Creation from PDFs", desc: "Upload documents to auto-generate structured forms in seconds.", visualIndex: 1 },
-  { icon: Copy, title: "Prompt-Based Cloning", desc: "Duplicate or update surveys using plain language commands.", visualIndex: 3 },
-  { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 4 },
+  { icon: FileText, title: "Form Creation from PDFs & Images", desc: "Upload documents to auto-generate structured forms.", visualIndex: 1 },
+  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, understand, and act on insights from surveys and forms", visualIndex: 7 },
   { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 5 },
-  { icon: BarChart3, title: "AI-Generated Insights", desc: "Summarize all responses to uncover trends and action areas instantly.", visualIndex: 2 },
-  { icon: Lightbulb, title: "AI Summary of Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 13 },
-  { icon: TrendingUp, title: "Conversational Analytics", desc: "Retrieve real-time insights using natural language prompts.", visualIndex: 6 },
-  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, and act on survey insights.", visualIndex: 7 },
-  { icon: BotMessageSquare, title: "Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses.", visualIndex: 8 },
-  { icon: Zap, title: "Automated Lifecycle Feedback", desc: "Trigger surveys based on CRM or Record Lifecycle Map events.", visualIndex: 9 },
-  { icon: Target, title: "Smart Record Targeting", desc: "Search and assign surveys to contacts, leads, or accounts with precision.", visualIndex: 10 },
+  { icon: BarChart3, title: "AI-Generated Survey Insights", desc: "Summarize all survey responses to uncover trends, sentiment, and action areas in seconds.", visualIndex: 2 },
+  { icon: Lightbulb, title: "AI Summary of Individual Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 13 },
+  { icon: BotMessageSquare, title: "AI-Driven Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses or meeting summaries.", visualIndex: 8 },
   { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 11 },
-  { icon: FileSearch, title: "AI-Based Response Mapping", desc: "Determine if a response warrants task creation or record updates.", visualIndex: 12 },
+  { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 4 },
+  { icon: Copy, title: "Prompt-Based Cloning & Editing", desc: "Duplicate or update surveys using plain language commands.", visualIndex: 3 },
+  { icon: BotMessageSquare, title: "SurveyVista Intelligence", desc: "An embedded AI assistant that designs, configures, automates, and analyzes across every stage of your survey lifecycle.", visualIndex: 8 },
 ];
 
 const FeaturesSection = () => {
