@@ -47,7 +47,7 @@ const Footer = () => {
               className="cursor-pointer hover:opacity-80 transition-opacity mb-4 flex items-center"
               aria-label="Go to home"
             >
-              <img src={logo} alt="AgentVista" className="h-9" />
+              <img src={logo} alt="AgentVista" className="h-9" loading="lazy" />
             </a>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Empowering Agent Operations on Salesforce with Smart Automation, Better Insights, and Seamless Management.
