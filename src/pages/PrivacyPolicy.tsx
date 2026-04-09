@@ -18,9 +18,6 @@ const PrivacyPolicy = () => {
             <ArrowLeft size={16} />
             Back to Home
           </Link>
-          <a href="https://surveyvista.com/terms-of-use/" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline text-sm font-medium">
-            Ardira AppExchange App Terms and Conditions
-          </a>
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Privacy Notice</h1>

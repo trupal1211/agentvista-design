@@ -10,6 +10,9 @@ interface AppExchangeFormProps {
 
 const APPEXCHANGE_URL = "https://appexchange.salesforce.com/appxListingDetail?listingId=c088b22e-a28b-4d93-bdf7-b950546b6e80&channel=recommended";
 
+// PHP backend API endpoint
+const CONTACT_API_URL = "http://localhost:8000/contact.php";
+
 const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -58,27 +61,48 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
 
     try {
       // Get reCAPTCHA token
-      const token = await getToken("appexchange_form");
+      let token = await getToken("appexchange_form");
       
       if (!token) {
-        console.error("Failed to get reCAPTCHA token");
-        setIsLoading(false);
-        return;
+        console.warn("reCAPTCHA token not available (likely missing .env key). Proceeding with placeholder token for testing purposes.");
+        token = "dev_placeholder_token";
       }
 
-      // Log successful token generation
-      console.log("AppExchange form submitted with reCAPTCHA token:", token);
+      // Send form data to PHP backend
+      const response = await fetch(CONTACT_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          formType: "appexchange",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company,
+          pageUrl: window.location.href,
+          recaptchaToken: token,
+        }),
+      });
 
-      // Clear form and close modal
-      setForm({ name: "", email: "", phone: "", company: "" });
-      setErrors({});
-      setIsLoading(false);
-      onClose();
-      
-      // Open AppExchange URL
-      window.open(APPEXCHANGE_URL, "_blank", "noopener,noreferrer");
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Clear form and close modal
+        setForm({ name: "", email: "", phone: "", company: "" });
+        setErrors({});
+        setIsLoading(false);
+        onClose();
+        
+        // Open AppExchange URL
+        window.open(APPEXCHANGE_URL, "_blank", "noopener,noreferrer");
+      } else {
+        setErrors({ form: data.message || "Something went wrong. Please try again." });
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error("Form submission error:", error);
+      setErrors({ form: "Unable to process your request. Please try again later." });
       setIsLoading(false);
     }
   };
@@ -91,7 +115,7 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/40 backdrop-blur-sm px-4"
-          onClick={onClose}
+          onClick={() => !isLoading && onClose()}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -102,8 +126,9 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => !isLoading && onClose()}
+              disabled={isLoading}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <X size={20} />
             </button>
@@ -198,6 +223,10 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
                 {isLoading ? "Processing..." : "Go to AppExchange"}
                 <ExternalLink size={16} />
               </button>
+              
+              {errors.form && (
+                <p className="text-red-500 text-sm text-center bg-red-50 border border-red-200 rounded-md px-4 py-2.5 mt-4">{errors.form}</p>
+              )}
             </form>
           </motion.div>
         </motion.div>

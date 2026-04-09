@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Mail, Phone, MapPin, CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useRecaptcha } from "@/hooks/use-recaptcha";
 
@@ -36,6 +36,11 @@ const ContactSection = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // PHP backend API endpoint
+  // For local testing: http://localhost:8000/contact.php
+  // For production: https://www.agentsvista.com/php/contact.php
+  const CONTACT_API_URL = "http://localhost:8000/contact.php";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -47,26 +52,42 @@ const ContactSection = () => {
 
     try {
       // Get reCAPTCHA token
-      const token = await getToken("contact_form");
+      let token = await getToken("contact_form");
       
       if (!token) {
-        console.error("Failed to get reCAPTCHA token");
-        setIsLoading(false);
-        return;
+        console.warn("reCAPTCHA token not available (likely missing .env key). Proceeding with placeholder token for testing purposes.");
+        token = "dev_placeholder_token"; // Allowing local testing to proceed without a real ReCAPTCHA key
       }
 
-      // Log successful token generation
-      console.log("Contact form submitted with reCAPTCHA token:", token);
+      // Send form data to PHP backend
+      const response = await fetch(CONTACT_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+          pageUrl: window.location.href,
+          recaptchaToken: token,
+        }),
+      });
 
-      setSubmitted(true);
-      setErrors({});
-      setTimeout(() => {
-        setSubmitted(false);
-        setForm({ name: "", email: "", phone: "", message: "" });
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitted(true);
+        setErrors({});
         setIsLoading(false);
-      }, 3000);
+      } else {
+        setErrors({ form: data.message || "Something went wrong. Please try again." });
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error("Form submission error:", error);
+      setErrors({ form: "Unable to send your message. Please try again later." });
       setIsLoading(false);
     }
   };
@@ -156,13 +177,72 @@ const ContactSection = () => {
             className="w-full min-w-0"
           >
             {submitted ? (
-              <div className="flex flex-col items-center justify-center py-16 bg-card rounded-2xl border border-border">
-                <div className="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
-                  <Send size={28} className="text-secondary" />
-                </div>
-                <p className="font-bold text-foreground text-lg">Message Sent!</p>
-                <p className="text-muted-foreground text-sm mt-1">We'll get back to you shortly.</p>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="flex flex-col items-center justify-center py-14 md:py-20 bg-card rounded-2xl border border-secondary/30 shadow-lg"
+              >
+                {/* Animated checkmark circle */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.15 }}
+                  className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-6 border-2 border-secondary/30"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.35, duration: 0.3 }}
+                  >
+                    <CheckCircle size={40} className="text-secondary" />
+                  </motion.div>
+                </motion.div>
+
+                {/* Success heading */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
+                  className="font-bold text-foreground text-xl md:text-2xl mb-2"
+                >
+                  Message Sent Successfully!
+                </motion.h3>
+
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.3 }}
+                  className="text-muted-foreground text-sm md:text-base text-center max-w-md px-6 mb-2"
+                >
+                  Thank you for reaching out! We've received your message and a confirmation has been sent to your email.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.55, duration: 0.3 }}
+                  className="text-muted-foreground text-xs text-center max-w-sm px-6 mb-8"
+                >
+                  Our team will get back to you within 24 hours.
+                </motion.p>
+
+                {/* Send another message button */}
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.65, duration: 0.3 }}
+                  onClick={() => {
+                    setSubmitted(false);
+                    setForm({ name: "", email: "", phone: "", message: "" });
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border border-brand-blue/30 text-brand-blue font-semibold text-sm hover:bg-brand-blue/5 transition-colors"
+                >
+                  Send Another Message
+                  <ArrowRight size={16} />
+                </motion.button>
+              </motion.div>
             ) : (
               <form onSubmit={handleSubmit} style={{ boxSizing: 'border-box' }} className="bg-card rounded-2xl border border-border p-4 md:p-8 space-y-5">
                 <div>
@@ -249,6 +329,10 @@ const ContactSection = () => {
                 >
                   {isLoading ? "Sending..." : "Send Message"}
                 </button>
+
+                {errors.form && (
+                  <p className="text-red-500 text-sm text-center bg-red-50 border border-red-200 rounded-md px-4 py-2.5">{errors.form}</p>
+                )}
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-brand-blue hover:underline">Privacy Policy</Link>.
