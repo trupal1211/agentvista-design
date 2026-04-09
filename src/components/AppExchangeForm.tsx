@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ExternalLink } from "lucide-react";
 import { useRecaptcha } from "@/hooks/use-recaptcha";
 
 interface AppExchangeFormProps {
