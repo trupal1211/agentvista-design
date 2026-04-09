@@ -271,6 +271,7 @@ const UseCasesSection = () => {
                 src={activeCase.image} 
                 alt={`AgentVista ${activeCase.label} use case - AI-powered feedback automation for Salesforce`}
                 className="w-full h-full object-contain"
+                loading="lazy"
               />
             </motion.div>
           </AnimatePresence>
@@ -302,6 +303,7 @@ const UseCasesSection = () => {
                     src={activeCase.image} 
                     alt={`AgentVista ${activeCase.label} use case - AI-powered feedback automation for Salesforce`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-6 md:p-7 flex flex-col justify-center">
