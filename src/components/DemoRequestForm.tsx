@@ -9,6 +9,7 @@ interface DemoRequestFormProps {
 
 const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
   const scriptLoadedRef = useRef(false);
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
 
   useEffect(() => {
     if (open && !scriptLoadedRef.current) {
@@ -18,6 +19,8 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
       const script = document.createElement("script");
       script.src = "https://assets.calendly.com/assets/external/widget.js";
       script.async = true;
+      scriptRef.current = script;
+
       script.onload = () => {
         // Initialize Calendly widget after script loads
         const Calendly = (window as any).Calendly;
@@ -31,15 +34,8 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
           }, 100);
         }
       };
-      document.body.appendChild(script);
 
-      return () => {
-        // Clean up - remove script only if modal is being fully closed
-        // Note: We keep scriptLoadedRef true to avoid reloading
-        if (!open) {
-          document.body.removeChild(script);
-        }
-      };
+      document.body.appendChild(script);
     }
   }, [open]);
 
