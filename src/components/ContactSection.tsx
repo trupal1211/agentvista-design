@@ -6,12 +6,43 @@ import { useRecaptcha } from "@/hooks/use-recaptcha";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { getToken } = useRecaptcha();
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    if (!form.phone.trim()) {
+      newErrors.phone = "Phone is required";
+    } else if (!/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}/.test(form.phone.replace(/\s+/g, ""))) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -28,6 +59,7 @@ const ContactSection = () => {
       console.log("Contact form submitted with reCAPTCHA token:", token);
 
       setSubmitted(true);
+      setErrors({});
       setTimeout(() => {
         setSubmitted(false);
         setForm({ name: "", email: "", phone: "", message: "" });
@@ -58,7 +90,7 @@ const ContactSection = () => {
         </motion.div>
 
         {/* Main Contact Grid */}
-        <div className="mx-auto grid lg:grid-cols-[40%_56%] gap-8 md:gap-12 mb-8 max-w-6xl px-4 lg:px-0 auto-rows-max">
+        <div className="mx-auto grid lg:grid-cols-[40%_56%] gap-8 md:gap-12 mb-8 max-w-6xl px-0 auto-rows-max">
           {/* Left: Quick Contact - Sticky */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -132,7 +164,7 @@ const ContactSection = () => {
                 <p className="text-muted-foreground text-sm mt-1">We'll get back to you shortly.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ boxSizing: 'border-box' }} className="bg-card rounded-2xl border border-border p-6 md:p-8 space-y-5">
+              <form onSubmit={handleSubmit} style={{ boxSizing: 'border-box' }} className="bg-card rounded-2xl border border-border p-4 md:p-8 space-y-5">
                 <div>
                   <h3 className="text-lg font-bold text-foreground mb-1">Fill out the form and we'll be in touch shortly!</h3>
                   <p className="text-xs text-muted-foreground">Note: fields marked with <span className="text-red-500">(*)</span> are mandatory</p>
@@ -142,39 +174,60 @@ const ContactSection = () => {
                   <label className="block text-sm font-semibold text-foreground mb-2">Name<span className="text-red-500">*</span></label>
                   <input 
                     type="text" 
-                    required 
                     disabled={isLoading}
                     value={form.name} 
-                    onChange={(e) => setForm({ ...form, name: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50" 
+                    onChange={(e) => {
+                      setForm({ ...form, name: e.target.value });
+                      if (errors.name) setErrors({ ...errors, name: "" });
+                    }} 
+                    className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                      errors.name
+                        ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
+                        : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
+                    } text-foreground`}
                     placeholder="Enter your name" 
                   />
+                  {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Email<span className="text-red-500">*</span></label>
                   <input 
                     type="email" 
-                    required 
                     disabled={isLoading}
                     value={form.email} 
-                    onChange={(e) => setForm({ ...form, email: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50" 
+                    onChange={(e) => {
+                      setForm({ ...form, email: e.target.value });
+                      if (errors.email) setErrors({ ...errors, email: "" });
+                    }} 
+                    className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                      errors.email
+                        ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
+                        : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
+                    } text-foreground`}
                     placeholder="Enter your email" 
                   />
+                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Phone<span className="text-red-500">*</span></label>
                   <input 
                     type="tel" 
-                    required 
                     disabled={isLoading}
                     value={form.phone} 
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50" 
+                    onChange={(e) => {
+                      setForm({ ...form, phone: e.target.value });
+                      if (errors.phone) setErrors({ ...errors, phone: "" });
+                    }} 
+                    className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                      errors.phone
+                        ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
+                        : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
+                    } text-foreground`}
                     placeholder="Enter your phone number" 
                   />
+                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                 </div>
 
                 <div>
@@ -184,7 +237,7 @@ const ContactSection = () => {
                     disabled={isLoading}
                     value={form.message} 
                     onChange={(e) => setForm({ ...form, message: e.target.value })} 
-                    className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors resize-none disabled:opacity-50" 
+                    className="w-full px-4 py-2.5 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors resize-none disabled:opacity-50" 
                     placeholder="Lets talk! Tell us about yourself." 
                   />
                 </div>
@@ -192,7 +245,7 @@ const ContactSection = () => {
                 <button 
                   type="submit" 
                   disabled={isLoading}
-                  className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 rounded-md bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? "Sending..." : "Send Message"}
                 </button>

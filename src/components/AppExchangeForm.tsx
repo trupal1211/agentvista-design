@@ -12,11 +12,48 @@ const APPEXCHANGE_URL = "https://appexchange.salesforce.com/appxListingDetail?li
 
 const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const { getToken } = useRecaptcha();
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (form.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    if (!form.phone.trim()) {
+      newErrors.phone = "Phone is required";
+    } else if (!/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}/.test(form.phone.replace(/\s+/g, ""))) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+
+    if (!form.company.trim()) {
+      newErrors.company = "Company is required";
+    } else if (form.company.trim().length < 2) {
+      newErrors.company = "Company must be at least 2 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -34,6 +71,7 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
 
       // Clear form and close modal
       setForm({ name: "", email: "", phone: "", company: "" });
+      setErrors({});
       setIsLoading(false);
       onClose();
       
@@ -80,54 +118,82 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Full Name</label>
                 <input
                   type="text"
-                  required
                   disabled={isLoading}
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
+                  onChange={(e) => {
+                    setForm({ ...form, name: e.target.value });
+                    if (errors.name) setErrors({ ...errors, name: "" });
+                  }}
+                  className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                    errors.name
+                      ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
+                      : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
+                  } text-foreground`}
                   placeholder="John Doe"
                 />
+                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
                 <input
                   type="email"
-                  required
                   disabled={isLoading}
                   value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
+                  onChange={(e) => {
+                    setForm({ ...form, email: e.target.value });
+                    if (errors.email) setErrors({ ...errors, email: "" });
+                  }}
+                  className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                    errors.email
+                      ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
+                      : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
+                  } text-foreground`}
                   placeholder="john@company.com"
                 />
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Contact Number</label>
                 <input
                   type="tel"
-                  required
                   disabled={isLoading}
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
+                  onChange={(e) => {
+                    setForm({ ...form, phone: e.target.value });
+                    if (errors.phone) setErrors({ ...errors, phone: "" });
+                  }}
+                  className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                    errors.phone
+                      ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
+                      : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
+                  } text-foreground`}
                   placeholder="+1 (555) 000-0000"
                 />
+                {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Company / Organization</label>
                 <input
                   type="text"
-                  required
                   disabled={isLoading}
                   value={form.company}
-                  onChange={(e) => setForm({ ...form, company: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors disabled:opacity-50"
+                  onChange={(e) => {
+                    setForm({ ...form, company: e.target.value });
+                    if (errors.company) setErrors({ ...errors, company: "" });
+                  }}
+                  className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
+                    errors.company
+                      ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
+                      : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
+                  } text-foreground`}
                   placeholder="Acme Inc."
                 />
+                {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}
               </div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 rounded-lg bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity mt-2 inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-md bg-brand-blue text-white font-semibold text-sm hover:opacity-85 transition-opacity mt-2 inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Processing..." : "Go to AppExchange"}
                 <ExternalLink size={16} />
