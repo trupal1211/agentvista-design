@@ -19,8 +19,83 @@
   <meta name="twitter:title" content="AgentVista – AI-Powered Surveys, Forms &amp; Assessments">
   <meta property="og:description" content="AgentVista is the intelligent AI-powered assistant for creating, distributing, and analyzing surveys, forms, and assessments within Salesforce.">
   <meta name="twitter:description" content="AgentVista is the intelligent AI-powered assistant for creating, distributing, and analyzing surveys, forms, and assessments within Salesforce.">
-</head>
-
+    
+    <!-- Canonical URL for SEO -->
+    <link rel="canonical" href="https://www.agentsvista.com" />
+    
+    <!-- JSON-LD Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.agentsvista.com/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://www.agentsvista.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.agentsvista.com"
+            }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.agentsvista.com/#organization",
+          "name": "AgentVista",
+          "description": "AI-powered survey, feedback collection, and sentiment intelligence platform with native Salesforce integration",
+          "url": "https://www.agentsvista.com",
+          "email": "info@agentsvista.com",
+          "telephone": "+1-800-XXXXX",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.agentsvista.com/logo.svg",
+            "@id": "https://www.agentsvista.com/#organizationLogo",
+            "width": 400,
+            "height": 100,
+            "caption": "AgentVista"
+          },
+          "image": {
+            "@id": "https://www.agentsvista.com/#organizationLogo"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/agentsvista",
+            "https://twitter.com/agentsvista",
+            "https://www.facebook.com/agentsvista"
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.agentsvista.com#webpage",
+          "url": "https://www.agentsvista.com",
+          "name": "AgentVista – AI-Powered Surveys, Forms & Feedback Platform",
+          "description": "Create intelligent surveys, collect feedback, and analyze sentiment with AI-powered insights. Native Salesforce integration for seamless CRM workflows.",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://www.agentsvista.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://www.agentsvista.com/#breadcrumblist"
+          },
+          "datePublished": "2024-01-01T00:00:00Z",
+          "dateModified": "2024-01-01T00:00:00Z"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.agentsvista.com/#website",
+          "url": "https://www.agentsvista.com",
+          "name": "AgentVista",
+          "description": "AI-powered survey, feedback collection, and sentiment intelligence platform with native Salesforce integration",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://www.agentsvista.com/#organization"
+          }
+        }
+      ]
+    }
+    </script>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
