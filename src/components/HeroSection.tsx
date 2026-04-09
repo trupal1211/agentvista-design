@@ -26,8 +26,10 @@ const HeroSection = () => {
               Powered by Salesforce Agentforce
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-4 text-foreground">
-              AgentVista - SurveyVista Copilot
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mt-4 mb-4 text-foreground">
+              AgentVista -
+              <br />
+              SurveyVista Copilot
               <br />
               <span className="text-gradient">for Intelligent Surveys,</span>
               <br />

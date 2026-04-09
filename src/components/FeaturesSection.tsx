@@ -12,6 +12,13 @@ import AiInsightsVisual from "./features/AiInsightsVisual";
 import PromptCloningVisual from "./features/PromptCloningVisual";
 import BrandingVisual from "./features/BrandingVisual";
 import SentimentIntelligenceVisual from "./features/SentimentIntelligenceVisual";
+import ConversationalAnalyticsVisual from "./features/ConversationalAnalyticsVisual";
+import NaturalLanguageActionsVisual from "./features/NaturalLanguageActionsVisual";
+import ConversationalFollowUpVisual from "./features/ConversationalFollowUpVisual";
+import AutomatedLifecycleFeedbackVisual from "./features/AutomatedLifecycleFeedbackVisual";
+import SmartRecordTargetingVisual from "./features/SmartRecordTargetingVisual";
+import SurveyResponseTranslationVisual from "./features/SurveyResponseTranslationVisual";
+import AiResponseMappingVisual from "./features/AiResponseMappingVisual";
 
 const visuals = [
   <AiSurveyVisual key="survey" />,
@@ -20,6 +27,13 @@ const visuals = [
   <PromptCloningVisual key="cloning" />,
   <BrandingVisual key="branding" />,
   <SentimentIntelligenceVisual key="sentiment" />,
+  <ConversationalAnalyticsVisual key="conv-analytics" />,
+  <NaturalLanguageActionsVisual key="natural-language-actions" />,
+  <ConversationalFollowUpVisual key="conversational-follow-up" />,
+  <AutomatedLifecycleFeedbackVisual key="automated-lifecycle-feedback" />,
+  <SmartRecordTargetingVisual key="smart-record-targeting" />,
+  <SurveyResponseTranslationVisual key="survey-response-translation" />,
+  <AiResponseMappingVisual key="ai-response-mapping" />,
 ];
 
 const features = [
@@ -30,13 +44,13 @@ const features = [
   { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 5 },
   { icon: BarChart3, title: "AI-Generated Insights", desc: "Summarize all responses to uncover trends and action areas instantly.", visualIndex: 2 },
   { icon: Lightbulb, title: "AI Summary of Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 5 },
-  { icon: TrendingUp, title: "Conversational Analytics", desc: "Retrieve real-time insights using natural language prompts.", visualIndex: 0 },
-  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, and act on survey insights.", visualIndex: 1 },
-  { icon: BotMessageSquare, title: "Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses.", visualIndex: 1 },
-  { icon: Zap, title: "Automated Lifecycle Feedback", desc: "Trigger surveys based on CRM or Record Lifecycle Map events.", visualIndex: 2 },
-  { icon: Target, title: "Smart Record Targeting", desc: "Search and assign surveys to contacts, leads, or accounts with precision.", visualIndex: 4 },
-  { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 0 },
-  { icon: FileSearch, title: "AI-Based Response Mapping", desc: "Determine if a response warrants task creation or record updates.", visualIndex: 1 },
+  { icon: TrendingUp, title: "Conversational Analytics", desc: "Retrieve real-time insights using natural language prompts.", visualIndex: 6 },
+  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, and act on survey insights.", visualIndex: 7 },
+  { icon: BotMessageSquare, title: "Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses.", visualIndex: 8 },
+  { icon: Zap, title: "Automated Lifecycle Feedback", desc: "Trigger surveys based on CRM or Record Lifecycle Map events.", visualIndex: 9 },
+  { icon: Target, title: "Smart Record Targeting", desc: "Search and assign surveys to contacts, leads, or accounts with precision.", visualIndex: 10 },
+  { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 11 },
+  { icon: FileSearch, title: "AI-Based Response Mapping", desc: "Determine if a response warrants task creation or record updates.", visualIndex: 12 },
 ];
 
 const FeaturesSection = () => {
