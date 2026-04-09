@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import WhatIsSection from "@/components/WhatIsSection";
@@ -16,11 +17,24 @@ interface IndexProps {
 }
 
 const Index = ({ section }: IndexProps) => {
+  const location = useLocation();
+
+  // Handle hash-based scrolling when URL changes
   useEffect(() => {
-    if (section === "home") {
+    if (location.hash) {
+      // Wait a bit for the page to render
+      const timer = setTimeout(() => {
+        const id = location.hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    } else if (section === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [section]);
+  }, [location.hash, section]);
 
   return (
     <div id="home" className="min-h-screen bg-background">

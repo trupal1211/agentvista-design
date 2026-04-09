@@ -90,48 +90,34 @@ const useCases = [
 ];
 
 const UseCasesSection = () => {
-  // Virtual index approach for infinite carousel
-  const [virtualIndex, setVirtualIndex] = useState(useCases.length); // Start at middle copy
+  // Bounded index for looping carousel (0 to useCases.length - 1)
+  const [activeIndex, setActiveIndex] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefsMap = useRef<Map<number, HTMLButtonElement>>(new Map());
-  const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Derive active case from virtual index
-  const activeIndex = virtualIndex % useCases.length;
   const activeCase = useCases[activeIndex];
 
-  // Create tripled items for infinite loop
+  // Create tripled items for smooth wrapping (3 copies: before, current, after)
   const tripleItems = [...useCases, ...useCases, ...useCases];
 
-  // Get the button for the middle copy
-  const getMiddleCopyIndex = (realIndex: number) => useCases.length + realIndex;
+  // Get button index in tripled array (middle copy always active)
+  const getTripleIndex = (index: number) => {
+    return useCases.length + index;
+  };
 
-  // Update scroll position and handle wrapping smoothly
+  // Update scroll position smoothly
   useEffect(() => {
     const container = containerRef.current;
     const carousel = carouselRef.current;
     
     if (!container || !carousel) return;
 
-    // Determine if we need to wrap
-    let targetIndex = virtualIndex;
-    let shouldWrap = false;
-
-    if (virtualIndex < useCases.length) {
-      targetIndex = useCases.length * 2 + (virtualIndex % useCases.length);
-      shouldWrap = true;
-    } else if (virtualIndex >= useCases.length * 2) {
-      targetIndex = useCases.length + (virtualIndex % useCases.length);
-      shouldWrap = true;
-    }
-
-    // Calculate target scroll position
-    const currentActiveIndex = targetIndex % useCases.length;
-    const middleCopyIndex = getMiddleCopyIndex(currentActiveIndex);
-    const activeButton = buttonRefsMap.current.get(middleCopyIndex);
+    // Get the middle copy button for current active index
+    const tripleButtonIndex = getTripleIndex(activeIndex);
+    const activeButton = buttonRefsMap.current.get(tripleButtonIndex);
 
     if (!activeButton) return;
 
@@ -140,66 +126,25 @@ const UseCasesSection = () => {
     const buttonWidth = activeButton.offsetWidth;
     const targetScroll = Math.max(0, buttonLeft + buttonWidth / 2 - containerWidth / 2);
 
-    if (shouldWrap && !isAnimating) {
-      // Start animation to target scroll
-      setScrollPosition(targetScroll);
-      setIsAnimating(true);
-
-      // Clear any pending timeout
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current);
-      }
-
-      // After animation completes, silently reposition to middle copy
-      transitionTimeoutRef.current = setTimeout(() => {
-        if (carousel) {
-          // Disable transitions temporarily
-          carousel.style.transition = 'none';
-          
-          // Update to middle copy index
-          setVirtualIndex(targetIndex);
-          
-          // Recalculate position in middle copy
-          const newButton = buttonRefsMap.current.get(middleCopyIndex);
-          if (newButton) {
-            const newButtonLeft = newButton.offsetLeft;
-            const newTargetScroll = Math.max(0, newButtonLeft + buttonWidth / 2 - containerWidth / 2);
-            carousel.style.transform = `translateX(-${newTargetScroll}px)`;
-          }
-
-          // Force reflow
-          void carousel.offsetWidth;
-
-          // Re-enable smooth transitions
-          carousel.style.transition = '';
-          
-          setIsAnimating(false);
-        }
-      }, 500); // Match the transition duration
-    } else {
-      // Normal smooth scroll without wrapping
-      setScrollPosition(targetScroll);
-    }
-
-    return () => {
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current);
-      }
-    };
-  }, [virtualIndex, isAnimating]);
+    setScrollPosition(targetScroll);
+  }, [activeIndex]);
 
   const handlePrev = useCallback(() => {
-    setVirtualIndex((prev) => prev - 1);
+    setIsTransitioning(true);
+    setActiveIndex((prev) => (prev - 1 + useCases.length) % useCases.length);
+    setTimeout(() => setIsTransitioning(false), 500);
   }, []);
 
   const handleNext = useCallback(() => {
-    setVirtualIndex((prev) => prev + 1);
+    setIsTransitioning(true);
+    setActiveIndex((prev) => (prev + 1) % useCases.length);
+    setTimeout(() => setIsTransitioning(false), 500);
   }, []);
 
   const handleItemClick = (index: number) => {
-    // Find the equivalent index in the middle copy
-    const offset = index % useCases.length;
-    setVirtualIndex(useCases.length + offset);
+    // Get real index from tripled array
+    const realIndex = index % useCases.length;
+    setActiveIndex(realIndex);
   };
 
   return (
