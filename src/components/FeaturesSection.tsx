@@ -19,6 +19,7 @@ import AutomatedLifecycleFeedbackVisual from "./features/AutomatedLifecycleFeedb
 import SmartRecordTargetingVisual from "./features/SmartRecordTargetingVisual";
 import SurveyResponseTranslationVisual from "./features/SurveyResponseTranslationVisual";
 import AiResponseMappingVisual from "./features/AiResponseMappingVisual";
+import AiSummaryOfResponsesVisual from "./features/AiSummaryOfResponsesVisual";
 
 const visuals = [
   <AiSurveyVisual key="survey" />,
@@ -34,6 +35,7 @@ const visuals = [
   <SmartRecordTargetingVisual key="smart-record-targeting" />,
   <SurveyResponseTranslationVisual key="survey-response-translation" />,
   <AiResponseMappingVisual key="ai-response-mapping" />,
+  <AiSummaryOfResponsesVisual key="ai-summary-of-responses" />,
 ];
 
 const features = [
@@ -43,7 +45,7 @@ const features = [
   { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 4 },
   { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 5 },
   { icon: BarChart3, title: "AI-Generated Insights", desc: "Summarize all responses to uncover trends and action areas instantly.", visualIndex: 2 },
-  { icon: Lightbulb, title: "AI Summary of Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 5 },
+  { icon: Lightbulb, title: "AI Summary of Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 13 },
   { icon: TrendingUp, title: "Conversational Analytics", desc: "Retrieve real-time insights using natural language prompts.", visualIndex: 6 },
   { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, and act on survey insights.", visualIndex: 7 },
   { icon: BotMessageSquare, title: "Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses.", visualIndex: 8 },
