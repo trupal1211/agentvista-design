@@ -4,7 +4,7 @@
  */
 
 // Configuration constants
-const BASE_URL = "https://www.agentsvista.com";
+export const BASE_URL = "https://www.agentsvista.com";
 const ORG_NAME = "AgentVista";
 const ORG_DESCRIPTION = "AI-powered survey, feedback collection, and sentiment intelligence platform with native Salesforce integration";
 const ORG_EMAIL = "info@agentsvista.com";
