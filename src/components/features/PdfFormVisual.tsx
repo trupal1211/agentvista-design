@@ -75,6 +75,8 @@ const PdfFormVisual = () => (
           viewBox="0 0 24 24"
           fill="none"
           style={{ width: "50%", height: "50%" }}
+          aria-label="Upload icon representing file drag-and-drop functionality"
+          role="img"
         >
           <path d="M12 15V4M12 4L8 8M12 4L16 8" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M4 17v1a2 2 0 002 2h12a2 2 0 002-2v-1" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
