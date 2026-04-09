@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RecaptchaProvider } from "@/components/recaptcha/RecaptchaProvider";
 import SEOSchema from "@/components/SEOSchema";
+import CanonicalURL from "@/components/CanonicalURL";
 import Index from "./pages/Index.tsx";
 import TermsOfUse from "./pages/TermsOfUse.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
@@ -20,6 +21,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <CanonicalURL />
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/home" element={<Index section="home" />} />
