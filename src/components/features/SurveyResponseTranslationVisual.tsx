@@ -1,490 +1,444 @@
 /**
  * Survey & Response Translation Visual
- * Shows: Survey Content → Multiple Languages & Translated Responses
- * RESPONSIVE: Uses container queries for adaptive sizing
+ * CONCEPT A — Source Survey → Translated Outputs (Split)
+ * RESPONSIVE: Uses vw units with clamp() for consistent scaling on all screens
+ * Desktop: Horizontal split • Mobile: Stacks vertically
  */
 
 const SurveyResponseTranslationVisual = () => (
   <div
-    className="w-full h-full flex flex-col overflow-hidden"
-    style={{ background: "#F2F8FC" }}
+    className="w-full h-full flex overflow-hidden"
+    style={{
+      background: "#F2F8FC",
+    }}
   >
-    {/* ── Top: Survey Content Translation ── */}
+    {/* ── LEFT: Source Survey (EN) ── */}
     <div
-      className="flex flex-col justify-center"
       style={{
-        flex: 0.95,
+        flex: "0 0 46%",
         background: "#EBF5FB",
-        borderBottom: "1px solid rgba(0,92,144,0.11)",
-        padding: "clamp(10px, 2.5cqw, 22px) clamp(12px, 2.5cqw, 28px)",
-        gap: "clamp(8px, 1.4cqw, 12px)",
+        borderRight: "1px solid rgba(0,92,144,0.11)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "clamp(12px,2.2vw,24px) clamp(10px,1.8vw,20px)",
+        gap: "clamp(8px,1.3vw,14px)",
       }}
     >
-      <span
+      {/* Label: Source Survey */}
+      <div
         style={{
-          fontSize: "clamp(9px, 1.1cqw, 11px)",
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          fontSize: "clamp(7px,0.95vw,10px)",
           fontWeight: 700,
           letterSpacing: "0.13em",
           textTransform: "uppercase",
           color: "#0981B5",
           fontFamily: "Poppins, sans-serif",
-          flexShrink: 0,
         }}
       >
-        Survey Available In
-      </span>
+        <div
+          style={{
+            width: "clamp(5px,0.7vw,7px)",
+            height: "clamp(5px,0.7vw,7px)",
+            borderRadius: "50%",
+            background: "#27A8E0",
+          }}
+        />
+        Source Survey
+      </div>
 
-      {/* Language cards */}
+      {/* Source Survey Card */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(clamp(80px, 22%, 150px), 1fr))",
-          gap: "clamp(8px, 1.5cqw, 12px)",
-          flex: 1,
-          minHeight: 0,
+          background: "#fff",
+          border: "1px solid rgba(0,92,144,0.11)",
+          borderRadius: "clamp(8px,1.3vw,14px)",
+          overflow: "hidden",
+          boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
         }}
       >
-        {/* Language 1: English */}
+        {/* Card Header */}
         <div
           style={{
-            background: "#fff",
-            border: "2px solid #0981B5",
-            borderRadius: "clamp(8px, 1.5cqw, 14px)",
-            padding: "clamp(10px, 1.5cqw, 14px)",
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: "clamp(6px, 1cqw, 10px)",
-            boxShadow: "0 2px 8px rgba(9,129,181,0.15)",
-            animation: "scaleIn 0.5s ease-out 0s both",
+            gap: "clamp(5px,0.8vw,9px)",
+            padding: "clamp(7px,1.1vw,12px) clamp(10px,1.5vw,16px)",
+            background: "linear-gradient(90deg,#0981B5,#27A8E0)",
           }}
         >
+          {/* Logo Box */}
           <div
             style={{
-              fontSize: "clamp(20px, 4cqw, 32px)",
-              lineHeight: 1,
+              width: "clamp(20px,3.2vw,28px)",
+              height: "clamp(20px,3.2vw,28px)",
+              borderRadius: "clamp(5px,0.8vw,8px)",
+              background: "rgba(255,255,255,0.22)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "clamp(12px,2vw,16px)",
+              fontWeight: 800,
+              color: "#fff",
+              flexShrink: 0,
+              fontFamily: "Poppins, sans-serif",
             }}
           >
-            🇺🇸
+            Q
           </div>
-          <p
+          <span
             style={{
-              fontSize: "clamp(8px, 1.1cqw, 10px)",
+              fontSize: "clamp(9px,1.2vw,12px)",
               fontWeight: 700,
-              color: "#002649",
+              color: "#fff",
+              flex: 1,
               fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
             }}
           >
-            English
-          </p>
-          <p
+            Q4 Satisfaction Survey
+          </span>
+          <span
             style={{
-              fontSize: "clamp(7px, 0.9cqw, 8px)",
-              color: "#39B44A",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "3px",
+              fontSize: "clamp(6px,0.82vw,9px)",
+              fontWeight: 700,
+              letterSpacing: "0.09em",
+              textTransform: "uppercase",
+              borderRadius: 20,
+              padding: "2px 8px",
+              background: "rgba(255,255,255,0.18)",
+              color: "#fff",
               fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
-              fontWeight: 600,
+              whiteSpace: "nowrap",
+              flexShrink: 0,
             }}
           >
-            Original
-          </p>
+            EN
+          </span>
         </div>
 
-        {/* Language 2: Spanish */}
+        {/* Survey Questions (Skeleton) */}
         <div
           style={{
-            background: "#fff",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(8px, 1.5cqw, 14px)",
-            padding: "clamp(10px, 1.5cqw, 14px)",
+            padding: "clamp(7px,1.2vw,12px) clamp(10px,1.5vw,16px)",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            gap: "clamp(6px, 1cqw, 10px)",
-            boxShadow: "0 1px 6px rgba(0,38,73,0.05)",
-            animation: "scaleIn 0.5s ease-out 0.1s both",
+            gap: "clamp(5px,0.85vw,9px)",
           }}
         >
-          <div
-            style={{
-              fontSize: "clamp(20px, 4cqw, 32px)",
-              lineHeight: 1,
-            }}
-          >
-            🇪🇸
-          </div>
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.1cqw, 10px)",
-              fontWeight: 700,
-              color: "#002649",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
-            }}
-          >
-            Español
-          </p>
-          <p
-            style={{
-              fontSize: "clamp(7px, 0.9cqw, 8px)",
-              color: "#005C90",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
-              fontWeight: 600,
-            }}
-          >
-            Translated
-          </p>
+          {[100, 80, 90, 72].map((width, i) => (
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "clamp(5px,0.8vw,9px)",
+              }}
+            >
+              <div
+                style={{
+                  width: "clamp(5px,0.7vw,7px)",
+                  height: "clamp(5px,0.7vw,7px)",
+                  borderRadius: "50%",
+                  background: [
+                    "#0981B5",
+                    "#27A8E0",
+                    "#0981B5",
+                    "#73CFE1",
+                  ][i],
+                  flexShrink: 0,
+                }}
+              />
+              <div
+                style={{
+                  flex: 1,
+                  height: "clamp(4px,0.65vw,6px)",
+                  borderRadius: 3,
+                  background: "rgba(9,129,181,0.13)",
+                  width: `${width}%`,
+                }}
+              />
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Language 3: French */}
+      {/* AI Translation Engine */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "clamp(6px,1vw,10px)",
+          padding: "clamp(6px,1vw,12px) clamp(12px,2vw,22px)",
+          background: "linear-gradient(90deg,#0981B5,#27A8E0)",
+          borderRadius: "clamp(8px,1.3vw,14px)",
+          boxShadow: "0 4px 18px rgba(9,129,181,0.25)",
+          alignSelf: "flex-start",
+        }}
+      >
         <div
           style={{
-            background: "#fff",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(8px, 1.5cqw, 14px)",
-            padding: "clamp(10px, 1.5cqw, 14px)",
+            width: "clamp(18px,2.8vw,26px)",
+            height: "clamp(18px,2.8vw,26px)",
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: "clamp(6px, 1cqw, 10px)",
-            boxShadow: "0 1px 6px rgba(0,38,73,0.05)",
-            animation: "scaleIn 0.5s ease-out 0.2s both",
+            justifyContent: "center",
+            flexShrink: 0,
           }}
         >
-          <div
-            style={{
-              fontSize: "clamp(20px, 4cqw, 32px)",
-              lineHeight: 1,
-            }}
-          >
-            🇫🇷
-          </div>
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.1cqw, 10px)",
-              fontWeight: 700,
-              color: "#002649",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
-            }}
-          >
-            Français
-          </p>
-          <p
-            style={{
-              fontSize: "clamp(7px, 0.9cqw, 8px)",
-              color: "#005C90",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
-              fontWeight: 600,
-            }}
-          >
-            Translated
-          </p>
+          <svg viewBox="0 0 20 20" fill="none" style={{ width: "100%", height: "100%" }}>
+            <circle cx="10" cy="10" r="8" stroke="#fff" strokeWidth="1.4" />
+            <path d="M6 10l3 3 5-5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
         </div>
-
-        {/* Language 4: Japanese */}
-        <div
+        <span
           style={{
-            background: "#fff",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(8px, 1.5cqw, 14px)",
-            padding: "clamp(10px, 1.5cqw, 14px)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "clamp(6px, 1cqw, 10px)",
-            boxShadow: "0 1px 6px rgba(0,38,73,0.05)",
-            animation: "scaleIn 0.5s ease-out 0.3s both",
+            fontSize: "clamp(9px,1.2vw,12px)",
+            fontWeight: 700,
+            color: "#fff",
+            whiteSpace: "nowrap",
+            fontFamily: "Poppins, sans-serif",
           }}
         >
-          <div
-            style={{
-              fontSize: "clamp(20px, 4cqw, 32px)",
-              lineHeight: 1,
-            }}
-          >
-            🇯🇵
-          </div>
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.1cqw, 10px)",
-              fontWeight: 700,
-              color: "#002649",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
-            }}
-          >
-            日本語
-          </p>
-          <p
-            style={{
-              fontSize: "clamp(7px, 0.9cqw, 8px)",
-              color: "#005C90",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              textAlign: "center",
-              fontWeight: 600,
-            }}
-          >
-            Translated
-          </p>
-        </div>
+          AI Translation
+        </span>
       </div>
     </div>
 
-    {/* ── Bottom: Response Translation ── */}
+    {/* ── RIGHT: Translated Versions ── */}
     <div
-      className="flex flex-col flex-1"
       style={{
+        flex: 1,
         background: "#fff",
-        padding: "clamp(10px, 2.5cqw, 20px) clamp(12px, 2.5cqw, 28px)",
-        gap: "clamp(8px, 1.4cqw, 12px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "clamp(12px,2.2vw,24px) clamp(10px,1.8vw,20px)",
+        gap: "clamp(7px,1.2vw,13px)",
       }}
     >
-      <span
+      {/* Label: Translated Versions */}
+      <div
         style={{
-          fontSize: "clamp(9px, 1.1cqw, 11px)",
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          fontSize: "clamp(7px,0.95vw,10px)",
           fontWeight: 700,
           letterSpacing: "0.13em",
           textTransform: "uppercase",
-          color: "#39B44A",
+          color: "#2A9A4F",
           fontFamily: "Poppins, sans-serif",
-          flexShrink: 0,
         }}
       >
-        Translated Responses
-      </span>
+        <div
+          style={{
+            width: "clamp(5px,0.7vw,7px)",
+            height: "clamp(5px,0.7vw,7px)",
+            borderRadius: "50%",
+            background: "#2A9A4F",
+          }}
+        />
+        Translated Versions
+      </div>
 
-      {/* Responses */}
+      {/* Language Output Cards */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "clamp(8px, 1.3cqw, 12px)",
-          flex: 1,
-          minHeight: 0,
+          gap: "clamp(8px,1.2vw,12px)",
         }}
       >
-        {/* Response 1 */}
-        <div
-          style={{
-            background: "#F7FBFE",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(8px, 1.3cqw, 12px)",
-            padding: "clamp(8px, 1.2cqw, 12px)",
-            animation: "slideUp 0.5s ease-out 0.1s both",
-          }}
-        >
+        {[
+          { flag: "🇪🇸", name: "Español", bgColor: "rgba(196,122,26,0.10)", delay: "0.1s" },
+          { flag: "🇫🇷", name: "Français", bgColor: "rgba(42,154,79,0.09)", delay: "0.2s", isActive: true },
+          { flag: "🇩🇪", name: "Deutsch", bgColor: "rgba(123,63,196,0.08)", delay: "0.3s" },
+        ].map((lang, idx) => (
           <div
+            key={lang.name}
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "clamp(6px, 1cqw, 10px)",
-              marginBottom: "clamp(4px, 0.8cqw, 8px)",
+              gap: "clamp(8px,1.2vw,12px)",
+              background: "#fff",
+              border: lang.isActive 
+                ? "1px solid rgba(42,154,79,0.28)" 
+                : "1px solid rgba(0,92,144,0.11)",
+              borderRadius: "clamp(8px,1.2vw,12px)",
+              padding: "clamp(7px,1.2vw,12px)",
+              boxShadow: lang.isActive
+                ? "0 2px 10px rgba(42,154,79,0.10)"
+                : "0 1px 6px rgba(0,38,73,0.05)",
+              animation: lang.isActive 
+                ? `fadeUp 0.4s ease both, pulsG 2.5s ease-in-out infinite`
+                : `fadeUp 0.4s ease both`,
+              animationDelay: lang.isActive
+                ? `${lang.delay}, ${lang.delay}`
+                : lang.delay,
             }}
           >
-            <span
+            {/* Flag */}
+            <div
               style={{
-                fontSize: "clamp(18px, 3cqw, 24px)",
-                lineHeight: 1,
+                width: "clamp(26px,4vw,38px)",
+                height: "clamp(26px,4vw,38px)",
+                borderRadius: "clamp(6px,0.9vw,10px)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "clamp(14px,2vw,18px)",
+                background: lang.bgColor,
+                flexShrink: 0,
               }}
             >
-              🇪🇸
-            </span>
-            <p
-              style={{
-                fontSize: "clamp(7px, 1cqw, 9px)",
-                fontWeight: 600,
-                color: "#005C90",
-                fontFamily: "Poppins, sans-serif",
-                margin: 0,
-              }}
-            >
-              Spanish Response
-            </p>
-          </div>
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.1cqw, 10px)",
-              color: "#002649",
-              fontFamily: "Poppins, sans-serif",
-              margin: "clamp(4px, 0.8cqw, 8px) 0 0 0",
-              lineHeight: 1.4,
-              fontStyle: "italic",
-            }}
-          >
-            "Muy satisfecho con la calidad del producto..."
-          </p>
-          <div
-            style={{
-              fontSize: "clamp(7px, 1cqw, 9px)",
-              color: "#39B44A",
-              fontFamily: "Poppins, sans-serif",
-              margin: "clamp(4px, 0.8cqw, 8px) 0 0 0",
-              fontWeight: 500,
-            }}
-          >
-            ✓ Translated to: "Very satisfied with product quality..."
-          </div>
-        </div>
+              {lang.flag}
+            </div>
 
-        {/* Response 2 */}
-        <div
-          style={{
-            background: "#F7FBFE",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(8px, 1.3cqw, 12px)",
-            padding: "clamp(8px, 1.2cqw, 12px)",
-            animation: "slideUp 0.5s ease-out 0.2s both",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "clamp(6px, 1cqw, 10px)",
-              marginBottom: "clamp(4px, 0.8cqw, 8px)",
-            }}
-          >
-            <span
+            {/* Language Info */}
+            <div
               style={{
-                fontSize: "clamp(18px, 3cqw, 24px)",
-                lineHeight: 1,
+                flex: 1,
+                minWidth: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "clamp(3px,0.5vw,5px)",
               }}
             >
-              🇫🇷
-            </span>
-            <p
-              style={{
-                fontSize: "clamp(7px, 1cqw, 9px)",
-                fontWeight: 600,
-                color: "#005C90",
-                fontFamily: "Poppins, sans-serif",
-                margin: 0,
-              }}
-            >
-              French Response
-            </p>
-          </div>
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.1cqw, 10px)",
-              color: "#002649",
-              fontFamily: "Poppins, sans-serif",
-              margin: "clamp(4px, 0.8cqw, 8px) 0 0 0",
-              lineHeight: 1.4,
-              fontStyle: "italic",
-            }}
-          >
-            "Excellent support technique et mise en œuvre..."
-          </p>
-          <div
-            style={{
-              fontSize: "clamp(7px, 1cqw, 9px)",
-              color: "#39B44A",
-              fontFamily: "Poppins, sans-serif",
-              margin: "clamp(4px, 0.8cqw, 8px) 0 0 0",
-              fontWeight: 500,
-            }}
-          >
-            ✓ Translated to: "Excellent technical support and implementation..."
-          </div>
-        </div>
+              <div
+                style={{
+                  fontSize: "clamp(10px,1.3vw,13px)",
+                  fontWeight: 600,
+                  color: "#002649",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                {lang.name}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "5px",
+                }}
+              >
+                <div
+                  style={{
+                    height: "clamp(4px,0.8vw,7px)",
+                    borderRadius: 3,
+                    background: "rgba(9,129,181,0.13)",
+                    width: "90%",
+                  }}
+                />
+                <div
+                  style={{
+                    height: "clamp(4px,0.8vw,7px)",
+                    borderRadius: 3,
+                    background: "rgba(9,129,181,0.13)",
+                    width: "70%",
+                  }}
+                />
+              </div>
+            </div>
 
-        {/* Response 3 */}
-        <div
-          style={{
-            background: "#F7FBFE",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(8px, 1.3cqw, 12px)",
-            padding: "clamp(8px, 1.2cqw, 12px)",
-            animation: "slideUp 0.5s ease-out 0.3s both",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "clamp(6px, 1cqw, 10px)",
-              marginBottom: "clamp(4px, 0.8cqw, 8px)",
-            }}
-          >
+            {/* Ready Badge */}
             <span
               style={{
-                fontSize: "clamp(18px, 3cqw, 24px)",
-                lineHeight: 1,
-              }}
-            >
-              🇯🇵
-            </span>
-            <p
-              style={{
-                fontSize: "clamp(7px, 1cqw, 9px)",
-                fontWeight: 600,
-                color: "#005C90",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "5px",
+                fontSize: "clamp(8px,1vw,10px)",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                borderRadius: 20,
+                padding: "3px 10px",
+                background: "rgba(42,154,79,0.12)",
+                color: "#2A9A4F",
                 fontFamily: "Poppins, sans-serif",
-                margin: 0,
+                whiteSpace: "nowrap",
+                flexShrink: 0,
               }}
             >
-              Japanese Response
-            </p>
+              Ready
+            </span>
           </div>
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.1cqw, 10px)",
-              color: "#002649",
-              fontFamily: "Poppins, sans-serif",
-              margin: "clamp(4px, 0.8cqw, 8px) 0 0 0",
-              lineHeight: 1.4,
-              fontStyle: "italic",
-            }}
-          >
-            "製品の品質と機能に大変満足しています..."
-          </p>
-          <div
-            style={{
-              fontSize: "clamp(7px, 1cqw, 9px)",
-              color: "#39B44A",
-              fontFamily: "Poppins, sans-serif",
-              margin: "clamp(4px, 0.8cqw, 8px) 0 0 0",
-              fontWeight: 500,
-            }}
-          >
-            ✓ Translated to: "Very satisfied with the product quality and features..."
-          </div>
-        </div>
+        ))}
+      </div>
+
+      {/* Export Button & More Languages Chip */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "clamp(5px,0.8vw,9px)",
+          flexWrap: "wrap",
+          marginTop: "clamp(2px,0.3vw,4px)",
+        }}
+      >
+        <button
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "5px",
+            fontSize: "clamp(8px,1vw,10px)",
+            fontWeight: 700,
+            letterSpacing: "0.09em",
+            textTransform: "uppercase",
+            color: "#fff",
+            background: "linear-gradient(90deg,#0981B5,#27A8E0)",
+            border: "none",
+            borderRadius: 30,
+            cursor: "pointer",
+            padding: "clamp(5px,0.85vw,8px) clamp(12px,2vw,20px)",
+            whiteSpace: "nowrap",
+            boxShadow: "0 3px 12px rgba(9,129,181,0.28)",
+            fontFamily: "Poppins, sans-serif",
+          }}
+        >
+          Export All
+        </button>
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "3px",
+            fontSize: "clamp(6px,0.82vw,9px)",
+            fontWeight: 700,
+            letterSpacing: "0.09em",
+            textTransform: "uppercase",
+            borderRadius: 20,
+            padding: "2px 8px",
+            background: "rgba(9,129,181,0.08)",
+            color: "#0981B5",
+            fontFamily: "Poppins, sans-serif",
+            whiteSpace: "nowrap",
+          }}
+        >
+          +4 languages available
+        </span>
       </div>
     </div>
 
     <style>{`
-      @keyframes scaleIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(7px); }
+        to { opacity: 1; transform: none; }
       }
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
+      @keyframes pulsG {
+        0%, 100% { 
+          box-shadow: 0 2px 8px rgba(42, 154, 79, 0.10);
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        50% {
+          box-shadow: 0 4px 20px rgba(42, 154, 79, 0.28);
         }
       }
     `}</style>

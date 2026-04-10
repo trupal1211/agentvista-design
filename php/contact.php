@@ -15,6 +15,18 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+// Load environment variables from .env file
+$envFile = __DIR__ . '/../.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos($line, '=') !== false && strpos($line, '#') !== 0) {
+            [$key, $value] = explode('=', $line, 2);
+            $_ENV[trim($key)] = trim($value);
+        }
+    }
+}
+
 // ─── CORS Headers ───────────────────────────────────────────────────────────
 $allowedOrigins = [
     'http://localhost:8080',        // Vite dev server
@@ -46,21 +58,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// ─── SMTP Configuration ────────────────────────────────────────────────────
-// ⚠️ IMPORTANT: Replace 'YOUR_GMAIL_APP_PASSWORD' with the actual App Password
-//    you generate from Google Account → Security → 2-Step Verification → App Passwords
-$SMTP_HOST     = 'smtp.gmail.com';
-$SMTP_PORT     = 587;
-$SMTP_USERNAME = 'trupalgodhat99@gmail.com';     // Your Gmail address
-$SMTP_PASSWORD = 'ganwrouoxakeozpj';       // ← PASTE YOUR 16-CHAR APP PASSWORD HERE (no spaces)
+// ─── SMTP Configuration (Read from .env) ──────────────────────────────────
+$SMTP_HOST     = $_ENV['SMTP_HOST'] ?? 'smtp.gmail.com';
+$SMTP_PORT     = $_ENV['SMTP_PORT'] ?? 587;
+$SMTP_USERNAME = $_ENV['SMTP_USERNAME'] ?? '';
+$SMTP_PASSWORD = $_ENV['SMTP_PASSWORD'] ?? '';
 // ────────────────────────────────────────────────────────────────────────────
 
-// ─── Email Addresses (TEST configuration) ───────────────────────────────────
-$toEmail       = 'trupalgodhat1211@gmail.com';    // Email 1 – goes TO this address
+// ─── Email Addresses (Read from .env) ────────────────────────────────────────
+$toEmail       = $_ENV['TO_EMAIL'] ?? '';
 $ccEmail       = '';                              // CC removed
 $fromName      = 'AgentVista Sales';
-$fromEmail     = 'trupalgodhat99@gmail.com';      // Must match SMTP_USERNAME for Gmail
-$replyToSales  = 'trupalgodhat1211@gmail.com';         // Reply-To for the auto-reply email
+$fromEmail     = $_ENV['FROM_EMAIL'] ?? '';
+$replyToSales  = $_ENV['REPLY_TO_EMAIL'] ?? '';  // Reply-To for the auto-reply email
 // ────────────────────────────────────────────────────────────────────────────
 
 // ─── Read & Sanitize Input ──────────────────────────────────────────────────

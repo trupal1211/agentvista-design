@@ -17,9 +17,8 @@ import NaturalLanguageActionsVisual from "./features/NaturalLanguageActionsVisua
 import ConversationalFollowUpVisual from "./features/ConversationalFollowUpVisual";
 import AutomatedLifecycleFeedbackVisual from "./features/AutomatedLifecycleFeedbackVisual";
 import SmartRecordTargetingVisual from "./features/SmartRecordTargetingVisual";
-import SurveyResponseTranslationVisual from "./features/SurveyResponseTranslationVisual";
-import AiResponseMappingVisual from "./features/AiResponseMappingVisual";
 import AiSummaryOfResponsesVisual from "./features/AiSummaryOfResponsesVisual";
+import SurveyResponseTranslationVisual from "./features/SurveyResponseTranslationVisual";
 
 const visuals = [
   <AiSurveyVisual key="survey" />,
@@ -33,8 +32,7 @@ const visuals = [
   <ConversationalFollowUpVisual key="conversational-follow-up" />,
   <AutomatedLifecycleFeedbackVisual key="automated-lifecycle-feedback" />,
   <SmartRecordTargetingVisual key="smart-record-targeting" />,
-  <SurveyResponseTranslationVisual key="survey-response-translation" />,
-  <AiResponseMappingVisual key="ai-response-mapping" />,
+  <SurveyResponseTranslationVisual key="translation" />,
   <AiSummaryOfResponsesVisual key="ai-summary-of-responses" />,
 ];
 
@@ -44,7 +42,7 @@ const features = [
   { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, understand, and act on insights from surveys and forms", visualIndex: 7 },
   { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 5 },
   { icon: BarChart3, title: "AI-Generated Survey Insights", desc: "Summarize all survey responses to uncover trends, sentiment, and action areas in seconds.", visualIndex: 2 },
-  { icon: Lightbulb, title: "AI Summary of Individual Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 13 },
+  { icon: Lightbulb, title: "AI Summary of Individual Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 12 },
   { icon: BotMessageSquare, title: "AI-Driven Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses or meeting summaries.", visualIndex: 8 },
   { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 11 },
   { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 4 },

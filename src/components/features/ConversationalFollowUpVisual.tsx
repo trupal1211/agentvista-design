@@ -1,241 +1,364 @@
 /**
- * Conversational Follow-Up Visual
- * Shows: Participant Response → AI Clarification Questions
- * RESPONSIVE: Uses container queries for adaptive sizing
+ * AI Conversational Follow-Up Visual
+ * CONCEPT A — Response → AI Clarifying Questions (Split)
+ * RESPONSIVE: Uses vw units with clamp() for consistent scaling on all screens
+ * Desktop: Horizontal split • Mobile: Stacks vertically
  */
 
 const ConversationalFollowUpVisual = () => (
   <div
-    className="w-full h-full flex flex-col overflow-hidden"
-    style={{ background: "#F2F8FC" }}
+    className="w-full h-full flex overflow-hidden"
+    style={{
+      background: "#F2F8FC",
+    }}
   >
-    {/* ── Top: Participant Response ── */}
+    {/* ── LEFT: Participant Response ── */}
     <div
-      className="flex flex-col justify-center"
       style={{
-        flex: 0.9,
-        background: "#EEF7FD",
-        borderBottom: "1px solid rgba(0,92,144,0.1)",
-        padding: "clamp(12px, 2.5cqw, 24px) clamp(12px, 2.5cqw, 28px)",
-        gap: "clamp(8px, 1.5cqw, 14px)",
+        flex: "0 0 48%",
+        background: "#EBF5FB",
+        borderRight: "1px solid rgba(0,92,144,0.11)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "clamp(12px,2.2vw,24px) clamp(10px,1.8vw,20px)",
+        gap: "clamp(8px,1.3vw,14px)",
       }}
     >
-      <span
+      {/* Label: Participant Response */}
+      <div
         style={{
-          fontSize: "clamp(9px, 1.1cqw, 11px)",
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          fontSize: "clamp(7px,0.95vw,10px)",
           fontWeight: 700,
-          textTransform: "uppercase",
           letterSpacing: "0.13em",
+          textTransform: "uppercase",
           color: "#0981B5",
           fontFamily: "Poppins, sans-serif",
-          flexShrink: 0,
         }}
       >
+        <div
+          style={{
+            width: "clamp(5px,0.7vw,7px)",
+            height: "clamp(5px,0.7vw,7px)",
+            borderRadius: "50%",
+            background: "#27A8E0",
+          }}
+        />
         Participant Response
-      </span>
+      </div>
 
-      {/* Response bubble */}
+      {/* Response Card */}
       <div
         style={{
           background: "#fff",
-          border: "1.5px solid rgba(9,129,181,0.25)",
-          borderRadius: "clamp(8px, 1.5cqw, 14px)",
-          borderBottomLeftRadius: 0,
-          padding: "clamp(8px, 1.5cqw, 14px)",
-          boxShadow: "0 2px 10px rgba(0,38,73,0.06)",
-          alignSelf: "flex-start",
-          maxWidth: "80%",
+          border: "1px solid rgba(0,92,144,0.11)",
+          borderRadius: "clamp(8px,1.3vw,14px)",
+          overflow: "hidden",
+          boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
         }}
       >
-        <p
+        {/* Card Header */}
+        <div
           style={{
-            fontSize: "clamp(8px, 1.4cqw, 12px)",
-            lineHeight: 1.5,
-            color: "#002649",
-            fontFamily: "Poppins, sans-serif",
-            margin: 0,
+            display: "flex",
+            alignItems: "center",
+            gap: "clamp(5px,0.8vw,9px)",
+            padding: "clamp(7px,1.1vw,12px) clamp(10px,1.5vw,16px)",
+            borderBottom: "1px solid rgba(0,92,144,0.11)",
           }}
         >
-          "We've been having issues with the product stability lately."
-        </p>
+          {/* Avatar */}
+          <div
+            style={{
+              width: "clamp(22px,3.5vw,30px)",
+              height: "clamp(22px,3.5vw,30px)",
+              borderRadius: "50%",
+              background: "rgba(9,129,181,0.75)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "clamp(9px,1.2vw,12px)",
+              fontWeight: 700,
+              color: "#fff",
+              flexShrink: 0,
+              fontFamily: "Poppins, sans-serif",
+            }}
+          >
+            J
+          </div>
+
+          {/* Name */}
+          <span
+            style={{
+              fontSize: "clamp(9px,1.15vw,12px)",
+              fontWeight: 700,
+              color: "#002649",
+              flex: 1,
+              fontFamily: "Poppins, sans-serif",
+            }}
+          >
+            Jamie Lee
+          </span>
+
+          {/* Sentiment Chip */}
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "3px",
+              fontSize: "clamp(6px,0.82vw,9px)",
+              fontWeight: 700,
+              letterSpacing: "0.09em",
+              textTransform: "uppercase",
+              borderRadius: 20,
+              padding: "2px 8px",
+              background: "rgba(196,122,26,0.12)",
+              color: "#C47A1A",
+              fontFamily: "Poppins, sans-serif",
+              whiteSpace: "nowrap",
+              flexShrink: 0,
+            }}
+          >
+            Mixed
+          </span>
+        </div>
+
+        {/* Response Body */}
+        <div
+          style={{
+            padding: "clamp(8px,1.3vw,14px)",
+            fontSize: "clamp(8px,1.05vw,11px)",
+            color: "#002649",
+            lineHeight: 1.65,
+            fontFamily: "Poppins, sans-serif",
+          }}
+        >
+          "The onboarding was <strong>mostly fine</strong> but I struggled a bit with the{" "}
+          <strong>integrations</strong>. Support was helpful but felt it could be{" "}
+          <strong>faster</strong>."
+        </div>
+      </div>
+
+      {/* Insight Strip */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "clamp(5px,0.8vw,9px)",
+          background: "rgba(9,129,181,0.06)",
+          border: "1px solid rgba(9,129,181,0.15)",
+          borderRadius: "clamp(6px,1vw,10px)",
+          padding: "clamp(5px,0.85vw,9px) clamp(8px,1.3vw,14px)",
+        }}
+      >
+        <div
+          style={{
+            width: "clamp(18px,2.8vw,24px)",
+            height: "clamp(18px,2.8vw,24px)",
+            borderRadius: "clamp(4px,0.6vw,7px)",
+            background: "linear-gradient(90deg,#0981B5,#27A8E0)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <svg viewBox="0 0 16 16" fill="none" style={{ width: "55%", height: "55%" }}>
+            <circle cx="8" cy="8" r="6" stroke="#fff" strokeWidth="1.4" />
+            <path d="M8 5v4M8 11v.5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </div>
+        <span
+          style={{
+            fontSize: "clamp(7px,0.9vw,9px)",
+            color: "#0981B5",
+            fontWeight: 600,
+            fontFamily: "Poppins, sans-serif",
+          }}
+        >
+          3 gaps detected · AI generating follow-ups
+          <span
+            style={{
+              display: "inline-block",
+              width: "1.5px",
+              height: "clamp(9px,1.2vw,12px)",
+              background: "#0981B5",
+              borderRadius: "1px",
+              marginLeft: "2px",
+              verticalAlign: "middle",
+              animation: "blink 1s step-end infinite",
+            }}
+          />
+        </span>
       </div>
     </div>
 
-    {/* ── Bottom: AI Follow-Up Questions ── */}
+    {/* ── RIGHT: Follow-Up Questions ── */}
     <div
-      className="flex flex-col flex-1"
       style={{
+        flex: 1,
         background: "#fff",
-        padding: "clamp(10px, 2.5cqw, 20px) clamp(12px, 2.5cqw, 28px)",
-        gap: "clamp(8px, 1.3cqw, 12px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        padding: "clamp(12px,2.2vw,24px) clamp(10px,1.8vw,20px)",
+        gap: "clamp(7px,1.2vw,13px)",
       }}
     >
-      <span
+      {/* Label: Follow-Up Questions */}
+      <div
         style={{
-          fontSize: "clamp(9px, 1.1cqw, 11px)",
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          fontSize: "clamp(7px,0.95vw,10px)",
           fontWeight: 700,
           letterSpacing: "0.13em",
           textTransform: "uppercase",
-          color: "#39B44A",
+          color: "#2A9A4F",
           fontFamily: "Poppins, sans-serif",
-          alignSelf: "flex-end",
-          flexShrink: 0,
         }}
       >
-        AI Asks
-      </span>
+        <div
+          style={{
+            width: "clamp(5px,0.7vw,7px)",
+            height: "clamp(5px,0.7vw,7px)",
+            borderRadius: "50%",
+            background: "#2A9A4F",
+          }}
+        />
+        Follow-Up Questions
+      </div>
 
-      {/* Follow-up questions container */}
+      {/* Questions List */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "clamp(6px, 1.2cqw, 11px)",
-          flex: 1,
-          minHeight: 0,
+          gap: "clamp(5px,0.85vw,9px)",
         }}
       >
-        {/* Question 1 */}
-        <div
-          style={{
-            background: "#F7FBFE",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(6px, 1.2cqw, 12px)",
-            borderBottomRightRadius: 0,
-            padding: "clamp(8px, 1.3cqw, 12px)",
-            alignSelf: "flex-end",
-            maxWidth: "85%",
-            boxShadow: "0 2px 8px rgba(0,38,73,0.04)",
-            animation: "slideUp 0.5s ease-out 0.1s both",
-          }}
-        >
-          <p
+        {[
+          "Which specific integrations caused difficulty — CRM, Slack, or another?",
+          "What was the average wait time you experienced with support?",
+          "Would a self-service guide for integrations have helped you?",
+        ].map((question, idx) => (
+          <div
+            key={idx}
             style={{
-              fontSize: "clamp(8px, 1.3cqw, 11px)",
-              lineHeight: 1.4,
-              color: "#005C90",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              fontWeight: 500,
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "clamp(6px,1vw,10px)",
+              background: "#F7FBFE",
+              border: "1px solid rgba(0,92,144,0.11)",
+              borderRadius: "clamp(7px,1.1vw,12px)",
+              padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
+              animation: `fadeUp 0.4s ease both`,
+              animationDelay: `${0.1 + idx * 0.1}s`,
             }}
           >
-            Which features are most affected?
-          </p>
-        </div>
-
-        {/* Question 2 */}
-        <div
-          style={{
-            background: "#F7FBFE",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(6px, 1.2cqw, 12px)",
-            borderBottomRightRadius: 0,
-            padding: "clamp(8px, 1.3cqw, 12px)",
-            alignSelf: "flex-end",
-            maxWidth: "82%",
-            boxShadow: "0 2px 8px rgba(0,38,73,0.04)",
-            animation: "slideUp 0.5s ease-out 0.2s both",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.3cqw, 11px)",
-              lineHeight: 1.4,
-              color: "#005C90",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              fontWeight: 500,
-            }}
-          >
-            How long has this been an issue?
-          </p>
-        </div>
-
-        {/* Question 3 */}
-        <div
-          style={{
-            background: "#F7FBFE",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(6px, 1.2cqw, 12px)",
-            borderBottomRightRadius: 0,
-            padding: "clamp(8px, 1.3cqw, 12px)",
-            alignSelf: "flex-end",
-            maxWidth: "79%",
-            boxShadow: "0 2px 8px rgba(0,38,73,0.04)",
-            animation: "slideUp 0.5s ease-out 0.3s both",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.3cqw, 11px)",
-              lineHeight: 1.4,
-              color: "#005C90",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              fontWeight: 500,
-            }}
-          >
-            What impact has this had on your team?
-          </p>
-        </div>
-
-        {/* Question 4 - with cursor */}
-        <div
-          style={{
-            background: "#F7FBFE",
-            border: "1px solid rgba(0,92,144,0.15)",
-            borderRadius: "clamp(6px, 1.2cqw, 12px)",
-            borderBottomRightRadius: 0,
-            padding: "clamp(8px, 1.3cqw, 12px)",
-            alignSelf: "flex-end",
-            maxWidth: "75%",
-            boxShadow: "0 2px 8px rgba(0,38,73,0.04)",
-            animation: "slideUp 0.5s ease-out 0.4s both",
-            position: "relative",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "clamp(8px, 1.3cqw, 11px)",
-              lineHeight: 1.4,
-              color: "#005C90",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0,
-              fontWeight: 500,
-            }}
-          >
-            Would you like to schedule a follow-up call?
-            <span
+            {/* Question Number */}
+            <div
               style={{
-                display: "inline-block",
-                width: "1.5px",
-                height: "clamp(8px, 1.2cqw, 12px)",
-                background: "#0981B5",
-                borderRadius: "1px",
-                marginLeft: "2px",
-                verticalAlign: "middle",
-                animation: "blink 1s step-end infinite",
+                width: "clamp(17px,2.6vw,23px)",
+                height: "clamp(17px,2.6vw,23px)",
+                borderRadius: "50%",
+                background: "linear-gradient(90deg,#0981B5,#27A8E0)",
+                color: "#fff",
+                fontSize: "clamp(7px,0.9vw,10px)",
+                fontWeight: 800,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+                marginTop: "1px",
+                fontFamily: "Poppins, sans-serif",
               }}
-            />
-          </p>
-        </div>
+            >
+              {idx + 1}
+            </div>
+
+            {/* Question Text */}
+            <div
+              style={{
+                flex: 1,
+                fontSize: "clamp(8px,1.05vw,11px)",
+                color: "#002649",
+                lineHeight: 1.45,
+                fontStyle: "italic",
+                fontFamily: "Poppins, sans-serif",
+              }}
+            >
+              "{question}"
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Action Bar */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "clamp(5px,0.8vw,9px)",
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "5px",
+            fontSize: "clamp(8px,1vw,10px)",
+            fontWeight: 700,
+            letterSpacing: "0.09em",
+            textTransform: "uppercase",
+            color: "#fff",
+            background: "linear-gradient(90deg,#0981B5,#27A8E0)",
+            border: "none",
+            borderRadius: 30,
+            cursor: "pointer",
+            padding: "clamp(5px,0.85vw,8px) clamp(12px,2vw,20px)",
+            whiteSpace: "nowrap",
+            boxShadow: "0 3px 12px rgba(9,129,181,0.28)",
+            fontFamily: "Poppins, sans-serif",
+          }}
+        >
+          Send to Respondent
+        </button>
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "3px",
+            fontSize: "clamp(6px,0.82vw,9px)",
+            fontWeight: 700,
+            letterSpacing: "0.09em",
+            textTransform: "uppercase",
+            borderRadius: 20,
+            padding: "2px 8px",
+            background: "rgba(9,129,181,0.11)",
+            color: "#0981B5",
+            fontFamily: "Poppins, sans-serif",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Auto-generated
+        </span>
       </div>
     </div>
 
     <style>{`
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
       @keyframes blink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0; }
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(7px); }
+        to { opacity: 1; transform: none; }
       }
     `}</style>
   </div>
