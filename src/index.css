@@ -95,14 +95,22 @@ html {
 
 /* reCAPTCHA badge positioning - move from bottom-right to bottom-left */
 .grecaptcha-badge {
-  left: 10px !important;
+  left: 0px !important;
   right: unset !important;
   width: 60px !important;
   overflow: hidden !important;
   transition: width 0.3s ease !important;
+  cursor: pointer !important;
 }
 
-/* Show text on hover - expand width */
-.grecaptcha-badge:hover {
+/* Show text on hover - expand width (desktop) */
+@media (hover: hover) {
+  .grecaptcha-badge:hover {
+    width: 256px !important;
+  }
+}
+
+/* Mobile: expanded state with click */
+.grecaptcha-badge.expanded {
   width: 256px !important;
 }
