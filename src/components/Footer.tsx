@@ -91,7 +91,7 @@ const Footer = () => {
               <li className="flex items-center gap-2">
                 <span>📞</span>
                 <a href="tel:16697776838" className="hover:text-brand-blue transition-colors">
-                  +1-669-777-6838
+                  1.669.777.6838
                 </a>
               </li>
             </ul>
