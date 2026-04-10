@@ -150,7 +150,7 @@ const FeaturesSection = () => {
   };
 
   return (
-    <section id="features" className="py-8 md:py-16 section-gradient">
+    <section id="features" className="pt-28 md:pt-36 pb-8 md:pb-16 section-gradient">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
