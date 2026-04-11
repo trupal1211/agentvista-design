@@ -215,10 +215,10 @@ const UseCasesSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
-              className="flex flex-col-reverse lg:flex-row items-center justify-between gap-6 md:gap-14 w-full"
+              className="flex flex-col-reverse lg:flex-row items-center justify-between gap-0 md:gap-0 w-full"
             >
               {/* Text Area */}
-              <div className="w-full lg:w-[48%] flex flex-col items-start pt-2">
+              <div className="w-full lg:flex-1 flex flex-col items-start pt-2">
                 <div className="flex items-center gap-4 mb-6">
                   <div className={`p-2.5 rounded-xl ${activeCase.bgClass} flex items-center justify-center`}>
                     <activeCase.icon size={28} strokeWidth={2.5} className={activeCase.accentColor} />
@@ -239,10 +239,10 @@ const UseCasesSection = () => {
                         transition={{ duration: 0.2, delay: 0.05 + i * 0.05 }}
                         className="flex items-start gap-4 group"
                       >
-                        <span className={`mt-0.5 p-2 rounded-lg ${activeCase.bgClass} flex-shrink-0 shadow-sm border border-foreground/5`}>
+                        <span className={`flex-shrink-0 mt-1`}>
                           <ItemIcon className={`w-5 h-5 ${activeCase.accentColor}`} strokeWidth={2.5} />
                         </span>
-                        <span className="text-muted-foreground text-[15px] md:text-[17px] leading-relaxed font-medium group-hover:text-foreground transition-colors pt-1">
+                        <span className="text-muted-foreground text-[15px] md:text-[17px] leading-relaxed font-medium group-hover:text-foreground transition-colors">
                           {item.text}
                         </span>
                       </motion.li>
@@ -252,7 +252,7 @@ const UseCasesSection = () => {
               </div>
 
               {/* Image Area */}
-              <div className="w-full lg:w-[48%] relative flex justify-center items-center">
+              <div className="w-full lg:flex-1 relative flex justify-center items-center">
                 <div className={`absolute inset-0 bg-gradient-to-br ${activeCase.imageBg} rounded-full blur-3xl opacity-60 z-0`} />
 
                 <div className="relative w-full flex items-center justify-center z-10 min-h-[220px] md:min-h-[300px]">

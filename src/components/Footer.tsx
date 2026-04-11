@@ -1,5 +1,6 @@
 import logo from "@/assets/agent-vista-logo.svg";
 import { Link, useLocation } from "react-router-dom";
+import { Globe, Mail, Phone } from "lucide-react";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -77,19 +78,19 @@ const Footer = () => {
             <h4 className="font-bold text-foreground mb-4">Contact Info</h4>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
-                <span>🌐</span>
+                <Globe size={18} className="text-brand-blue flex-shrink-0" />
                 <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue transition-colors">
                   www.agentsvista.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <span>✉️</span>
+                <Mail size={18} className="text-brand-blue flex-shrink-0" />
                 <a href="mailto:info@ardira.com" className="hover:text-brand-blue transition-colors">
                   info@ardira.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <span>📞</span>
+                <Phone size={18} className="text-brand-blue flex-shrink-0" />
                 <a href="tel:16697776838" className="hover:text-brand-blue transition-colors">
                   1.669.777.6838
                 </a>
@@ -101,13 +102,28 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Terms of Use</Link>
-            <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Privacy Policy</Link>
+        <div className="mx-auto max-w-6xl px-4 lg:px-8 py-5">
+          {/* Mobile layout: Links on top, copyright below */}
+          <div className="md:hidden flex flex-col items-center justify-center gap-3 text-center">
+            <div className="flex items-center gap-4">
+              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Terms of Use</Link>
+              <span className="text-sm text-muted-foreground">|</span>
+              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Privacy Policy</Link>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
+            </p>
+          </div>
+          
+          {/* Desktop layout: Copyright on left, links on right */}
+          <div className="hidden md:flex items-center justify-between gap-3">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Terms of Use</Link>
+              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Privacy Policy</Link>
+            </div>
           </div>
         </div>
       </div>

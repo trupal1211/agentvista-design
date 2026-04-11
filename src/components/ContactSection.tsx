@@ -144,7 +144,7 @@ const ContactSection = () => {
                   </div>
                   <div className="flex-1 min-w-0 py-1">
                     <p className="font-semibold text-foreground text-sm">Phone</p>
-                    <p className="text-xs text-muted-foreground mt-1">1 669 777.6838</p>
+                    <p className="text-xs text-muted-foreground mt-1">1.669.777.6838</p>
                   </div>
                 </a>
 

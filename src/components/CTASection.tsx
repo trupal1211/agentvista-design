@@ -13,7 +13,7 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto rounded-2xl overflow-hidden"
+          className="max-w-5xl mx-auto rounded-2xl overflow-hidden"
           style={{
             background: '#005C90',
             padding: '48px 32px',
@@ -24,13 +24,14 @@ const CTASection = () => {
               Get Started
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              <span>Ready to Close the Feedback Loop — Automatically ?</span>
+              <span>Ready to Close the Feedback Loop —<br />Automatically ?</span>
             </h2>
             <p className="text-white mb-8 text-lg">
-              See AgentVista in action. Automate your entire survey lifecycle with the power of AI, natively within Salesforce</p>
+              See AgentVista in action. Automate your entire survey lifecycle with the power of AI,<br />natively within Salesforce</p>
             <button
               onClick={() => setDemoOpen(true)}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-white text-[#005C90] font-semibold text-lg hover:opacity-85 transition-opacity"
+              style={{ touchAction: 'manipulation' }}
             >
               Book a Demo
               <ArrowRight size={20} />

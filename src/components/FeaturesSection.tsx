@@ -19,6 +19,7 @@ import AutomatedLifecycleFeedbackVisual from "./features/AutomatedLifecycleFeedb
 import SmartRecordTargetingVisual from "./features/SmartRecordTargetingVisual";
 import AiSummaryOfResponsesVisual from "./features/AiSummaryOfResponsesVisual";
 import SurveyResponseTranslationVisual from "./features/SurveyResponseTranslationVisual";
+import SurveyVistaIntelligenceVisual from "./features/SurveyVistaIntelligenceVisual";
 
 const visuals = [
   <AiSurveyVisual key="survey" />,
@@ -34,6 +35,7 @@ const visuals = [
   <SmartRecordTargetingVisual key="smart-record-targeting" />,
   <SurveyResponseTranslationVisual key="translation" />,
   <AiSummaryOfResponsesVisual key="ai-summary-of-responses" />,
+  <SurveyVistaIntelligenceVisual key="surveyvista-intelligence" />,
 ];
 
 const features = [
@@ -47,7 +49,7 @@ const features = [
   { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 11 },
   { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 4 },
   { icon: Copy, title: "Prompt-Based Cloning & Editing", desc: "Duplicate or update surveys using plain language commands.", visualIndex: 3 },
-  { icon: BotMessageSquare, title: "SurveyVista Intelligence", desc: "An embedded AI assistant that designs, configures, automates, and analyzes across every stage of your survey lifecycle.", visualIndex: 8 },
+  { icon: BotMessageSquare, title: "SurveyVista Intelligence (COMING SOON)", desc: "An embedded AI assistant that designs, configures, automates, and analyzes across every stage of your survey lifecycle.", visualIndex: 13 },
 ];
 
 const FeaturesSection = () => {

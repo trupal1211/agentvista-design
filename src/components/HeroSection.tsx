@@ -48,6 +48,7 @@ const HeroSection = () => {
               <button
                 onClick={() => setDemoOpen(true)}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg bg-brand-blue text-white font-semibold text-base sm:text-lg hover:opacity-85 active:opacity-75 transition-opacity cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
               >
                 Book a Demo
                 <ArrowRight size={18} className="sm:w-5 sm:h-5" />
@@ -55,6 +56,7 @@ const HeroSection = () => {
               <button
                 onClick={() => setAppExOpen(true)}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg border border-border text-foreground font-semibold text-base sm:text-lg hover:bg-muted active:bg-muted transition-colors cursor-pointer"
+                style={{ touchAction: 'manipulation' }}
               >
                 View on AppExchange
               </button>
