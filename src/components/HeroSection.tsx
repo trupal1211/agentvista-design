@@ -37,7 +37,8 @@ const HeroSection = () => {
             </h1>
 
             <h2 className="text-xl md:text-2xl font-semibold text-foreground mb-6 mt-6">
-              AI-Powered Automation for Feedback Management & Data Collection.
+              <span className="md:hidden">AI-Powered Automation for <br /> Feedback Management & <br /> Data Collection.</span>
+              <span className="hidden md:inline">AI-Powered Automation for Feedback <br /> Management & Data Collection.</span>
             </h2>
 
             <p className="text-sm md:text-base text-muted-foreground max-w-xl mb-10 leading-relaxed">

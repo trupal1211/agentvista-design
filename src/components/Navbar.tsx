@@ -85,7 +85,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => {
               const sectionId = link.href.replace("#", "");
               const isActive = isHome && activeSection === sectionId;
@@ -105,7 +105,7 @@ const Navbar = () => {
             })}
           </div>
 
-          <div className="hidden md:flex items-center">
+          <div className="hidden lg:flex items-center">
             <button
               onClick={() => setDemoOpen(true)}
               className="px-6 py-2.5 text-sm font-semibold rounded-lg bg-brand-blue text-white hover:opacity-85 transition-opacity whitespace-nowrap"
@@ -116,7 +116,7 @@ const Navbar = () => {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden text-foreground/80"
+            className="lg:hidden text-foreground/80"
             onClick={() => setMobileOpen(true)}
           >
             <Menu size={22} />
@@ -132,7 +132,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[60] bg-foreground/20 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-[60] bg-foreground/20 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -140,7 +140,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 250 }}
-              className="fixed top-0 left-0 bottom-0 z-[70] w-72 bg-background border-r border-border shadow-2xl md:hidden"
+              className="fixed top-0 left-0 bottom-0 z-[70] w-72 bg-background border-r border-border shadow-2xl lg:hidden"
             >
               <div className="flex items-center justify-between p-5 border-b border-border">
                 <img src={logo} alt="AgentVista" className="h-8" />

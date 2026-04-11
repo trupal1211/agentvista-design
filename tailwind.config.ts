@@ -13,6 +13,13 @@ export default {
         "2xl": "1400px",
       },
     },
+    screens: {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "900px",
+      "xl": "1024px",
+      "2xl": "1536px",
+    },
     extend: {
       fontFamily: {
         heading: ['Poppins', 'system-ui', 'sans-serif'],
