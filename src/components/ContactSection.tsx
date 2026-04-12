@@ -36,10 +36,13 @@ const ContactSection = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // PHP backend API endpoint
-  // For local testing: http://localhost:8000/php/contact.php
-  // For production: https://www.agentsvista.com/php/contact.php
-  const CONTACT_API_URL = "http://localhost:8000/php/contact.php";
+  // ---------- DEPLOYMENT CONFIGURATIONS ----------
+  // Uncomment the line below for Original Domain (PHP deployment)
+  // const CONTACT_API_URL = "http://localhost:8000/contact.php"; 
+
+  // Uncomment the line below for Vercel deployment (Nodemailer)
+  const CONTACT_API_URL = "/api/contact";
+  // ------------------------------------------------
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

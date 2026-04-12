@@ -10,8 +10,13 @@ interface AppExchangeFormProps {
 
 const APPEXCHANGE_URL = "https://appexchange.salesforce.com/appxListingDetail?listingId=c088b22e-a28b-4d93-bdf7-b950546b6e80&channel=recommended";
 
-// PHP backend API endpoint
-const CONTACT_API_URL = "http://localhost:8000/php/contact.php";
+// ---------- DEPLOYMENT CONFIGURATIONS ----------
+// Uncomment the line below for Original Domain (PHP deployment)
+// const CONTACT_API_URL = "http://localhost:8000/php/contact.php"; 
+
+// Uncomment the line below for Vercel deployment (Nodemailer)
+const CONTACT_API_URL = "/api/contact";
+// ------------------------------------------------
 
 const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
