@@ -162,7 +162,7 @@ const ContactSection = () => {
 
               {/* Support Note */}
               <div className="flex items-start gap-4 p-5 rounded-xl border border-secondary/20 bg-secondary/5 w-full min-w-0 shadow-sm">
-                <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-lg font-bold">✓</div>
+                <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-lg font-bold">?</div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at<br /><a href="mailto:support@ardira.com" className="hover:underline font-medium" style={{ color: '#39B44A' }}>support@ardira.com</a></p>
                 </div>
