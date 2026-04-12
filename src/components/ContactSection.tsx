@@ -127,44 +127,44 @@ const ContactSection = () => {
               {/* Contact Info Cards */}
               <div className="space-y-4 w-full">
                 {/* Address */}
-                <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-5 rounded-2xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-5 rounded-xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
                   <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0">
                     <MapPin size={20} />
                   </div>
-                  <div className="flex-1 min-w-0 py-1">
+                  <div className="flex-1 min-w-0">
                     <p className="font-semibold text-foreground text-sm">Address</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed break-words mt-1">2040 Marlin Ave, Santa Clara, CA 95050<br/>United States</p>
+                    <p className="text-sm font-medium text-muted-foreground leading-relaxed break-words mt-1">2040 Marlin Ave, Santa Clara, CA 95050<br/>United States</p>
                   </div>
                 </a>
 
                 {/* Phone */}
-                <a href="tel:16697776838" className="flex items-start gap-4 p-5 rounded-2xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
-                  <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0">
-                    <Phone size={20} />
+                <a href="tel:16697776838" className="flex items-center gap-4 p-5 rounded-xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md hover:border-brand-blue/60 group">
+                  <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0 group-hover:bg-brand-blue transition-colors duration-300">
+                    <Phone size={20} className="group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div className="flex-1 min-w-0 py-1">
                     <p className="font-semibold text-foreground text-sm">Phone</p>
-                    <p className="text-xs text-muted-foreground mt-1">1.669.777.6838</p>
+                    <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue group-hover:underline transition-colors duration-300">1.669.777.6838</p>
                   </div>
                 </a>
 
                 {/* Email */}
-                <a href="mailto:info@ardira.com" className="flex items-start gap-4 p-5 rounded-2xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
-                  <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0">
-                    <Mail size={20} />
+                <a href="mailto:info@ardira.com" className="flex items-center gap-4 p-5 rounded-xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md hover:border-brand-blue/60 group">
+                  <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0 group-hover:bg-brand-blue transition-colors duration-300">
+                    <Mail size={20} className="group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div className="flex-1 min-w-0 py-1">
                     <p className="font-semibold text-foreground text-sm">Email</p>
-                    <p className="text-xs text-muted-foreground mt-1">info@ardira.com</p>
+                    <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue group-hover:underline transition-colors duration-300">info@ardira.com</p>
                   </div>
                 </a>
               </div>
 
               {/* Support Note */}
-              <div className="flex items-start gap-3 p-5 rounded-2xl border border-secondary/20 bg-secondary/5 w-full min-w-0 shadow-sm">
-                <div className="w-6 h-6 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-sm font-bold">✓</div>
+              <div className="flex items-start gap-4 p-5 rounded-xl border border-secondary/20 bg-secondary/5 w-full min-w-0 shadow-sm">
+                <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-lg font-bold">✓</div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at <a href="mailto:support@ardira.com" className="text-brand-blue hover:underline font-medium">support@ardira.com</a></p>
+                  <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at<br /><a href="mailto:support@ardira.com" className="hover:underline font-medium" style={{ color: '#39B44A' }}>support@ardira.com</a></p>
                 </div>
               </div>
           </motion.div>
@@ -181,7 +181,7 @@ const ContactSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="flex flex-col items-center justify-center py-14 md:py-20 bg-card rounded-2xl border border-secondary/30 shadow-lg"
+                className="flex flex-col items-center justify-center py-14 md:py-20 bg-card rounded-xl border border-secondary/30 shadow-lg"
               >
                 {/* Animated checkmark circle */}
                 <motion.div
@@ -244,7 +244,7 @@ const ContactSection = () => {
                 </motion.button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ boxSizing: 'border-box' }} className="bg-card rounded-2xl border border-border p-4 md:p-8 space-y-5">
+              <form onSubmit={handleSubmit} style={{ boxSizing: 'border-box' }} className="bg-card rounded-xl border border-border p-4 md:p-8 space-y-5">
                 <div>
                   <h3 className="text-lg font-bold text-foreground mb-1">Fill out the form and we'll be in touch shortly!</h3>
                   <p className="text-xs text-muted-foreground">Note: fields marked with <span className="text-red-500">(*)</span> are mandatory</p>
