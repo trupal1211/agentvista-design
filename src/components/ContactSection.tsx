@@ -133,7 +133,10 @@ const ContactSection = () => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-foreground text-sm">Address</p>
-                    <p className="text-sm font-medium text-muted-foreground leading-relaxed break-words mt-1">2040 Marlin Ave, Santa Clara, CA 95050<br/>United States</p>
+                    <p className="text-sm font-medium text-muted-foreground leading-relaxed break-words mt-1">
+                      <span className="hidden md:inline">2040 Marlin Ave, Santa Clara, CA 95050<br/>United States</span>
+                      <span className="md:hidden">2040 Marlin Ave, Santa Clara, CA <br/>95050, United States</span>
+                    </p>
                   </div>
                 </a>
 
@@ -164,7 +167,11 @@ const ContactSection = () => {
               <div className="flex items-start gap-4 p-5 rounded-xl border border-secondary/20 bg-secondary/5 w-full min-w-0 shadow-sm">
                 <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-lg font-bold">?</div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">For customer support,</span> email us directly at<br /><a href="mailto:support@ardira.com" className="hover:underline font-medium" style={{ color: '#39B44A' }}>support@ardira.com</a></p>
+                  <p className="text-sm text-muted-foreground">
+                    <span className="hidden md:inline"><span className="font-semibold text-foreground">For customer support,</span> email us directly at<br /></span>
+                    <span className="md:hidden"><span className="font-semibold text-foreground">For customer support, email us</span> <br /> directly at</span>
+                    <a href="mailto:support@ardira.com" className="hover:underline font-medium transition-all" style={{ color: '#39B44A' }}> support@ardira.com</a>
+                  </p>
                 </div>
               </div>
           </motion.div>
