@@ -82,12 +82,10 @@
 
 html, body {
   scroll-behavior: smooth;
-  max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 #root {
-  overflow-x: hidden;
   width: 100%;
 }
 
