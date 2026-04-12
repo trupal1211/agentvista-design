@@ -41,7 +41,7 @@ const BenefitsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, duration: 0.4 }}
-              className="group relative rounded-2xl bg-background border border-border/50 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              className="group relative rounded-xl bg-background border border-border/50 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               {/* Top line - brand color */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
