@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   Headphones, UserCheck, TrendingUp, Globe2, Brain, Settings2, Building2, Megaphone,
-  Zap, MessageCircle, BarChart3, CheckCircle2, Search, Clipboard, Filter,
+  Zap, MessageCircle, BarChart3, CheckCircle2, Search, Clipboard, Filter, ChevronLeft, ChevronRight
 } from "lucide-react";
 
 import salesRevenueImg from "../assets/agentvista-sales-revenue-use-case.webp";
@@ -177,16 +177,32 @@ const UseCasesSection = () => {
         <div className="absolute right-0 top-0 bottom-0 w-4 md:w-12 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
         {/* ─── Infinite Strip ─── */}
-        <div className="w-full overflow-hidden select-none cursor-grab active:cursor-grabbing pb-4 md:pb-8" ref={emblaRef}>
-          <div className="flex">
-            {useCases.map((uc, index) => {
-              const isActive = index === selectedIndex;
-              return (
-                <div
-                  key={`${uc.id}-${index}`}
-                  className="flex-[0_0_auto] min-w-[150px] md:min-w-[220px]"
-                  onClick={() => handleScrollTo(index)}
-                >
+        <div className="relative w-full">
+          {/* Mobile Navigation Arrows */}
+          <button 
+            className="md:hidden absolute left-0 top-[45px] -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-foreground active:scale-90 transition-all"
+            onClick={() => emblaApi?.scrollPrev()}
+          >
+            <ChevronLeft size={36} strokeWidth={1.5} />
+          </button>
+          
+          <button 
+            className="md:hidden absolute right-0 top-[45px] -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-foreground active:scale-90 transition-all"
+            onClick={() => emblaApi?.scrollNext()}
+          >
+            <ChevronRight size={36} strokeWidth={1.5} />
+          </button>
+
+          <div className="w-full overflow-hidden select-none cursor-grab active:cursor-grabbing pb-4 md:pb-8" ref={emblaRef}>
+            <div className="flex">
+              {useCases.map((uc, index) => {
+                const isActive = index === selectedIndex;
+                return (
+                  <div
+                    key={`${uc.id}-${index}`}
+                    className="flex-[0_0_100%] md:flex-[0_0_auto] md:min-w-[220px]"
+                    onClick={() => handleScrollTo(index)}
+                  >
                   <div
                     className={`group transition-colors duration-300 flex flex-col items-center gap-3 py-4 ${isActive
                         ? 'opacity-100 cursor-default'
@@ -204,6 +220,7 @@ const UseCasesSection = () => {
               );
             })}
           </div>
+        </div>
         </div>
 
         {/* ─── Active Content Area (Transparent Wrapper, Fixed Min Height) ─── */}
