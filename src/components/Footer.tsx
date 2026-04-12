@@ -64,7 +64,7 @@ const Footer = () => {
                   <a
                     href={l.href}
                     onClick={(e) => handleNavClick(e, l.href)}
-                    className="text-sm text-muted-foreground hover:text-brand-blue transition-colors"
+                    className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all"
                   >
                     {l.label}
                   </a>
@@ -79,19 +79,19 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Globe size={18} className="text-brand-blue flex-shrink-0" />
-                <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue transition-colors">
+                <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue hover:underline transition-all">
                   www.agentsvista.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={18} className="text-brand-blue flex-shrink-0" />
-                <a href="mailto:info@ardira.com" className="hover:text-brand-blue transition-colors">
+                <a href="mailto:info@ardira.com" className="hover:text-brand-blue hover:underline transition-all">
                   info@ardira.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={18} className="text-brand-blue flex-shrink-0" />
-                <a href="tel:16697776838" className="hover:text-brand-blue transition-colors">
+                <a href="tel:16697776838" className="hover:text-brand-blue hover:underline transition-all">
                   1.669.777.6838
                 </a>
               </li>
@@ -106,9 +106,9 @@ const Footer = () => {
           {/* Mobile layout: Links on top, copyright below */}
           <div className="md:hidden flex flex-col items-center justify-center gap-3 text-center">
             <div className="flex items-center gap-4">
-              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Terms of Use</Link>
+              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Terms of Use</Link>
               <span className="text-sm text-muted-foreground">|</span>
-              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Privacy Policy</Link>
+              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Privacy Policy</Link>
             </div>
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
@@ -121,8 +121,8 @@ const Footer = () => {
               © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Terms of Use</Link>
-              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Privacy Policy</Link>
+              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Terms of Use</Link>
+              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Privacy Policy</Link>
             </div>
           </div>
         </div>
