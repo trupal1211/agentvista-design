@@ -26,7 +26,7 @@ const TermsOfUse = () => {
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Terms of Use</h1>
         <p className="text-sm text-muted-foreground mb-8">Ardira AppExchange App Terms and Conditions</p>
 
-        <div className="prose prose-sm max-w-none text-foreground/80 space-y-6 text-justify">
+        <div className="prose prose-sm max-w-none text-foreground/80 space-y-6 text-left md:text-justify">
           <p>
             The website located at <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline font-medium">www.agentsvista.com</a>, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("AgentVista", "the Company," "we," "us," and "our"). These Terms of Use (the "Terms") govern your access to and use of the Website.
           </p>

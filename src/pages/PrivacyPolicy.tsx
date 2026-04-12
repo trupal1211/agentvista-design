@@ -23,7 +23,7 @@ const PrivacyPolicy = () => {
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Privacy Notice</h1>
         <p className="text-sm text-muted-foreground mb-8">AgentVista Privacy Policy</p>
 
-        <div className="prose prose-sm max-w-none text-foreground/80 space-y-6 text-justify">
+        <div className="prose prose-sm max-w-none text-foreground/80 space-y-6 text-left md:text-justify">
           <p>
             The website located at <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:underline font-medium">www.agentsvista.com</a>, (the "Website") is published, owned, and operated by Ardira Corporation, its affiliates and related entities ("AgentVista," "the Company," "we," "us," and "our"). AgentVista respects your privacy and is committed to protecting your privacy through our compliance with this website privacy policy (the "Policy"). This Policy should be read in conjunction with our website Terms of Use, into which this Policy is incorporated by reference.
           </p>

@@ -118,6 +118,7 @@ const UseCasesSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
+    duration: 45,
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -231,7 +232,7 @@ const UseCasesSection = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="flex flex-col-reverse lg:flex-row items-center justify-between gap-0 md:gap-0 w-full"
             >
               {/* Text Area */}
@@ -253,7 +254,7 @@ const UseCasesSection = () => {
                         key={i}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.2, delay: 0.05 + i * 0.05 }}
+                        transition={{ duration: 0.3, delay: 0.1 + i * 0.08 }}
                         className="flex items-start gap-4 group"
                       >
                         <span className={`flex-shrink-0 mt-1`}>
@@ -276,7 +277,7 @@ const UseCasesSection = () => {
                   <motion.img
                     initial={{ opacity: 0, scale: 0.97 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.05, duration: 0.3 }}
+                    transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
                     src={activeCase.image}
                     alt={`AgentVista ${activeCase.label} use case`}
                     className="w-full max-w-[280px] md:max-w-[400px] object-contain drop-shadow-xl"
