@@ -404,27 +404,9 @@ const SurveyResponseTranslationVisual = () => (
             fontFamily: "Poppins, sans-serif",
           }}
         >
-          Export All
+          Ready to Send
         </button>
-        <span
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "3px",
-            fontSize: "clamp(6px,0.82vw,9px)",
-            fontWeight: 700,
-            letterSpacing: "0.09em",
-            textTransform: "uppercase",
-            borderRadius: 20,
-            padding: "2px 8px",
-            background: "rgba(9,129,181,0.08)",
-            color: "#0981B5",
-            fontFamily: "Poppins, sans-serif",
-            whiteSpace: "nowrap",
-          }}
-        >
-          +4 languages available
-        </span>
+
       </div>
     </div>
 
