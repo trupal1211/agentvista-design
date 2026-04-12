@@ -17,12 +17,17 @@ use PHPMailer\PHPMailer\Exception;
 
 // Load environment variables from .env file
 $envFile = __DIR__ . '/../.env';
+$env = [];
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
         if (strpos($line, '=') !== false && strpos($line, '#') !== 0) {
             [$key, $value] = explode('=', $line, 2);
-            $_ENV[trim($key)] = trim($value);
+            $key = trim($key);
+            $value = trim($value);
+            $env[$key] = $value;
+            // Also set in $_SERVER for broader compatibility
+            $_SERVER[$key] = $value;
         }
     }
 }
@@ -59,18 +64,27 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // ─── SMTP Configuration (Read from .env) ──────────────────────────────────
-$SMTP_HOST     = $_ENV['SMTP_HOST'] ?? 'smtp.gmail.com';
-$SMTP_PORT     = $_ENV['SMTP_PORT'] ?? 587;
-$SMTP_USERNAME = $_ENV['SMTP_USERNAME'] ?? '';
-$SMTP_PASSWORD = $_ENV['SMTP_PASSWORD'] ?? '';
-// ────────────────────────────────────────────────────────────────────────────
+$SMTP_HOST     = $env['SMTP_HOST'] ?? 'smtp.gmail.com';
+$SMTP_PORT     = $env['SMTP_PORT'] ?? 587;
+$SMTP_USERNAME = $env['SMTP_USERNAME'] ?? '';
+$SMTP_PASSWORD = $env['SMTP_PASSWORD'] ?? '';
 
 // ─── Email Addresses (Read from .env) ────────────────────────────────────────
-$toEmail       = $_ENV['TO_EMAIL'] ?? '';
+$toEmail       = $env['TO_EMAIL'] ?? '';
 $ccEmail       = '';                              // CC removed
 $fromName      = 'AgentVista Sales';
-$fromEmail     = $_ENV['FROM_EMAIL'] ?? '';
-$replyToSales  = $_ENV['REPLY_TO_EMAIL'] ?? '';  // Reply-To for the auto-reply email
+$fromEmail     = $env['FROM_EMAIL'] ?? '';
+$replyToSales  = $env['REPLY_TO_EMAIL'] ?? '';  // Reply-To for the auto-reply email
+
+// ─── Validate SMTP Configuration ────────────────────────────────────────────
+if (empty($SMTP_USERNAME) || empty($SMTP_PASSWORD) || empty($toEmail) || empty($fromEmail)) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Server configuration incomplete. Missing SMTP or email settings.'
+    ]);
+    exit();
+}
 // ────────────────────────────────────────────────────────────────────────────
 
 // ─── Read & Sanitize Input ──────────────────────────────────────────────────
@@ -288,6 +302,12 @@ $body2 = '<!DOCTYPE html>
 </html>';
 
 
+// ─── Initialize error tracking ─────────────────────────────────────────────
+$emailSent1 = false;
+$emailSent2 = false;
+$error1 = null;
+$error2 = null;
+
 // ═══════════════════════════════════════════════════════════════════════════
 // SEND EMAILS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -325,7 +345,6 @@ try {
     $error1 = $mail1->ErrorInfo;
 }
 
-$emailSent2 = true; // Default true if skipping
 if ($formType !== 'appexchange') {
     try {
         // ── Email 2: Auto-Reply to User ─────────────────────────────────────
@@ -359,6 +378,9 @@ if ($formType !== 'appexchange') {
         $emailSent2 = false;
         $error2 = $mail2->ErrorInfo;
     }
+} else {
+    // For AppExchange forms, we don't send auto-reply, so mark as success
+    $emailSent2 = true;
 }
 
 // ─── Response ───────────────────────────────────────────────────────────────
@@ -370,6 +392,9 @@ if ($emailSent1 && $emailSent2) {
     echo json_encode(['success' => true, 'message' => 'Notification sent, but auto-reply may have failed']);
 } else {
     http_response_code(500);
-    $errorMsg = isset($error1) ? $error1 : (isset($error2) ? $error2 : 'Unknown error');
+    $errorMsg = isset($error1) ? $error1 : (isset($error2) ? $error2 : 'Unknown email error. Check server configuration.');
     echo json_encode(['success' => false, 'message' => 'Failed to send emails: ' . $errorMsg]);
+    
+    // Log error for debugging
+    error_log('Contact form error: ' . $errorMsg);
 }

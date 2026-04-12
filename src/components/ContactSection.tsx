@@ -37,9 +37,9 @@ const ContactSection = () => {
   };
 
   // PHP backend API endpoint
-  // For local testing: http://localhost:8000/contact.php
+  // For local testing: http://localhost:8000/php/contact.php
   // For production: https://www.agentsvista.com/php/contact.php
-  const CONTACT_API_URL = "http://localhost:8000/contact.php";
+  const CONTACT_API_URL = "http://localhost:8000/php/contact.php";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,12 +82,14 @@ const ContactSection = () => {
         setErrors({});
         setIsLoading(false);
       } else {
-        setErrors({ form: data.message || "Something went wrong. Please try again." });
+        const errorMessage = data.message || "Something went wrong. Please try again.";
+        console.error("Form submission failed:", errorMessage);
+        setErrors({ form: errorMessage });
         setIsLoading(false);
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      setErrors({ form: "Unable to send your message. Please try again later." });
+      setErrors({ form: "Unable to send your message. Please try again later. Check browser console for details." });
       setIsLoading(false);
     }
   };

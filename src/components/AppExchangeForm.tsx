@@ -11,7 +11,7 @@ interface AppExchangeFormProps {
 const APPEXCHANGE_URL = "https://appexchange.salesforce.com/appxListingDetail?listingId=c088b22e-a28b-4d93-bdf7-b950546b6e80&channel=recommended";
 
 // PHP backend API endpoint
-const CONTACT_API_URL = "http://localhost:8000/contact.php";
+const CONTACT_API_URL = "http://localhost:8000/php/contact.php";
 
 const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
@@ -97,12 +97,14 @@ const AppExchangeForm = ({ open, onClose }: AppExchangeFormProps) => {
         // Open AppExchange URL
         window.open(APPEXCHANGE_URL, "_blank", "noopener,noreferrer");
       } else {
-        setErrors({ form: data.message || "Something went wrong. Please try again." });
+        const errorMessage = data.message || "Something went wrong. Please try again.";
+        console.error("Form submission failed:", errorMessage);
+        setErrors({ form: errorMessage });
         setIsLoading(false);
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      setErrors({ form: "Unable to process your request. Please try again later." });
+      setErrors({ form: "Unable to process your request. Please try again later. Check browser console for details." });
       setIsLoading(false);
     }
   };
