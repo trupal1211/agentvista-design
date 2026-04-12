@@ -174,12 +174,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     // ── Email 1: Team Notification ──────────────────────────────────────
-    await transporter.sendMail({
-      from: \`"\${fromName}" <\${fromEmail}>\`,
-      to: toEmail,
-      replyTo: \`"\${name}" <\${email}>\`,
-      subject: "Inquiry from AgentVista website",
-      html: bodyNotification,
+    await new Promise((resolve, reject) => {
+      transporter.sendMail({
+        from: `"${fromName}" <${fromEmail}>`,
+        to: toEmail,
+        replyTo: `"${name}" <${email}>`,
+        subject: "Inquiry from AgentVista website",
+        html: bodyNotification,
+      }, (err, info) => {
+        if (err) reject(err);
+        else resolve(info);
+      });
     });
 
     let emailSent2 = true;
@@ -187,12 +192,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // ── Email 2: Auto-Reply to User ─────────────────────────────────────
     if (formType !== "appexchange") {
       try {
-        await transporter.sendMail({
-          from: \`"\${fromName}" <\${fromEmail}>\`,
-          to: \`"\${name}" <\${email}>\`,
-          replyTo: \`"\${fromName}" <\${replyToSales}>\`,
-          subject: "Thank You for contacting us regarding AgentVista",
-          html: bodyAutoReply,
+        await new Promise((resolve, reject) => {
+          transporter.sendMail({
+            from: `"${fromName}" <${fromEmail}>`,
+            to: `"${name}" <${email}>`,
+            replyTo: `"${fromName}" <${replyToSales}>`,
+            subject: "Thank You for contacting us regarding AgentVista",
+            html: bodyAutoReply,
+          }, (err, info) => {
+            if (err) reject(err);
+            else resolve(info);
+          });
         });
       } catch (err) {
         console.error("Auto-reply error:", err);
