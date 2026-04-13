@@ -108,7 +108,7 @@ const DemoRequestForm = ({ open, onClose }: DemoRequestFormProps) => {
           >
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-white hover:text-gray-200 transition-colors z-50 p-1.5 sm:p-2 hover:bg-white/20 rounded-lg"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-white transition-colors z-50 p-2 sm:p-2.5 bg-black/80 hover:bg-black rounded-full"
               aria-label="Close modal"
             >
               <X size={20} className="sm:w-6 sm:h-6" />
