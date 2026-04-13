@@ -29,7 +29,31 @@ const HeroSection = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-snug mt-4 mb-4 text-foreground">
               AgentVista -
               <br />
-              SurveyVista Copilot
+              <span className="relative inline-block pb-4 md:pb-5">
+                SurveyVista Copilot
+                <svg 
+                  className="absolute bottom--3 left-0 w-full"
+                  style={{
+                    height: '20px',
+                  }}
+                  viewBox="0 0 100 20" 
+                  preserveAspectRatio="none"
+                >
+                  <path 
+                    d="M0,8 Q50,-8 100,16" 
+                    stroke="#39B44A" 
+                    strokeWidth="4" 
+                    fill="none" 
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{
+                      strokeDasharray: '200',
+                      strokeDashoffset: '200',
+                      animation: 'drawLine 1.4s ease-in-out 0.4s forwards',
+                    }}
+                  />
+                </svg>
+              </span>
               <br />
               <span className="text-gradient">for Intelligent Surveys,</span>
               <br />
@@ -106,6 +130,19 @@ const HeroSection = () => {
 
       <DemoRequestForm open={demoOpen} onClose={() => setDemoOpen(false)} />
       <AppExchangeForm open={appExOpen} onClose={() => setAppExOpen(false)} />
+
+      <style>{`
+        @keyframes drawLine {
+          0% {
+            stroke-dashoffset: 200;
+            opacity: 1;
+          }
+          100% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+          }
+        }
+      `}</style>
     </section>
   );
 };
