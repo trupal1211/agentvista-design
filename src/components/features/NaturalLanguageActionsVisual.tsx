@@ -162,7 +162,6 @@ const NaturalLanguageActionsVisual = () => (
       style={{
         flex: "0 0 55%",
         background: "#ffffff",
-        borderLeft: "1px solid rgba(0,92,144,0.11)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -212,7 +211,7 @@ const NaturalLanguageActionsVisual = () => (
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
             background: "#fff",
-            border: "1px solid rgba(42,154,79,0.28)",
+            border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
             boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
@@ -290,7 +289,7 @@ const NaturalLanguageActionsVisual = () => (
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
             background: "#fff",
-            border: "1px solid rgba(42,154,79,0.28)",
+            border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
             boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
@@ -348,7 +347,7 @@ const NaturalLanguageActionsVisual = () => (
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
             background: "#fff",
-            border: "1px solid rgba(42,154,79,0.28)",
+            border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
             boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
@@ -399,14 +398,13 @@ const NaturalLanguageActionsVisual = () => (
         </div>
 
         {/* Step 4: In Progress */}
-
-                <div
+        <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
             background: "#fff",
-            border: "1px solid rgba(42,154,79,0.28)",
+            border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
             boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
