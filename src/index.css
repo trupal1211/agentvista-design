@@ -108,6 +108,16 @@ html, body {
   transition: width 0.3s ease !important;
   cursor: pointer !important;
   box-sizing: border-box !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: fixed !important;
+}
+
+.grecaptcha-badge iframe {
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
 }
 
 /* Show text on hover - expand width (desktop) */
