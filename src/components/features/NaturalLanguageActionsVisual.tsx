@@ -248,7 +248,7 @@ const NaturalLanguageActionsVisual = () => (
                 fontFamily: "Poppins, sans-serif",
               }}
             >
-              Create NPS survey for Q3 clients
+              Create NPS survey for Q4 clients
             </div>
             <div
               style={{

@@ -112,7 +112,7 @@ const PdfFormVisual = () => (
     {/* ── Form Output ── */}
     <div
       className="flex flex-col"
-      style={{ flex: 1, gap: "6%", minWidth: 0 }}
+      style={{ flex: "0 0 45%", gap: "6%", minWidth: 0 }}
     >
       <span
         style={{
