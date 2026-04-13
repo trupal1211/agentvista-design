@@ -1,411 +1,336 @@
 /**
- * AI Summary of Responses Visual - Concept F
- * Live Customer Feedback Word Cloud with Sentiment-Based Styling
- * RESPONSIVE: Uses container queries for adaptive sizing
+ * AI Summary of Individual Responses Visual - Concept F
+ * Floating Word Cloud with Random Placement & Sentiment-Based Styling
+ * RESPONSIVE: Uses container queries (cqw), clamp() for all sizing
  */
 
-const AiSummaryOfResponsesVisual = () => (
-  <div
-    className="w-full h-full flex flex-col overflow-hidden"
-    style={{ background: "#F7FBFE", position: "relative" }}
-  >
-    {/* Label */}
+import { useEffect, useRef } from 'react';
+
+const AiSummaryOfResponsesVisual = () => {
+  const stageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!stageRef.current) return;
+
+    const stage = stageRef.current;
+    const W = stage.offsetWidth;
+    const H = stage.offsetHeight;
+
+    if (W < 20 || H < 20) return;
+
+    // Clear previous words
+    stage.innerHTML = '';
+
+    const COLORS = { pos: '#2A9A4F', neg: '#D44332', neu: '#0981B5', mix: '#C47A1A' };
+
+    // Word data from reference HTML - comprehensive sentiment analysis
+    const WORDS_DATA = [
+      // Positive (expanded)
+      ['excellent service', 50, 'pos'],
+      ['highly recommend', 44, 'pos'],
+      ['great support', 36, 'pos'],
+      ['easy to use', 32, 'pos'],
+      ['fast response', 26, 'pos'],
+      ['reliable', 24, 'pos'],
+      ['impressed', 20, 'pos'],
+      ['love it', 28, 'pos'],
+      ['fantastic', 22, 'pos'],
+      
+      // Negative (dominant)
+      ['terrible experience', 52, 'neg'],
+      ['waste of money', 46, 'neg'],
+      ['never again', 42, 'neg'],
+      ['keeps crashing', 40, 'neg'],
+      ['very frustrating', 38, 'neg'],
+      ['poor support', 36, 'neg'],
+      ['complete disaster', 34, 'neg'],
+      ['absolutely useless', 32, 'neg'],
+      ['worst app ever', 30, 'neg'],
+      ['total scam', 28, 'neg'],
+      ['broken features', 26, 'neg'],
+      ['data was lost', 24, 'neg'],
+      ['no response', 22, 'neg'],
+      ['misleading pricing', 20, 'neg'],
+      ['buggy mess', 18, 'neg'],
+      ['cancelled immediately', 17, 'neg'],
+      ['deeply disappointed', 16, 'neg'],
+      
+      // Neutral (expanded)
+      ['average', 20, 'neu'],
+      ['nothing special', 17, 'neu'],
+      ['just okay', 15, 'neu'],
+      ['works as described', 13, 'neu'],
+      ['does the job', 14, 'neu'],
+      ['no complaints', 13, 'neu'],
+      ['decent', 16, 'neu'],
+      ['acceptable', 14, 'neu'],
+      ['mediocre', 12, 'neu'],
+      ['standard', 11, 'neu'],
+      ['reasonable performance', 28, 'neu'],
+      ['satisfactory', 26, 'neu'],
+      
+      // Mixed (expanded)
+      ['mixed feelings', 22, 'mix'],
+      ['hit or miss', 20, 'mix'],
+      ['could be better', 18, 'mix'],
+      ['fair', 16, 'mix'],
+      ['acceptable', 14, 'mix'],
+      ['pretty good', 19, 'mix'],
+      ['somewhat helpful', 17, 'mix'],
+      ['occasionally good', 15, 'mix'],
+      ['mostly works', 13, 'mix'],
+      ['decent enough', 29, 'mix'],
+      ['somewhat positive', 27, 'mix'],
+    ] as [string, number, 'pos' | 'neg' | 'neu' | 'mix'][];
+
+    const placed: Array<{ x: number; y: number; w: number; h: number }> = [];
+
+    function measureText(text: string, fs: number, fw: number | string): { w: number; h: number } {
+      const el = document.createElement('span');
+      el.style.cssText = `
+        position: absolute;
+        visibility: hidden;
+        white-space: nowrap;
+        font-family: 'Poppins', sans-serif;
+        font-size: ${fs}px;
+        font-weight: ${fw};
+        line-height: 1.15;
+      `;
+      el.textContent = text;
+      document.body.appendChild(el);
+      const r = { w: el.offsetWidth + 10, h: el.offsetHeight + 5 };
+      document.body.removeChild(el);
+      return r;
+    }
+
+    function overlaps(x: number, y: number, w: number, h: number, margin: number): boolean {
+      for (const p of placed) {
+        if (x < p.x + p.w + margin && x + w + margin > p.x &&
+            y < p.y + p.h + margin && y + h + margin > p.y) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Detect mobile/phone screens for increased density
+    const isMobile = W < 600 || (W < H && W < 800);
+    
+    const scale = Math.min(W, H) / 260; // Even larger scale for better space fill
+    const PAD = isMobile 
+      ? Math.max(0, Math.round(0.8 * scale))  // Even tighter on mobile
+      : Math.max(1, Math.round(1.5 * scale)); // Minimal padding to maximize space
+    const MIN_GAP = isMobile
+      ? Math.round(3 * scale)  // Very tight gap on mobile for dense packing
+      : Math.round(5 * scale); // Very tight gap for dense packing
+    const maxTries = 1200; // More attempts for dense packing
+
+    // Shuffle words slightly to vary placement
+    const sortedWords = [...WORDS_DATA]
+      .sort((a, b) => (b[1] - a[1]) + (Math.random() - 0.5) * 5)
+
+    sortedWords.forEach(([text, weight, sentiment]) => {
+      const fsRaw = 7 + ((weight - 12) / (52 - 12)) * 20; // Larger font range
+      const fs = Math.round(Math.min(28, Math.max(10, fsRaw * scale))); // Bigger max size
+      const fw = weight >= 40 ? 700 : weight >= 22 ? 600 : 500;
+
+      const { w: tw, h: th } = measureText(text, fs, fw);
+
+      if (tw > W - PAD * 2 || th > H - PAD * 2) return;
+
+      let x = -1, y = -1;
+      let placed_successfully = false;
+
+      // Try random placement with conservative margin
+      for (let i = 0; i < maxTries; i++) {
+        x = PAD + Math.random() * Math.max(0, W - tw - PAD * 2);
+        y = PAD + Math.random() * Math.max(0, H - th - PAD * 2);
+        if (!overlaps(x, y, tw, th, MIN_GAP)) {
+          placed_successfully = true;
+          break;
+        }
+      }
+
+      // Fallback: grid-based spiral placement if random placement fails
+      if (!placed_successfully) {
+        const gridSize = Math.ceil(Math.sqrt(placed.length + 1) * 1.5);
+        const stepX = (W - PAD * 2) / gridSize;
+        const stepY = (H - PAD * 2) / gridSize;
+        const jitterRange = Math.min(stepX, stepY) * 0.25;
+
+        for (let gx = 0; gx < gridSize && !placed_successfully; gx++) {
+          for (let gy = 0; gy < gridSize && !placed_successfully; gy++) {
+            x = PAD + gx * stepX + (Math.random() - 0.5) * jitterRange;
+            y = PAD + gy * stepY + (Math.random() - 0.5) * jitterRange;
+
+            if (x + tw <= W - PAD && y + th <= H - PAD && !overlaps(x, y, tw, th, MIN_GAP)) {
+              placed_successfully = true;
+            }
+          }
+        }
+      }
+
+      if (!placed_successfully || x < 0 || y < 0) return;
+
+      placed.push({ x, y, w: tw, h: th });
+
+      const div = document.createElement('div');
+      div.textContent = text;
+      const color = COLORS[sentiment];
+      const opacity = 0.6 + (weight / 52) * 0.4;
+      const dur = 3800 + Math.random() * 2800;
+      const delay = Math.random() * -dur;
+      const amp = Math.min(2.5, (1.2 + Math.random() * 2) * scale); // Reduced amplitude for dense cloud
+      const phase = Math.random() * Math.PI * 2;
+      const axis = Math.random() > 0.5 ? 'Y' : 'X';
+
+      div.style.cssText = `
+        position: absolute;
+        left: ${x}px;
+        top: ${y}px;
+        font-family: 'Poppins', sans-serif;
+        font-size: ${fs}px;
+        font-weight: ${fw};
+        color: ${color};
+        opacity: ${opacity.toFixed(2)};
+        white-space: nowrap;
+        cursor: default;
+        user-select: none;
+        will-change: transform;
+        transition: opacity 0.3s;
+      `;
+
+      div.addEventListener('mouseenter', () => {
+        div.style.opacity = '1';
+        div.style.transform = 'scale(1.1)';
+      });
+
+      div.addEventListener('mouseleave', () => {
+        div.style.opacity = opacity.toFixed(2);
+        div.style.transform = '';
+      });
+
+      stage.appendChild(div);
+
+      let t0 = 0;
+      function animate(ts: number) {
+        if (t0 === 0) t0 = ts + Math.abs(delay);
+        const elapsed = (ts - t0) / dur;
+        const offset = Math.sin(elapsed * Math.PI * 2 + phase) * amp;
+        if (!div.matches(':hover')) {
+          div.style.transform = axis === 'Y'
+            ? `translateY(${offset.toFixed(2)}px)`
+            : `translateX(${offset.toFixed(2)}px)`;
+        }
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    });
+
+  }, []);
+
+  return (
     <div
-      style={{
-        padding: "clamp(8px, 1.2cqw, 12px) clamp(10px, 1.5cqw, 14px)",
-        background: "#EBF5FB",
-        borderBottom: "1px solid rgba(0,92,144,0.11)",
-        fontSize: "clamp(8px, 1.1cqw, 10px)",
-        fontWeight: 700,
-        letterSpacing: "0.13em",
-        textTransform: "uppercase",
-        color: "#0981B5",
-        fontFamily: "Poppins, sans-serif",
-      }}
+      className="w-full h-full flex flex-col overflow-hidden"
+      style={{ background: "#F2F8FC", position: "relative" }}
     >
-      <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+      {/* Title outside box */}
+      <div
+        style={{
+          padding: "clamp(10px, 1.5cqw, 14px) clamp(12px, 1.8cqw, 18px)",
+          fontSize: "clamp(8px, 1.1cqw, 10px)",
+          fontWeight: 700,
+          letterSpacing: "0.13em",
+          textTransform: "uppercase",
+          color: "#0981B5",
+          fontFamily: "Poppins, sans-serif",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          flexShrink: 0,
+          marginBottom: "0px",
+        }}
+      >
         <span
           style={{
-            width: "clamp(5px, 0.8cqw, 7px)",
-            height: "clamp(5px, 0.8cqw, 7px)",
+            width: "clamp(6px, 0.9cqw, 8px)",
+            height: "clamp(6px, 0.9cqw, 8px)",
             borderRadius: "50%",
             background: "#27A8E0",
             display: "inline-block",
+            flexShrink: 0,
           }}
         />
-        Customer Feedback Cloud
-      </span>
-    </div>
-
-    {/* Word Cloud Container */}
-    <div
-      className="flex-1 flex flex-wrap items-center justify-center content-center overflow-hidden relative"
-      style={{
-        padding: "clamp(12px, 2.5cqw, 24px)",
-        gap: "clamp(6px, 1.2cqw, 14px)",
-        perspective: "1000px",
-      }}
-    >
-      {/* Positive Sentiment Words */}
-      <div
-        style={{
-          fontSize: "clamp(18px, 4.5cqw, 42px)",
-          fontWeight: 800,
-          color: "#2A9A4F",
-          textShadow: "0 2px 8px rgba(42,154,79,0.15)",
-          animation: "float 6s ease-in-out 0s infinite",
-        }}
-      >
-        excellent service
+        Response Word Cloud
       </div>
 
+      {/* Floating Cloud Container - Box */}
       <div
+        className="flex-1 flex flex-col overflow-hidden"
         style={{
-          fontSize: "clamp(16px, 4cqw, 36px)",
-          fontWeight: 700,
-          color: "#2A9A4F",
-          textShadow: "0 2px 8px rgba(42,154,79,0.12)",
-          animation: "float 7s ease-in-out 0.5s infinite",
+          background: "#F7FBFE",
+          position: "relative",
+          margin: "0 clamp(6px, 1.2cqw, 12px) clamp(6px, 1.2cqw, 12px) clamp(6px, 1.2cqw, 12px)",
+          borderRadius: "clamp(6px, 1cqw, 10px)",
+          border: "1px solid rgba(0,92,144,0.15)",
+          boxShadow: "0 1px 6px rgba(0,38,73,0.05)",
         }}
       >
-        love it
-      </div>
+        {/* Floating Cloud Stage */}
+        <div
+          ref={stageRef}
+          className="flex-1 flex items-center justify-center overflow-hidden relative"
+          style={{
+            padding: "clamp(1px, 0.3cqw, 4px)", // Even tighter on mobile for max density
+            background: "#F7FBFE",
+            position: "relative",
+          }}
+        />
 
-      <div
-        style={{
-          fontSize: "clamp(14px, 3.5cqw, 32px)",
-          fontWeight: 600,
-          color: "#39B44A",
-          textShadow: "0 2px 8px rgba(57,180,74,0.12)",
-          animation: "float 6.5s ease-in-out 1s infinite",
-        }}
-      >
-        highly recommend
-      </div>
-
-      {/* Negative Sentiment Words */}
-      <div
-        style={{
-          fontSize: "clamp(15px, 3.8cqw, 34px)",
-          fontWeight: 700,
-          color: "#D44332",
-          textShadow: "0 2px 8px rgba(212,67,50,0.12)",
-          animation: "float 7.2s ease-in-out 0.3s infinite",
-        }}
-      >
-        too slow
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(13px, 3.2cqw, 30px)",
-          fontWeight: 600,
-          color: "#D44332",
-          textShadow: "0 2px 8px rgba(212,67,50,0.10)",
-          animation: "float 6.8s ease-in-out 1.2s infinite",
-        }}
-      >
-        keeps crashing
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(12px, 3cqw, 28px)",
-          fontWeight: 600,
-          color: "#39B44A",
-          textShadow: "0 2px 8px rgba(57,180,74,0.10)",
-          animation: "float 6.3s ease-in-out 0.8s infinite",
-        }}
-      >
-        easy to use
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(14px, 3.5cqw, 32px)",
-          fontWeight: 700,
-          color: "#2A9A4F",
-          textShadow: "0 2px 8px rgba(42,154,79,0.12)",
-          animation: "float 7.1s ease-in-out 1.5s infinite",
-        }}
-      >
-        great support
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(11px, 2.7cqw, 26px)",
-          fontWeight: 600,
-          color: "#D44332",
-          textShadow: "0 2px 8px rgba(212,67,50,0.10)",
-          animation: "float 6.6s ease-in-out 0.6s infinite",
-        }}
-      >
-        poor support
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(13px, 3.2cqw, 30px)",
-          fontWeight: 600,
-          color: "#39B44A",
-          textShadow: "0 2px 8px rgba(57,180,74,0.12)",
-          animation: "float 6.9s ease-in-out 1.3s infinite",
-        }}
-      >
-        fantastic
-      </div>
-
-      {/* Neutral Sentiment Words */}
-      <div
-        style={{
-          fontSize: "clamp(10px, 2.4cqw, 22px)",
-          fontWeight: 500,
-          color: "#0981B5",
-          textShadow: "0 2px 6px rgba(9,129,181,0.10)",
-          animation: "float 6.4s ease-in-out 0.9s infinite",
-        }}
-      >
-        average
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(12px, 3cqw, 28px)",
-          fontWeight: 600,
-          color: "#2A9A4F",
-          textShadow: "0 2px 8px rgba(42,154,79,0.12)",
-          animation: "float 7s ease-in-out 1.7s infinite",
-        }}
-      >
-        reliable
-      </div>
-
-      {/* Mixed Sentiment Words */}
-      <div
-        style={{
-          fontSize: "clamp(11px, 2.7cqw, 26px)",
-          fontWeight: 600,
-          color: "#C47A1A",
-          textShadow: "0 2px 6px rgba(196,122,26,0.12)",
-          animation: "float 6.7s ease-in-out 0.4s infinite",
-        }}
-      >
-        could be better
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(14px, 3.5cqw, 32px)",
-          fontWeight: 700,
-          color: "#D44332",
-          textShadow: "0 2px 8px rgba(212,67,50,0.12)",
-          animation: "float 6.5s ease-in-out 1.1s infinite",
-        }}
-      >
-        very frustrating
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(12px, 2.9cqw, 27px)",
-          fontWeight: 600,
-          color: "#39B44A",
-          textShadow: "0 2px 8px rgba(57,180,74,0.11)",
-          animation: "float 7.3s ease-in-out 0.7s infinite",
-        }}
-      >
-        smooth experience
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(10px, 2.5cqw, 24px)",
-          fontWeight: 500,
-          color: "#D44332",
-          textShadow: "0 2px 6px rgba(212,67,50,0.10)",
-          animation: "float 6.8s ease-in-out 1.4s infinite",
-        }}
-      >
-        confusing UI
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(9px, 2.2cqw, 21px)",
-          fontWeight: 500,
-          color: "#0981B5",
-          textShadow: "0 2px 6px rgba(9,129,181,0.10)",
-          animation: "float 6.6s ease-in-out 0.2s infinite",
-        }}
-      >
-        nothing special
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(11px, 2.8cqw, 26px)",
-          fontWeight: 600,
-          color: "#2A9A4F",
-          textShadow: "0 2px 8px rgba(42,154,79,0.12)",
-          animation: "float 7.1s ease-in-out 1.6s infinite",
-        }}
-      >
-        intuitive
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(10px, 2.4cqw, 22px)",
-          fontWeight: 500,
-          color: "#C47A1A",
-          textShadow: "0 2px 6px rgba(196,122,26,0.11)",
-          animation: "float 6.9s ease-in-out 0.5s infinite",
-        }}
-      >
-        mixed feelings
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(13px, 3.2cqw, 30px)",
-          fontWeight: 700,
-          color: "#D44332",
-          textShadow: "0 2px 8px rgba(212,67,50,0.12)",
-          animation: "float 6.4s ease-in-out 1.25s infinite",
-        }}
-      >
-        billing issues
-      </div>
-
-      <div
-        style={{
-          fontSize: "clamp(12px, 3cqw, 28px)",
-          fontWeight: 600,
-          color: "#39B44A",
-          textShadow: "0 2px 8px rgba(57,180,74,0.11)",
-          animation: "float 7.2s ease-in-out 0.9s infinite",
-        }}
-      >
-        friendly team
+        {/* Legend inside box */}
+        <div
+          style={{
+            padding: "clamp(8px, 1.2cqw, 12px) clamp(10px, 1.5cqw, 14px)",
+            background: "#EBF5FB",
+            borderTop: "1px solid rgba(0,92,144,0.11)",
+            display: "flex",
+            gap: "clamp(12px, 2cqw, 24px)",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            flexShrink: 0,
+          }}
+        >
+          {[
+            { label: "Positive", pct: "18%", color: "#2A9A4F" },
+            { label: "Negative", pct: "35%", color: "#D44332" },
+            { label: "Neutral", pct: "25%", color: "#0981B5" },
+            { label: "Mixed", pct: "22%", color: "#C47A1A" },
+          ].map((leg) => (
+            <div key={leg.label} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+              <div
+                style={{
+                  width: "clamp(8px, 1.2cqw, 12px)",
+                  height: "clamp(8px, 1.2cqw, 12px)",
+                  borderRadius: "50%",
+                  background: leg.color,
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "clamp(7px, 0.95cqw, 9px)",
+                  fontWeight: 600,
+                  color: "#005C90",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                {leg.label} {leg.pct}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-
-    {/* Legend separator */}
-    <div
-      style={{
-        padding: "clamp(8px, 1.2cqw, 12px) clamp(10px, 1.5cqw, 14px)",
-        background: "#EBF5FB",
-        borderTop: "1px solid rgba(0,92,144,0.11)",
-        display: "flex",
-        gap: "clamp(12px, 2cqw, 24px)",
-        justifyContent: "center",
-        flexWrap: "wrap",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-        <div
-          style={{
-            width: "clamp(8px, 1.2cqw, 12px)",
-            height: "clamp(8px, 1.2cqw, 12px)",
-            borderRadius: "50%",
-            background: "#2A9A4F",
-          }}
-        />
-        <span
-          style={{
-            fontSize: "clamp(7px, 0.95cqw, 9px)",
-            fontWeight: 600,
-            color: "#005C90",
-            fontFamily: "Poppins, sans-serif",
-          }}
-        >
-          Positive (62%)
-        </span>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-        <div
-          style={{
-            width: "clamp(8px, 1.2cqw, 12px)",
-            height: "clamp(8px, 1.2cqw, 12px)",
-            borderRadius: "50%",
-            background: "#D44332",
-          }}
-        />
-        <span
-          style={{
-            fontSize: "clamp(7px, 0.95cqw, 9px)",
-            fontWeight: 600,
-            color: "#005C90",
-            fontFamily: "Poppins, sans-serif",
-          }}
-        >
-          Negative (21%)
-        </span>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-        <div
-          style={{
-            width: "clamp(8px, 1.2cqw, 12px)",
-            height: "clamp(8px, 1.2cqw, 12px)",
-            borderRadius: "50%",
-            background: "#0981B5",
-          }}
-        />
-        <span
-          style={{
-            fontSize: "clamp(7px, 0.95cqw, 9px)",
-            fontWeight: 600,
-            color: "#005C90",
-            fontFamily: "Poppins, sans-serif",
-          }}
-        >
-          Neutral (11%)
-        </span>
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-        <div
-          style={{
-            width: "clamp(8px, 1.2cqw, 12px)",
-            height: "clamp(8px, 1.2cqw, 12px)",
-            borderRadius: "50%",
-            background: "#C47A1A",
-          }}
-        />
-        <span
-          style={{
-            fontSize: "clamp(7px, 0.95cqw, 9px)",
-            fontWeight: 600,
-            color: "#005C90",
-            fontFamily: "Poppins, sans-serif",
-          }}
-        >
-          Mixed (6%)
-        </span>
-      </div>
-    </div>
-
-    <style>{`
-      @keyframes float {
-        0%, 100% {
-          transform: translateY(0px) translateX(0px);
-          opacity: 1;
-        }
-        25% {
-          transform: translateY(-clamp(8px, 2cqw, 16px)) translateX(clamp(4px, 1cqw, 8px));
-          opacity: 0.95;
-        }
-        50% {
-          transform: translateY(0px) translateX(clamp(8px, 2cqw, 16px));
-          opacity: 1;
-        }
-        75% {
-          transform: translateY(clamp(8px, 2cqw, 16px)) translateX(-clamp(4px, 1cqw, 8px));
-          opacity: 0.95;
-        }
-      }
-    `}</style>
-  </div>
-);
+  );
+};
 
 export default AiSummaryOfResponsesVisual;
