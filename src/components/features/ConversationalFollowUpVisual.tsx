@@ -307,28 +307,6 @@ const ConversationalFollowUpVisual = () => (
           flexWrap: "wrap",
         }}
       >
-        <button
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "5px",
-            fontSize: "clamp(8px,1vw,10px)",
-            fontWeight: 700,
-            letterSpacing: "0.09em",
-            textTransform: "uppercase",
-            color: "#fff",
-            background: "linear-gradient(90deg,#0981B5,#27A8E0)",
-            border: "none",
-            borderRadius: 30,
-            cursor: "pointer",
-            padding: "clamp(5px,0.85vw,8px) clamp(12px,2vw,20px)",
-            whiteSpace: "nowrap",
-            boxShadow: "0 3px 12px rgba(9,129,181,0.28)",
-            fontFamily: "Poppins, sans-serif",
-          }}
-        >
-          Send to Respondent
-        </button>
         <span
           style={{
             display: "inline-flex",
