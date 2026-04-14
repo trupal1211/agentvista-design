@@ -4,12 +4,12 @@
  */
 
 // Configuration constants
-export const BASE_URL = "https://www.agentsvista.com";
+export const BASE_URL = "https://agentsvista.com";
 const ORG_NAME = "AgentVista";
 const ORG_DESCRIPTION = "AI-powered survey, feedback collection, and sentiment intelligence platform with native Salesforce integration";
 const ORG_EMAIL = "info@agentsvista.com";
 const ORG_PHONE = "+1-800-XXXXX";  // Update with actual phone number
-const LOGO_URL = "https://www.agentsvista.com/logo.svg";
+const LOGO_URL = "https://agentsvista.com/logo.svg";
 
 // Social media links - update with actual profiles
 const SOCIAL_LINKS = [

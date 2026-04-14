@@ -79,7 +79,7 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Globe size={18} className="text-brand-blue flex-shrink-0" />
-                <a href="https://www.agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue hover:underline transition-all">
+                <a href="https://agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue hover:underline transition-all">
                   www.agentsvista.com
                 </a>
               </li>
