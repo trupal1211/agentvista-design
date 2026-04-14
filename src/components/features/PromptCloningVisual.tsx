@@ -140,7 +140,7 @@ const PromptCloningVisual = () => (
             whiteSpace: "nowrap",
           }}
         >
-          Run Command
+          Execute Command
         </button>
         <span
           style={{
@@ -354,7 +354,7 @@ const PromptCloningVisual = () => (
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             background: "rgba(57,180,74,0.12)",
-            color: "#2a8c39",
+            color: "#39B44A",
             borderRadius: "30px",
             padding: "3px 10px",
             fontFamily: "Poppins, sans-serif",
