@@ -40,8 +40,8 @@ const HeroSection = () => {
                   preserveAspectRatio="none"
                 >
                   <path 
-                    d="M0,8 Q50,-8 100,16" 
-                    stroke="#39B44A" 
+                    d="M0,12 Q50,-6 100,11" 
+                    stroke="#3dc14e" 
                     strokeWidth="4" 
                     fill="none" 
                     strokeLinecap="round"

@@ -353,7 +353,7 @@ const AiSummaryOfResponsesVisual = () => {
           className="flex-1 flex items-center justify-center overflow-hidden relative"
           style={{
             padding: "clamp(1px, 0.3cqw, 4px)", // Even tighter on mobile for max density
-            background: "#F7FBFE",
+            background: "#fcfeff",
             position: "relative",
           }}
         />

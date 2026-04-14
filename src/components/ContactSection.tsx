@@ -132,7 +132,7 @@ const ContactSection = () => {
               {/* Contact Info Cards */}
               <div className="space-y-4 w-full">
                 {/* Address */}
-                <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-5 rounded-xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
+                <a href="https://www.google.com/maps?cid=1981104171238256651" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 p-5 rounded-xl border border-brand-blue/40 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md">
                   <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0">
                     <MapPin size={20} />
                   </div>
@@ -146,7 +146,7 @@ const ContactSection = () => {
                 </a>
 
                 {/* Phone */}
-                <a href="tel:16697776838" className="flex items-center gap-4 p-5 rounded-xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md hover:border-brand-blue/60 group">
+                <a href="tel:16697776838" className="flex items-center gap-4 p-5 rounded-xl border border-brand-blue/40 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md hover:border-brand-blue/80 group">
                   <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0 group-hover:bg-brand-blue transition-colors duration-300">
                     <Phone size={20} className="group-hover:text-white transition-colors duration-300" />
                   </div>
@@ -157,7 +157,7 @@ const ContactSection = () => {
                 </a>
 
                 {/* Email */}
-                <a href="mailto:info@ardira.com" className="flex items-center gap-4 p-5 rounded-xl border border-brand-blue/20 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md hover:border-brand-blue/60 group">
+                <a href="mailto:info@ardira.com" className="flex items-center gap-4 p-5 rounded-xl border border-brand-blue/40 bg-white/50 hover:bg-white/80 transition-all duration-300 cursor-pointer w-full min-w-0 shadow-sm hover:shadow-md hover:border-brand-blue/60 group">
                   <div className="w-12 h-12 rounded-lg bg-brand-blue text-white flex items-center justify-center shrink-0 group-hover:bg-brand-blue transition-colors duration-300">
                     <Mail size={20} className="group-hover:text-white transition-colors duration-300" />
                   </div>
@@ -169,7 +169,7 @@ const ContactSection = () => {
               </div>
 
               {/* Support Note */}
-              <div className="flex items-start gap-4 p-5 rounded-xl border border-secondary/20 bg-secondary/5 w-full min-w-0 shadow-sm">
+              <div className="flex items-start gap-4 p-5 rounded-xl border border-secondary/40 bg-secondary/5 w-full min-w-0 shadow-sm">
                 <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-lg font-bold">?</div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-muted-foreground">
@@ -193,7 +193,7 @@ const ContactSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="flex flex-col items-center justify-center py-14 md:py-20 bg-card rounded-xl border border-secondary/30 shadow-lg"
+                className="flex flex-col items-center justify-center py-14 md:py-20 bg-card rounded-xl border border-secondary/40 shadow-lg"
               >
                 {/* Animated checkmark circle */}
                 <motion.div

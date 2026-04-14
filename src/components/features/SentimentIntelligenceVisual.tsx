@@ -16,7 +16,7 @@ const SentimentIntelligenceVisual = () => (
         background: "#EBF5FB",
         borderRight: "1px solid rgba(0,92,144,0.11)",
         justifyContent: "center",
-        padding: "clamp(12px, 2.2%, 24px) clamp(10px, 1.8%, 20px)",
+        padding: "clamp(12px, 2.2%, 24px) clamp(4px, 1.2%, 16px)",
         gap: "clamp(7px, 1.2%, 13px)",
       }}
     >
@@ -244,7 +244,7 @@ const SentimentIntelligenceVisual = () => (
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        padding: "clamp(12px, 2.2%, 24px) clamp(10px, 1.8%, 20px)",
+        padding: "clamp(12px, 2.2%, 24px) clamp(4px, 1.2%, 16px)",
         gap: "clamp(12px, 2%, 20px)",
       }}
     >
@@ -364,9 +364,9 @@ const SentimentIntelligenceVisual = () => (
       >
         {[
           { label: "Positive", pct: 22, color: "#2E9B52" },
+          { label: "Mixed", pct: 46, color: "#D48B1A" },
           { label: "Negative", pct: 24, color: "#D94F3D" },
           { label: "Neutral", pct: 10, color: "#0981B5" },
-          { label: "Mixed", pct: 46, color: "#D48B1A" },
         ].map((item) => (
           <div key={item.label} className="flex items-center" style={{ gap: "clamp(4px, 0.6%, 7px)" }}>
             <span
