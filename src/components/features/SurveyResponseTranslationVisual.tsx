@@ -233,7 +233,7 @@ const SurveyResponseTranslationVisual = () => (
           fontWeight: 700,
           letterSpacing: "0.13em",
           textTransform: "uppercase",
-          color: "#2A9A4F",
+          color: "#39B44A",
           fontFamily: "Poppins, sans-serif",
         }}
       >
@@ -242,7 +242,7 @@ const SurveyResponseTranslationVisual = () => (
             width: "clamp(5px,0.7vw,7px)",
             height: "clamp(5px,0.7vw,7px)",
             borderRadius: "50%",
-            background: "#2A9A4F",
+            background: "#39B44A",
           }}
         />
         Translated Versions
@@ -257,9 +257,9 @@ const SurveyResponseTranslationVisual = () => (
         }}
       >
         {[
-          { flag: "🇪🇸", name: "Español", bgColor: "rgba(196,122,26,0.10)", delay: "0.1s" },
-          { flag: "🇫🇷", name: "Français", bgColor: "rgba(42,154,79,0.09)", delay: "0.2s", isActive: true },
-          { flag: "🇩🇪", name: "Deutsch", bgColor: "rgba(123,63,196,0.08)", delay: "0.3s" },
+          { flag: "🇪🇸", code: "ES", name: "Español", bgColor: "rgba(196,122,26,0.10)", delay: "0.1s" },
+          { flag: "🇫🇷", code: "FR", name: "Français", bgColor: "rgba(42,154,79,0.09)", delay: "0.2s", isActive: true },
+          { flag: "🇩🇪", code: "DE", name: "Deutsch", bgColor: "rgba(123,63,196,0.08)", delay: "0.3s" },
         ].map((lang, idx) => (
           <div
             key={lang.name}
@@ -276,12 +276,6 @@ const SurveyResponseTranslationVisual = () => (
               boxShadow: lang.isActive
                 ? "0 2px 10px rgba(42,154,79,0.10)"
                 : "0 1px 6px rgba(0,38,73,0.05)",
-              animation: lang.isActive 
-                ? `fadeUp 0.4s ease both, pulsG 2.5s ease-in-out infinite`
-                : `fadeUp 0.4s ease both`,
-              animationDelay: lang.isActive
-                ? `${lang.delay}, ${lang.delay}`
-                : lang.delay,
             }}
           >
             {/* Flag */}
@@ -293,12 +287,15 @@ const SurveyResponseTranslationVisual = () => (
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "clamp(14px,2vw,18px)",
+                fontSize: "clamp(10px,1.6vw,14px)",
+                fontWeight: 500,
+                color: "#002649",
                 background: lang.bgColor,
                 flexShrink: 0,
+                fontFamily: "Poppins, sans-serif",
               }}
             >
-              {lang.flag}
+              {lang.code}
             </div>
 
             {/* Language Info */}
@@ -361,8 +358,8 @@ const SurveyResponseTranslationVisual = () => (
                 textTransform: "uppercase",
                 borderRadius: 20,
                 padding: "3px 10px",
-                background: "rgba(42,154,79,0.12)",
-                color: "#2A9A4F",
+                background: "rgba(57,180,74,0.12)",
+                color: "#39B44A",
                 fontFamily: "Poppins, sans-serif",
                 whiteSpace: "nowrap",
                 flexShrink: 0,
