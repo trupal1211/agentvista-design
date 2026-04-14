@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import { flushSync } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles, FileText, MessageSquare, BarChart3, Brain,
@@ -96,25 +97,33 @@ const FeaturesSection = () => {
         : window.innerHeight / 2;
       const activeCardRefs = isMobile ? mobileCardRefs.current : desktopCardRefs.current;
 
-      let closestIndex = 0;
+      // Filter out null refs and ensure we have valid cards to check
+      const validCards = activeCardRefs
+        .map((card, index) => ({ card, index }))
+        .filter(({ card }) => card !== null);
+
+      if (validCards.length === 0) return;
+
+      let closestIndex = validCards[0].index;
       let closestDistance = Infinity;
 
-      activeCardRefs.forEach((card, i) => {
-        if (!card) return;
-
+      validCards.forEach(({ card, index }) => {
         const cardRect = card.getBoundingClientRect();
         const cardCenter = cardRect.top + cardRect.height / 2;
         const distance = Math.abs(cardCenter - activationPoint);
 
         if (distance < closestDistance) {
           closestDistance = distance;
-          closestIndex = i;
+          closestIndex = index;
         }
       });
 
       // Ensure closestIndex is within valid bounds
       const validClosestIndex = Math.max(0, Math.min(closestIndex, features.length - 1));
-      setActiveIndex(validClosestIndex);
+      // Use flushSync to ensure visual updates immediately during scroll
+      flushSync(() => {
+        setActiveIndex(validClosestIndex);
+      });
     };
 
     handleScroll();
@@ -125,7 +134,7 @@ const FeaturesSection = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [isMobile]);
+  }, [isMobile, features.length]);
 
   // Always ensure activeIndex is within valid bounds
   const validActiveIndex = Math.max(0, Math.min(activeIndex, features.length - 1));
