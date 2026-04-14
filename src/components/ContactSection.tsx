@@ -116,7 +116,7 @@ const ContactSection = () => {
         </motion.div>
 
         {/* Main Contact Grid */}
-        <div className="mx-auto grid lg:grid-cols-[40%_56%] gap-8 md:gap-12 mb-8 max-w-6xl px-0 auto-rows-max">
+        <div className="mx-auto grid md:grid-cols-[32%_55%] lg:grid-cols-[40%_56%] gap-3 md:gap-4 lg:gap-12 mb-8 max-w-6xl px-0 auto-rows-max">
           {/* Left: Quick Contact - Sticky */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
 
           {/* Contact Info Column - 40% width on mobile, 18% on lg */}
-          <div className="w-[50%] lg:w-[18%] flex-shrink-0">
+          <div className="w-[55%] md:w-[50%] lg:w-[18%] flex-shrink-0">
             <h4 className="font-bold text-foreground mb-4">Contact Info</h4>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">

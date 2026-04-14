@@ -181,14 +181,14 @@ const FeaturesSection = () => {
         </motion.div>
 
         {/* Mobile layout */}
-        <div className="lg:hidden max-w-md mx-auto pb-14">
+        <div className="lg:hidden max-w-md md:max-w-xl mx-auto pb-14">
           {/* Mobile Visual Container - shows only active card visual */}
           <motion.div 
             ref={mobileStickyRef}
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="sticky z-20 mb-5 overflow-hidden rounded-2xl border border-border/50 bg-background shadow-lg h-[240px] sm:h-[260px]"
+            className="sticky z-20 mb-5 overflow-hidden rounded-2xl border border-border/50 bg-background shadow-lg h-[240px] sm:h-[260px] md:h-[320px]"
             style={{ top: `${(mobileNavbarHeight || 72) + 12}px` }}
           >
             <AnimatePresence mode="wait">
@@ -215,14 +215,14 @@ const FeaturesSection = () => {
           </motion.div>
 
           {/* Mobile Feature Cards */}
-          <div ref={containerRef} className="space-y-3">
+          <div ref={containerRef} className="space-y-3 md:space-y-4">
             {features.map((f, i) => {
               const isActive = i === validActiveIndex;
               return (
                 <motion.div
                   key={f.title}
                   ref={(el) => { mobileCardRefs.current[i] = el; }}
-                  className="flex items-start gap-3.5 p-4 rounded-2xl border transition-all duration-500 ease-out cursor-pointer"
+                  className="flex items-start gap-3.5 md:gap-4 p-4 md:p-5 rounded-2xl border transition-all duration-500 ease-out cursor-pointer"
                   style={{
                     opacity: isActive ? 1 : 0.5,
                     borderColor: isActive ? "hsl(199 76% 52% / 0.4)" : "hsl(var(--border) / 0.3)",
@@ -237,7 +237,7 @@ const FeaturesSection = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-500"
+                    className="w-10 md:w-11 h-10 md:h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-500"
                     style={{
                       backgroundColor: isActive ? "hsl(199 76% 52%)" : "hsl(199 76% 52% / 0.1)",
                     }}
@@ -249,8 +249,8 @@ const FeaturesSection = () => {
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-foreground text-[15px] leading-snug mb-1">{f.title}</h3>
-                    <p className="text-[13px] text-muted-foreground leading-relaxed">{f.desc}</p>
+                    <h3 className="font-semibold text-foreground text-[15px] md:text-[16px] leading-snug mb-1">{f.title}</h3>
+                    <p className="text-[13px] md:text-[14px] text-muted-foreground leading-relaxed">{f.desc}</p>
                   </div>
                 </motion.div>
               );
@@ -262,7 +262,7 @@ const FeaturesSection = () => {
         <div className="hidden lg:block max-w-6xl mx-auto">
           <div className="flex gap-12">
             {/* Sticky left – image only */}
-            <div className="w-[580px] shrink-0">
+            <div className="w-[460px] xl:w-[580px] shrink-0">
               <div className="sticky top-[calc(50vh-175px)]">
                 <div className="relative w-full h-[420px] rounded-xl overflow-hidden border border-border/50 shadow-lg bg-muted/30">
                   <AnimatePresence mode="wait">

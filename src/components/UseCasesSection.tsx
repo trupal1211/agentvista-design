@@ -181,14 +181,14 @@ const UseCasesSection = () => {
         <div className="relative w-full">
           {/* Mobile Navigation Arrows */}
           <button 
-            className="md:hidden absolute left-0 top-[45px] -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-foreground active:scale-90 transition-all"
+            className="lg:hidden absolute left-0 top-[45px] -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-foreground active:scale-90 transition-all"
             onClick={() => emblaApi?.scrollPrev()}
           >
             <ChevronLeft size={36} strokeWidth={1.5} />
           </button>
           
           <button 
-            className="md:hidden absolute right-0 top-[45px] -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-foreground active:scale-90 transition-all"
+            className="lg:hidden absolute right-0 top-[45px] -translate-y-1/2 z-20 p-2 text-muted-foreground hover:text-foreground active:scale-90 transition-all"
             onClick={() => emblaApi?.scrollNext()}
           >
             <ChevronRight size={36} strokeWidth={1.5} />
@@ -201,7 +201,7 @@ const UseCasesSection = () => {
                 return (
                   <div
                     key={`${uc.id}-${index}`}
-                    className="flex-[0_0_100%] md:flex-[0_0_auto] md:min-w-[220px]"
+                    className="flex-[0_0_100%] lg:flex-[0_0_auto] lg:min-w-[220px]"
                     onClick={() => handleScrollTo(index)}
                   >
                   <div
@@ -225,7 +225,7 @@ const UseCasesSection = () => {
         </div>
 
         {/* ─── Active Content Area (Transparent Wrapper, Fixed Min Height) ─── */}
-        <div className="relative w-full min-h-[750px] sm:min-h-[550px] lg:min-h-[480px]">
+        <div className="relative w-full min-h-[750px] sm:min-h-[550px] md:min-h-[500px] lg:min-h-[480px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCase.id}
