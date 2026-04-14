@@ -180,18 +180,6 @@ const ConversationalFollowUpVisual = () => (
           }}
         >
           3 gaps detected · AI generating follow-ups
-          <span
-            style={{
-              display: "inline-block",
-              width: "1.5px",
-              height: "clamp(9px,1.2vw,12px)",
-              background: "#0981B5",
-              borderRadius: "1px",
-              marginLeft: "2px",
-              verticalAlign: "middle",
-              animation: "blink 1s step-end infinite",
-            }}
-          />
         </span>
       </div>
     </div>
@@ -218,7 +206,7 @@ const ConversationalFollowUpVisual = () => (
           fontWeight: 700,
           letterSpacing: "0.13em",
           textTransform: "uppercase",
-          color: "#2A9A4F",
+          color: "#39B44A",
           fontFamily: "Poppins, sans-serif",
         }}
       >
@@ -227,7 +215,7 @@ const ConversationalFollowUpVisual = () => (
             width: "clamp(5px,0.7vw,7px)",
             height: "clamp(5px,0.7vw,7px)",
             borderRadius: "50%",
-            background: "#2A9A4F",
+            background: "#39B44A",
           }}
         />
         Follow-Up Questions
@@ -256,8 +244,6 @@ const ConversationalFollowUpVisual = () => (
               border: "1px solid rgba(0,92,144,0.11)",
               borderRadius: "clamp(7px,1.1vw,12px)",
               padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
-              animation: `fadeUp 0.4s ease both`,
-              animationDelay: `${0.1 + idx * 0.1}s`,
             }}
           >
             {/* Question Number */}
@@ -292,7 +278,7 @@ const ConversationalFollowUpVisual = () => (
                 fontFamily: "Poppins, sans-serif",
               }}
             >
-              "{question}"
+              {question}
             </div>
           </div>
         ))}
