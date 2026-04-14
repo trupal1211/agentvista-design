@@ -147,7 +147,7 @@ const UseCasesSection = () => {
   const activeCase = useCases[selectedIndex];
 
   return (
-    <section id="use-cases" className="relative py-16 md:py-24 overflow-hidden bg-background">
+    <section id="use-cases" className="relative pt-16 md:pt-24 pb-9 overflow-hidden bg-background">
       {/* Background ambient glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full bg-brand-blue/[0.03] blur-3xl pointer-events-none" />
 

@@ -98,7 +98,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-background">
+    <section id="contact" className="pt-16 md:pt-24 pb-9 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

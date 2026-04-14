@@ -3,7 +3,7 @@ import heroImg from "@/assets/agentvista-what-is-features-hero.webp";
 
 const WhatIsSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="pt-16 md:pt-24 pb-9 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
           <motion.div
