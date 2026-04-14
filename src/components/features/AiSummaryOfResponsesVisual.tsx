@@ -2,12 +2,15 @@
  * AI Summary of Individual Responses Visual - Concept F
  * Floating Word Cloud with Random Placement & Sentiment-Based Styling
  * RESPONSIVE: Uses container queries (cqw), clamp() for all sizing
+ * OPTIMIZED: Single RAF loop, IntersectionObserver for pause/resume, proper cleanup
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const AiSummaryOfResponsesVisual = () => {
   const stageRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animatingRef = useRef(true);
 
   useEffect(() => {
     if (!stageRef.current) return;
@@ -116,22 +119,38 @@ const AiSummaryOfResponsesVisual = () => {
     // Detect mobile/phone screens for increased density
     const isMobile = W < 600 || (W < H && W < 800);
     
-    const scale = Math.min(W, H) / 260; // Even larger scale for better space fill
+    const scale = Math.min(W, H) / 260;
     const PAD = isMobile 
-      ? Math.max(0, Math.round(0.8 * scale))  // Even tighter on mobile
-      : Math.max(1, Math.round(1.5 * scale)); // Minimal padding to maximize space
+      ? Math.max(0, Math.round(0.8 * scale))
+      : Math.max(1, Math.round(1.5 * scale));
     const MIN_GAP = isMobile
-      ? Math.round(3 * scale)  // Very tight gap on mobile for dense packing
-      : Math.round(5 * scale); // Very tight gap for dense packing
-    const maxTries = 1200; // More attempts for dense packing
+      ? Math.round(3 * scale)
+      : Math.round(5 * scale);
+    const maxTries = 1200;
+
+    // Animation state - shared across all words
+    interface WordState {
+      div: HTMLDivElement;
+      t0: number;
+      dur: number;
+      delay: number;
+      amp: number;
+      phase: number;
+      axis: 'X' | 'Y';
+      opacity: number;
+      color: string;
+      isHovered: boolean;
+    }
+
+    const words: WordState[] = [];
 
     // Shuffle words slightly to vary placement
     const sortedWords = [...WORDS_DATA]
       .sort((a, b) => (b[1] - a[1]) + (Math.random() - 0.5) * 5)
 
     sortedWords.forEach(([text, weight, sentiment]) => {
-      const fsRaw = 7 + ((weight - 12) / (52 - 12)) * 20; // Larger font range
-      const fs = Math.round(Math.min(28, Math.max(10, fsRaw * scale))); // Bigger max size
+      const fsRaw = 7 + ((weight - 12) / (52 - 12)) * 20;
+      const fs = Math.round(Math.min(28, Math.max(10, fsRaw * scale)));
       const fw = weight >= 40 ? 700 : weight >= 22 ? 600 : 500;
 
       const { w: tw, h: th } = measureText(text, fs, fw);
@@ -141,7 +160,6 @@ const AiSummaryOfResponsesVisual = () => {
       let x = -1, y = -1;
       let placed_successfully = false;
 
-      // Try random placement with conservative margin
       for (let i = 0; i < maxTries; i++) {
         x = PAD + Math.random() * Math.max(0, W - tw - PAD * 2);
         y = PAD + Math.random() * Math.max(0, H - th - PAD * 2);
@@ -151,7 +169,6 @@ const AiSummaryOfResponsesVisual = () => {
         }
       }
 
-      // Fallback: grid-based spiral placement if random placement fails
       if (!placed_successfully) {
         const gridSize = Math.ceil(Math.sqrt(placed.length + 1) * 1.5);
         const stepX = (W - PAD * 2) / gridSize;
@@ -180,7 +197,7 @@ const AiSummaryOfResponsesVisual = () => {
       const opacity = 0.6 + (weight / 52) * 0.4;
       const dur = 3800 + Math.random() * 2800;
       const delay = Math.random() * -dur;
-      const amp = Math.min(2.5, (1.2 + Math.random() * 2) * scale); // Reduced amplitude for dense cloud
+      const amp = Math.min(2.5, (1.2 + Math.random() * 2) * scale);
       const phase = Math.random() * Math.PI * 2;
       const axis = Math.random() > 0.5 ? 'Y' : 'X';
 
@@ -200,37 +217,91 @@ const AiSummaryOfResponsesVisual = () => {
         transition: opacity 0.3s;
       `;
 
-      div.addEventListener('mouseenter', () => {
+      const wordState: WordState = {
+        div,
+        t0: 0,
+        dur,
+        delay,
+        amp,
+        phase,
+        axis,
+        opacity,
+        color,
+        isHovered: false,
+      };
+
+      const onMouseEnter = () => {
+        wordState.isHovered = true;
         div.style.opacity = '1';
         div.style.transform = 'scale(1.1)';
-      });
+      };
 
-      div.addEventListener('mouseleave', () => {
+      const onMouseLeave = () => {
+        wordState.isHovered = false;
         div.style.opacity = opacity.toFixed(2);
         div.style.transform = '';
-      });
+      };
 
+      div.addEventListener('mouseenter', onMouseEnter);
+      div.addEventListener('mouseleave', onMouseLeave);
+
+      words.push(wordState);
       stage.appendChild(div);
+    });
 
-      let t0 = 0;
-      function animate(ts: number) {
-        if (t0 === 0) t0 = ts + Math.abs(delay);
-        const elapsed = (ts - t0) / dur;
-        const offset = Math.sin(elapsed * Math.PI * 2 + phase) * amp;
-        if (!div.matches(':hover')) {
-          div.style.transform = axis === 'Y'
+    // Single RAF loop for all animations
+    let rafId: number;
+    let lastTime = 0;
+
+    const animate = (ts: number) => {
+      if (!animatingRef.current) {
+        rafId = requestAnimationFrame(animate);
+        return;
+      }
+
+      if (lastTime === 0) lastTime = ts;
+
+      words.forEach((word) => {
+        if (word.t0 === 0) word.t0 = ts + Math.abs(word.delay);
+        const elapsed = (ts - word.t0) / word.dur;
+        const offset = Math.sin(elapsed * Math.PI * 2 + word.phase) * word.amp;
+        
+        if (!word.isHovered) {
+          word.div.style.transform = word.axis === 'Y'
             ? `translateY(${offset.toFixed(2)}px)`
             : `translateX(${offset.toFixed(2)}px)`;
         }
-        requestAnimationFrame(animate);
-      }
-      requestAnimationFrame(animate);
-    });
+      });
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
+
+    // IntersectionObserver to pause/resume animations
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        animatingRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    // Cleanup function
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+      lastTime = 0;
+    };
 
   }, []);
 
   return (
     <div
+      ref={containerRef}
       className="w-full h-full flex flex-col overflow-hidden"
       style={{ background: "#F2F8FC", position: "relative" }}
     >
