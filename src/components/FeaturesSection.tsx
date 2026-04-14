@@ -12,11 +12,8 @@ import AiInsightsVisual from "./features/AiInsightsVisual";
 import PromptCloningVisual from "./features/PromptCloningVisual";
 import BrandingVisual from "./features/BrandingVisual";
 import SentimentIntelligenceVisual from "./features/SentimentIntelligenceVisual";
-import ConversationalAnalyticsVisual from "./features/ConversationalAnalyticsVisual";
 import NaturalLanguageActionsVisual from "./features/NaturalLanguageActionsVisual";
 import ConversationalFollowUpVisual from "./features/ConversationalFollowUpVisual";
-import AutomatedLifecycleFeedbackVisual from "./features/AutomatedLifecycleFeedbackVisual";
-import SmartRecordTargetingVisual from "./features/SmartRecordTargetingVisual";
 import AiSummaryOfResponsesVisual from "./features/AiSummaryOfResponsesVisual";
 import SurveyResponseTranslationVisual from "./features/SurveyResponseTranslationVisual";
 import SurveyVistaIntelligenceVisual from "./features/SurveyVistaIntelligenceVisual";
@@ -28,11 +25,8 @@ const visuals = [
   <PromptCloningVisual key="cloning" />,
   <BrandingVisual key="branding" />,
   <SentimentIntelligenceVisual key="sentiment" />,
-  <ConversationalAnalyticsVisual key="conv-analytics" />,
   <NaturalLanguageActionsVisual key="natural-language-actions" />,
   <ConversationalFollowUpVisual key="conversational-follow-up" />,
-  <AutomatedLifecycleFeedbackVisual key="automated-lifecycle-feedback" />,
-  <SmartRecordTargetingVisual key="smart-record-targeting" />,
   <SurveyResponseTranslationVisual key="translation" />,
   <AiSummaryOfResponsesVisual key="ai-summary-of-responses" />,
   <SurveyVistaIntelligenceVisual key="surveyvista-intelligence" />,
@@ -41,15 +35,15 @@ const visuals = [
 const features = [
   { icon: Sparkles, title: "AI Survey Generation", desc: "Instantly generate surveys, forms, and assessments using natural language prompts.", visualIndex: 0 },
   { icon: FileText, title: "Form Creation from PDFs & Images", desc: "Upload documents to auto-generate structured forms.", visualIndex: 1 },
-  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, understand, and act on insights from surveys and forms", visualIndex: 7 },
+  { icon: MessageSquare, title: "Natural Language Actions", desc: "Use GenAI-powered commands to create, distribute, understand, and act on insights from surveys and forms", visualIndex: 6 },
   { icon: Brain, title: "Sentiment Intelligence", desc: "Detect and store sentiment from responses, cases, and chat transcripts.", visualIndex: 5 },
   { icon: BarChart3, title: "AI-Generated Survey Insights", desc: "Summarize all survey responses to uncover trends, sentiment, and action areas in seconds.", visualIndex: 2 },
-  { icon: Lightbulb, title: "AI Summary of Individual Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 12 },
-  { icon: BotMessageSquare, title: "AI-Driven Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses or meeting summaries.", visualIndex: 8 },
-  { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 11 },
+  { icon: Lightbulb, title: "AI Summary of Individual Responses", desc: "Instantly distill long survey answers into actionable insights per respondent.", visualIndex: 9 },
+  { icon: BotMessageSquare, title: "AI-Driven Conversational Follow-Up", desc: "Ask intelligent clarifying questions based on participant responses or meeting summaries.", visualIndex: 7 },
+  { icon: Languages, title: "Survey & Response Translation", desc: "Automatically translate survey content and multi-language responses.", visualIndex: 8 },
   { icon: Palette, title: "Theme & Branding Automation", desc: "Apply styles and colors based on uploaded logos or prompt instructions.", visualIndex: 4 },
   { icon: Copy, title: "Prompt-Based Cloning & Editing", desc: "Duplicate or update surveys using plain language commands.", visualIndex: 3 },
-  { icon: BotMessageSquare, title: "SurveyVista Intelligence (COMING SOON)", desc: "An embedded AI assistant that designs, configures, automates, and analyzes across every stage of your survey lifecycle.", visualIndex: 13 },
+  { icon: BotMessageSquare, title: "SurveyVista Intelligence (COMING SOON)", desc: "An embedded AI assistant that designs, configures, automates, and analyzes across every stage of your survey lifecycle.", visualIndex: 10 },
 ];
 
 const FeaturesSection = () => {
