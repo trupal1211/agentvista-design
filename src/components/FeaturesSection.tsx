@@ -118,7 +118,9 @@ const FeaturesSection = () => {
         }
       });
 
-      setActiveIndex(closestIndex);
+      // Ensure closestIndex is within valid bounds
+      const validClosestIndex = Math.max(0, Math.min(closestIndex, features.length - 1));
+      setActiveIndex(validClosestIndex);
     };
 
     handleScroll();
@@ -131,13 +133,17 @@ const FeaturesSection = () => {
     };
   }, [isMobile]);
 
-  const activeVisualIndex = features[activeIndex]?.visualIndex ?? 0;
+  // Always ensure activeIndex is within valid bounds
+  const validActiveIndex = Math.max(0, Math.min(activeIndex, features.length - 1));
+  const activeVisualIndex = features[validActiveIndex]?.visualIndex ?? 0;
 
   const handleCardClick = (index: number) => {
-    setActiveIndex(index);
+    // Ensure index is within bounds before updating
+    const validIndex = Math.max(0, Math.min(index, features.length - 1));
+    setActiveIndex(validIndex);
     if (isMobile) return;
 
-    const card = desktopCardRefs.current[index];
+    const card = desktopCardRefs.current[validIndex];
     if (card) {
       const cardRect = card.getBoundingClientRect();
       const viewportCenter = window.innerHeight / 2;
@@ -184,20 +190,20 @@ const FeaturesSection = () => {
           >
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeIndex}
+                key={`visual-${activeVisualIndex}`}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.22, ease: "easeInOut" }}
                 className="w-full h-full bg-background"
               >
-                {visuals[features[activeIndex]?.visualIndex ?? 0]}
+                {visuals[activeVisualIndex]}
               </motion.div>
             </AnimatePresence>
 
             {/* Subtle glow effect on image change */}
             <motion.div
-              key={`glow-${activeIndex}`}
+              key={`glow-${activeVisualIndex}`}
               initial={{ opacity: 0.6, scale: 1 }}
               animate={{ opacity: 0, scale: 1.1 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
@@ -208,7 +214,7 @@ const FeaturesSection = () => {
           {/* Mobile Feature Cards */}
           <div ref={containerRef} className="space-y-3">
             {features.map((f, i) => {
-              const isActive = i === activeIndex;
+              const isActive = i === validActiveIndex;
               return (
                 <motion.div
                   key={f.title}
@@ -221,7 +227,9 @@ const FeaturesSection = () => {
                     boxShadow: isActive ? "0 4px 16px hsl(199 76% 52% / 0.1)" : "none",
                     transform: isActive ? "scale(1)" : "scale(0.98)",
                   }}
-                  onClick={() => setActiveIndex(i)}
+                  onClick={() => {
+                    setActiveIndex(i);
+                  }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -273,7 +281,7 @@ const FeaturesSection = () => {
             {/* Scrolling right cards */}
             <div className="flex-1 space-y-4 py-[20vh]" ref={containerRef}>
               {features.map((f, i) => {
-                const distance = Math.abs(i - activeIndex);
+                const distance = Math.abs(i - validActiveIndex);
                 let opacity = 0.25;
                 let borderColor = "hsl(var(--border) / 0.2)";
                 let bg = "hsl(var(--background))";

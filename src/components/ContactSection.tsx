@@ -126,7 +126,7 @@ const ContactSection = () => {
           >
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-foreground mb-6">Quick Contact</h3>
-                <p className="text-muted-foreground text-sm mb-6">Get in touch with a SurveyVista representative to see a demo or simply learn more about our products.</p>
+                <p className="text-muted-foreground text-sm mb-6">Get in touch with a AgentVista representative to see a demo or simply learn more about our products.</p>
               </div>
 
               {/* Contact Info Cards */}
