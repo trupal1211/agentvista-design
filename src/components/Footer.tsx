@@ -38,9 +38,9 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border">
       <div className="mx-auto max-w-6xl px-4 lg:px-8 py-10 md:py-14">
-        {/* Main Footer Content - Flexbox with specific column widths and space-between */}
-        <div className="flex flex-col lg:flex-row lg:justify-between gap-8 md:gap-12 lg:gap-0">
-          {/* Brand Column - 35% width on lg */}
+        {/* Main Footer Content - Flexbox with wrap for side-by-side layout on mobile */}
+        <div className="flex flex-wrap justify-between lg:flex-nowrap lg:justify-between gap-8 md:gap-12 lg:gap-0">
+          {/* Brand Column - full width, stays on top */}
           <div className="w-full lg:w-[35%] flex-shrink-0">
             <a
               href="#home"
@@ -55,8 +55,8 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links Column - 15% width on lg */}
-          <div className="w-full lg:w-[15%] flex-shrink-0">
+          {/* Quick Links Column - 30% width on mobile, 15% on lg */}
+          <div className="w-[30%] lg:w-[15%] flex-shrink-0">
             <h4 className="font-bold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2.5">
               {quickLinks.map((l) => (
@@ -73,8 +73,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info Column - 18% width on lg */}
-          <div className="w-full lg:w-[18%] flex-shrink-0">
+          {/* Contact Info Column - 40% width on mobile, 18% on lg */}
+          <div className="w-[50%] lg:w-[18%] flex-shrink-0">
             <h4 className="font-bold text-foreground mb-4">Contact Info</h4>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
