@@ -147,11 +147,10 @@ const NaturalLanguageActionsVisual = () => (
             borderRadius: "30px",
             padding: "clamp(5px,0.8vw,8px) clamp(12px,1.8vw,20px)",
             cursor: "pointer",
-            boxShadow: "0 3px 12px rgba(9,129,181,0.30)",
             whiteSpace: "nowrap",
           }}
         >
-          Run Command
+         Execute Command
         </button>
         
       </div>
@@ -181,7 +180,7 @@ const NaturalLanguageActionsVisual = () => (
           fontWeight: 700,
           letterSpacing: "0.13em",
           textTransform: "uppercase",
-          color: "#2E9B52",
+          color: "#39B44A",
           fontFamily: "Poppins, sans-serif",
         }}
       >
@@ -190,7 +189,7 @@ const NaturalLanguageActionsVisual = () => (
             width: "clamp(5px,0.7vw,7px)",
             height: "clamp(5px,0.7vw,7px)",
             borderRadius: "50%",
-            background: "#2E9B52",
+            background: "#39B44A",
           }}
         />
         Executing Commands
@@ -210,12 +209,10 @@ const NaturalLanguageActionsVisual = () => (
             display: "flex",
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
-            background: "#fff",
+            background: "#F7FBFE",
             border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
-            boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
-            animation: `fadeUp 0.45s ease both`,
             animationDelay: "0.08s",
           }}
         >
@@ -288,12 +285,10 @@ const NaturalLanguageActionsVisual = () => (
             display: "flex",
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
-            background: "#fff",
+            background: "#F7FBFE",
             border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
-            boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
-            animation: `fadeUp 0.45s ease both`,
             animationDelay: "0.18s",
           }}
         >
@@ -346,12 +341,10 @@ const NaturalLanguageActionsVisual = () => (
             display: "flex",
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
-            background: "#fff",
+            background: "#F7FBFE",
             border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
-            boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
-            animation: `fadeUp 0.45s ease both`,
             animationDelay: "0.28s",
           }}
         >
@@ -403,12 +396,10 @@ const NaturalLanguageActionsVisual = () => (
             display: "flex",
             alignItems: "center",
             gap: "clamp(7px,1.1vw,12px)",
-            background: "#fff",
+            background: "#F7FBFE",
             border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(7px,1.1vw,12px)",
             padding: "clamp(6px,1vw,11px) clamp(8px,1.3vw,14px)",
-            boxShadow: "0 2px 18px rgba(0,38,73,0.09)",
-            animation: `fadeUp 0.45s ease both`,
             animationDelay: "0.28s",
           }}
         >
