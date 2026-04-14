@@ -112,9 +112,9 @@ const PdfFormVisual = () => (
     {/* ── Form Output ── */}
     <div
       className="flex flex-col"
-      style={{ flex: "0 0 45%", gap: "6%", minWidth: 0 }}
+      style={{ flex: 1, gap: "6%", minWidth: 0, maxWidth: "90%", paddingLeft: "5%" }}
     >
-      <span
+      <div
         style={{
           fontSize: "clamp(7px, 1.5cqw, 12px)",
           fontWeight: 700,
@@ -123,10 +123,24 @@ const PdfFormVisual = () => (
           color: "#39B44A",
           fontFamily: "Poppins, sans-serif",
           flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+          marginBottom: "clamp(8px, 1.5cqw, 16px)",
         }}
       >
+        <span
+          style={{
+            width: "6px",
+            height: "6px",
+            borderRadius: "50%",
+            background: "#39B44A",
+            display: "inline-block",
+            flexShrink: 0,
+          }}
+        />
         Form Generated
-      </span>
+      </div>
 
       {[{ w: 50 }, { w: 65 }, { w: 40, tall: true }].map((f, i) => (
         <div
@@ -136,7 +150,9 @@ const PdfFormVisual = () => (
             border: "1px solid rgba(0,92,144,0.11)",
             borderRadius: "clamp(6px, 1.2cqw, 12px)",
             padding: "3% 5%",
-            margin: "2% 0",
+            margin: "0",
+            marginBottom: i < 2 ? "clamp(8px, 1.5cqw, 14px)" : "0",
+            maxWidth: "90%",
             display: "flex",
             flexDirection: "column",
             gap: "15%",
@@ -166,7 +182,7 @@ const PdfFormVisual = () => (
       <div
         style={{
           height: "clamp(22px, 5cqw, 40px)",
-          margin: "2% 0 0 0",
+          margin: "clamp(8px, 1.5cqw, 14px) 0 0 0",
           borderRadius: "clamp(6px, 1.2cqw, 12px)",
           background: "linear-gradient(90deg,#39B44A,#4DC95E)",
           display: "flex",
@@ -181,6 +197,7 @@ const PdfFormVisual = () => (
           fontFamily: "Poppins, sans-serif",
           flexShrink: 0,
           cursor: "pointer",
+          maxWidth: "90%",
         }}
       >
         Use This Form →
