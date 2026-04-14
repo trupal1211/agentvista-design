@@ -229,7 +229,7 @@ const BrandingVisual = () => {
         }}
       >
         {/* Survey Label */}
-        <div className="flex items-center gap-2" style={{ color: "#2a8c39" }}>
+        <div className="flex items-center gap-2" style={{ color: "#39B44A" }}>
           <div
             className="flex-shrink-0"
             style={{
@@ -245,6 +245,7 @@ const BrandingVisual = () => {
               fontWeight: 700,
               textTransform: "uppercase",
               letterSpacing: "0.12em",
+              color: "#39B44A",
               fontFamily: "Poppins, sans-serif",
             }}
           >
@@ -364,7 +365,7 @@ const BrandingVisual = () => {
               className="font-bold uppercase tracking-wide rounded-full flex-shrink-0"
               style={{
                 background: "rgba(57, 180, 74, 0.12)",
-                color: "#2a8c39",
+                color: "#39B44A",
                 fontSize: "clamp(6px, 1cqw, 9px)",
                 padding: "clamp(2px, 0.4cqw, 4px) clamp(6px, 1.2cqw, 10px)",
               }}
@@ -382,11 +383,13 @@ const BrandingVisual = () => {
           <button
             className="rounded-full text-white font-bold uppercase tracking-wide flex-shrink-0"
             style={{
-              background: "linear-gradient(90deg, #39B44A, #4DC95E)",
-              boxShadow: "0 3px 12px rgba(57, 180, 74, 0.28)",
+              background: "linear-gradient(90deg, #0981B5, #27A8E0)",
+              boxShadow: "0 3px 12px rgba(9, 129, 181, 0.28)",
               fontSize: "clamp(6px, 1cqw, 9px)",
               padding: "clamp(4px, 0.8cqw, 6px) clamp(8px, 1.5cqw, 12px)",
               whiteSpace: "nowrap",
+              border: "none",
+              cursor: "pointer",
             }}
           >
             Save Theme
