@@ -2,110 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Lato Font Family */
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Thin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-ThinItalic.ttf') format('truetype');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-Black.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('./assets/fonts/Lato/Lato-BlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Nokora Font Family (Variable Font) */
-@font-face {
-  font-family: 'Nokora';
-  src: url('./assets/fonts/Nokora/Nokora-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Poppins Font Family */
+/* Poppins Font Family — only weights actively used by the app */
 @font-face {
   font-family: 'Poppins';
   src: url('./assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins/Poppins-LightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -119,25 +21,9 @@
 
 @font-face {
   font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins/Poppins-Italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
   src: url('./assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins/Poppins-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -151,41 +37,9 @@
 
 @font-face {
   font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
   src: url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins/Poppins-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins/Poppins-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('./assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf') format('truetype');
-  font-weight: 800;
-  font-style: italic;
   font-display: swap;
 }
 

@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,8 +8,6 @@ import Index from "./pages/Index.tsx";
 import TermsOfUse from "./pages/TermsOfUse.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import NotFound from "./pages/NotFound.tsx";
-
-const queryClient = new QueryClient();
 
 const App = () => {
   // Handle reCAPTCHA badge click on mobile
@@ -46,13 +43,12 @@ const App = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecaptchaProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
+    <RecaptchaProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/home" element={<Index section="home" />} />
             <Route path="/features" element={<Index section="features" />} />
@@ -64,11 +60,10 @@ const App = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </RecaptchaProvider>
-    </QueryClientProvider>
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </RecaptchaProvider>
   );
 };
 
