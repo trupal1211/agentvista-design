@@ -4,6 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Preload critical fonts for better performance and to prevent FOIT -->
+  <link rel="preload" as="font" href="/src/assets/fonts/Poppins/Poppins-Regular.ttf" type="font/ttf" crossorigin />
+  <link rel="preload" as="font" href="/src/assets/fonts/Poppins/Poppins-SemiBold.ttf" type="font/ttf" crossorigin />
+  <link rel="preload" as="font" href="/src/assets/fonts/Poppins/Poppins-Bold.ttf" type="font/ttf" crossorigin />
+  
   <link rel="preload" as="image" href="/src/assets/agentvista-ai-survey-hero-mascot.webp" type="image/webp" fetchpriority="high" />
   <title>AgentVista – AI-Powered Surveys, Forms &amp; Assessments</title>
   <meta name="description"
