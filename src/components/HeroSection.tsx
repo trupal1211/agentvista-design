@@ -102,7 +102,7 @@ const HeroSection = () => {
               src={heroImg}
               alt="AI-powered survey assistant mascot - AgentVista SurveyVista Copilot for intelligent feedback automation"
               className="w-full max-w-md lg:max-w-lg"
-              fetchpriority="high"
+              fetchPriority="high"
             />
 
             {/* Floating card - AI Survey */}

@@ -102,7 +102,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8 py-5">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8 py-3.5">
           {/* Mobile layout: Links on top, copyright below */}
           <div className="md:hidden flex flex-col items-center justify-center gap-3 text-center">
             <div className="flex items-center gap-4">

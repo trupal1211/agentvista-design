@@ -126,7 +126,7 @@ const ContactSection = () => {
           >
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-foreground mb-6">Quick Contact</h3>
-                <p className="text-muted-foreground text-sm mb-6">Get in touch with a AgentVista representative to see a demo or simply learn more about our products.</p>
+                <p className="text-muted-foreground text-sm mb-6">Get in touch with a representative to see a demo or simply learn more about the product.</p>
               </div>
 
               {/* Contact Info Cards */}
@@ -347,7 +347,7 @@ const ContactSection = () => {
                 )}
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-brand-blue hover:underline">Privacy Policy</Link>.
+                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-brand-blue font-medium hover:underline">Privacy Policy</Link>.
                 </p>
 
                 {/* Map at bottom of form */}
