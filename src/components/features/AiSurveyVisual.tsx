@@ -16,7 +16,7 @@ const AiSurveyVisual = () => (
         flex: 1,
         background: "#EBF5FB",
         borderRight: "1px solid rgba(0,92,144,0.1)",
-        padding: "clamp(14px, 3cqw, 32px) clamp(12px, 2.5cqw, 28px)",
+        padding: "clamp(14px, 3cqw, 32px) clamp(6px, 2.5cqw, 28px)",
         gap: "clamp(8px, 1.5cqw, 16px)",
       }}
     >

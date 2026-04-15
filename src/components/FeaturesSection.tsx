@@ -189,7 +189,7 @@ const FeaturesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="sticky z-20 mb-5 overflow-hidden rounded-2xl border border-border/50 bg-background shadow-lg h-[240px] sm:h-[260px] md:h-[320px]"
-            style={{ top: `${(mobileNavbarHeight || 72) + 12}px` }}
+            style={{ top: `${(mobileNavbarHeight || 72) + 8}px` }}
           >
             <AnimatePresence mode="wait">
               <motion.div
