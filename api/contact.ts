@@ -92,7 +92,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                         <td valign="top" bgcolor="#f4f9fb"
                             style=" text-align: center; padding: 10px 0; border-bottom: 1px solid #e2e2e2;">
                             <a href="https://agentsvista.com/" title="AgentVista" target="_blank">
-                                <img src="https://surveyvista.com/wp-content/uploads/2024/09/logo.png"
+                                <img src="https://surveyvista.com/wp-content/uploads/2026/01/agent-vista.svg"
                                     style="margin-bottom: 0; padding: 10px 0;display: block; margin: 0 auto;" width="200" border="0" alt="AgentVista" title="AgentVista" />
                             </a>
                         </td>

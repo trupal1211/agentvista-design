@@ -120,19 +120,19 @@ const AiSurveyVisual = () => (
       </div>
 
       {/* File type chips */}
-      <div style={{ display: "flex", alignItems: "center", gap: "clamp(6px, 1cqw, 10px)", flexWrap: "wrap", justifyContent: "flex-start" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "clamp(4px, 0.8cqw, 10px)", flexWrap: "wrap", justifyContent: "flex-start" }}>
         {["PDF", "Image", "DOCX"].map((t) => (
           <span
             key={t}
             style={{
-              fontSize: "clamp(8px, 1cqw, 10px)",
+              fontSize: "clamp(7px, 0.9cqw, 10px)",
               fontWeight: 600,
               fontFamily: "Poppins, sans-serif",
               color: "#005C90",
               background: "#fff",
               border: "1px solid rgba(0,92,144,0.18)",
               borderRadius: 20,
-              padding: "clamp(3px, 0.2cqw, 7px) clamp(10px, 1.8cqw, 16px)",
+              padding: "clamp(2px, 0.15cqw, 7px) clamp(8px, 1.5cqw, 16px)",
               whiteSpace: "nowrap",
               minWidth: "fit-content",
             }}
