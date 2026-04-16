@@ -111,8 +111,12 @@
     background: var(--section-gradient);
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, #27A8E0, #1a7db8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    padding-bottom: 0.2em;
   }
   .glass-card {
     @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-lg;
