@@ -3,12 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Globe, Mail, Phone } from "lucide-react";
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
   { label: "Use Cases", href: "#use-cases" },
   { label: "Benefits", href: "#benefits" },
   { label: "Contact Us", href: "#contact" },
 ];
+
+const resourcesLink = "https://resources.surveyvista.com/knowledge-base/agentvista/agentvista-installation-and-setup-guide";
 
 const Footer = () => {
   const location = useLocation();
@@ -70,6 +71,16 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={resourcesLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all"
+                >
+                  Resources
+                </a>
+              </li>
             </ul>
           </div>
 

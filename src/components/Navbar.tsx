@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import logo from "@/assets/agent-vista-logo.svg";
 import DemoRequestForm from "./DemoRequestForm";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
   { label: "Features", href: "#features" },
   { label: "Benefits", href: "#benefits" },
   { label: "Use Cases", href: "#use-cases" },
   { label: "Contact Us", href: "#contact" },
 ];
 
+const resourcesLink = "https://resources.surveyvista.com/knowledge-base/agentvista/agentvista-installation-and-setup-guide";
+
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [resourcesOpen, setResourcesOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -103,6 +105,32 @@ const Navbar = () => {
                 </a>
               );
             })}
+            
+            {/* Resources Dropdown */}
+            <div className="relative group">
+              <button
+                onClick={() => setResourcesOpen(!resourcesOpen)}
+                className="text-[15px] font-medium transition-colors whitespace-nowrap flex items-center gap-1"
+                style={{
+                  color: 'hsl(215 25% 35%)',
+                }}
+              >
+                Resources
+                <ChevronDown size={16} className={`transition-transform ${ resourcesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Dropdown Menu */}
+              <div className={`absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transition-all opacity-0 invisible group-hover:opacity-100 group-hover:visible ${resourcesOpen ? 'opacity-100 visible' : ''}`}>
+                <a
+                  href={resourcesLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-4 py-3 text-sm text-muted-foreground hover:text-brand-blue hover:bg-gray-50 transition-colors"
+                >
+                  Installation Guide
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="hidden lg:flex items-center">
@@ -167,6 +195,30 @@ const Navbar = () => {
                     </a>
                   );
                 })}
+                
+                {/* Mobile Resources Dropdown */}
+                <div className="px-4 py-3">
+                  <button
+                    onClick={() => setResourcesOpen(!resourcesOpen)}
+                    className="text-sm font-medium rounded-lg w-full text-left text-muted-foreground hover:text-brand-blue flex items-center justify-between"
+                  >
+                    Resources
+                    <ChevronDown size={16} className={`transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {resourcesOpen && (
+                    <div className="mt-2 ml-4 flex flex-col gap-2">
+                      <a
+                        href={resourcesLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-muted-foreground hover:text-brand-blue transition-colors"
+                      >
+                        Installation Guide
+                      </a>
+                    </div>
+                  )}
+                </div>
+                
                 <button
                   onClick={() => {
                     setMobileOpen(false);
