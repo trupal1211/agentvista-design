@@ -12,7 +12,11 @@ const navLinks = [
   { label: "Contact Us", href: "#contact" },
 ];
 
-const resourcesLink = "https://resources.surveyvista.com/knowledge-base/agentvista/agentvista-installation-and-setup-guide";
+const resourcesLinks = [
+  { label: "Installation Guide", href: "https://resources.surveyvista.com/knowledge-base/agentvista/agentvista-installation-and-setup-guide" },
+  { label: "Survey or Form Generation using AI", href: "https://resources.surveyvista.com/knowledge-base/agentvista/survey-generation-using-ai" },
+  { label: "Assign Surveys and Take Actions on Results", href: "https://resources.surveyvista.com/knowledge-base/agentvista/search-and-assign-survey-with-agentforce" },
+];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -120,15 +124,18 @@ const Navbar = () => {
               </button>
               
               {/* Dropdown Menu */}
-              <div className={`absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transition-all opacity-0 invisible group-hover:opacity-100 group-hover:visible ${resourcesOpen ? 'opacity-100 visible' : ''}`}>
-                <a
-                  href={resourcesLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block px-4 py-3 text-sm text-muted-foreground hover:text-brand-blue hover:bg-gray-50 transition-colors"
-                >
-                  Installation Guide
-                </a>
+              <div className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transition-all opacity-0 invisible group-hover:opacity-100 group-hover:visible ${resourcesOpen ? 'opacity-100 visible' : ''}`}>
+                {resourcesLinks.map((resource) => (
+                  <a
+                    key={resource.label}
+                    href={resource.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-sm text-muted-foreground hover:text-brand-blue hover:bg-gray-50 transition-colors"
+                  >
+                    {resource.label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -207,14 +214,17 @@ const Navbar = () => {
                   </button>
                   {resourcesOpen && (
                     <div className="mt-2 ml-4 flex flex-col gap-2">
-                      <a
-                        href={resourcesLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-muted-foreground hover:text-brand-blue transition-colors"
-                      >
-                        Installation Guide
-                      </a>
+                      {resourcesLinks.map((resource) => (
+                        <a
+                          key={resource.label}
+                          href={resource.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-muted-foreground hover:text-brand-blue transition-colors"
+                        >
+                          {resource.label}
+                        </a>
+                      ))}
                     </div>
                   )}
                 </div>

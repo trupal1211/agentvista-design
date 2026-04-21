@@ -52,7 +52,7 @@ const Footer = () => {
               <img src={logo} alt="AgentVista" className="h-9" loading="lazy" />
             </a>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              The AI Copilot for Surveys, Forms & Assessments -<br/>Natively Powered by Salesforce Agentforce.
+              The AI Copilot for Surveys, Forms & Assessments - Natively Powered by Salesforce Agentforce.
             </p>
           </div>
 
