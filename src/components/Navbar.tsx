@@ -111,7 +111,11 @@ const Navbar = () => {
             })}
             
             {/* Resources Dropdown */}
-            <div className="relative group">
+            <div 
+              className="relative group"
+              onMouseEnter={() => setResourcesOpen(true)}
+              onMouseLeave={() => setResourcesOpen(false)}
+            >
               <button
                 onClick={() => setResourcesOpen(!resourcesOpen)}
                 className="text-[15px] font-medium transition-colors whitespace-nowrap flex items-center gap-1"
@@ -124,19 +128,35 @@ const Navbar = () => {
               </button>
               
               {/* Dropdown Menu */}
-              <div className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transition-all opacity-0 invisible group-hover:opacity-100 group-hover:visible ${resourcesOpen ? 'opacity-100 visible' : ''}`}>
-                {resourcesLinks.map((resource) => (
-                  <a
-                    key={resource.label}
-                    href={resource.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-3 text-sm text-muted-foreground hover:text-brand-blue hover:bg-gray-50 transition-colors"
+              <AnimatePresence>
+                {resourcesOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-0 mt-2 w-56 rounded-lg shadow-xl overflow-hidden z-50"
+                    style={{
+                      background: 'rgba(255,255,255,0.99)',
+                      backdropFilter: 'blur(40px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+                      border: '1px solid rgba(200,200,200,0.3)',
+                    }}
                   >
-                    {resource.label}
-                  </a>
-                ))}
-              </div>
+                    {resourcesLinks.map((resource) => (
+                      <a
+                        key={resource.label}
+                        href={resource.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-4 py-3 text-sm text-muted-foreground hover:text-brand-blue hover:bg-brand-blue/5 transition-colors first:border-b last:border-t-0 border-gray-100"
+                      >
+                        {resource.label}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
 
