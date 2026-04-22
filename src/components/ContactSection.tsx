@@ -154,7 +154,7 @@ const ContactSection = () => {
                     <p className="font-semibold text-foreground text-sm">Phone</p>
                     <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue transition-colors duration-300 relative inline-block">
                       1.669.777.6838
-                      <span className="absolute bottom-0 h-0.5 transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+                      <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
                     </p>
                   </div>
                 </a>
@@ -168,7 +168,7 @@ const ContactSection = () => {
                     <p className="font-semibold text-foreground text-sm">Email</p>
                     <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue transition-colors duration-300 relative inline-block">
                       info@ardira.com
-                      <span className="absolute bottom-0 h-0.5 transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+                      <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
                     </p>
                   </div>
                 </a>
@@ -184,7 +184,7 @@ const ContactSection = () => {
                     <a href="mailto:support@ardira.com" className="relative font-medium inline-block" style={{ color: '#39B44A' }}>
                       {" "}support@ardira.com
                       <span 
-                        className="absolute bottom-0 h-0.5 transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" 
+                        className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" 
                         style={{ backgroundColor: '#39B44A' }}
                       ></span>
                     </a>
@@ -359,7 +359,7 @@ const ContactSection = () => {
                 )}
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="text-brand-blue font-medium hover:underline">Privacy Policy</Link>.
+                  We're committed to your privacy. AgentVista uses the information you provide us to contact you about relevant content, products and services. You may unsubscribe from these communications at any time. For information, check out our <Link to="/privacy-policy" className="relative text-brand-blue font-medium hover:text-brand-blue transition-colors group inline-block">Privacy Policy<span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>.</Link>
                 </p>
 
                 {/* Map at bottom of form */}
