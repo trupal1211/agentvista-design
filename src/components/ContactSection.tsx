@@ -152,7 +152,10 @@ const ContactSection = () => {
                   </div>
                   <div className="flex-1 min-w-0 py-1">
                     <p className="font-semibold text-foreground text-sm">Phone</p>
-                    <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue group-hover:underline transition-colors duration-300">1.669.777.6838</p>
+                    <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue transition-colors duration-300 relative inline-block">
+                      1.669.777.6838
+                      <span className="absolute bottom-0 h-0.5 transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+                    </p>
                   </div>
                 </a>
 
@@ -163,19 +166,28 @@ const ContactSection = () => {
                   </div>
                   <div className="flex-1 min-w-0 py-1">
                     <p className="font-semibold text-foreground text-sm">Email</p>
-                    <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue group-hover:underline transition-colors duration-300">info@ardira.com</p>
+                    <p className="text-sm font-medium text-muted-foreground mt-1 group-hover:text-brand-blue transition-colors duration-300 relative inline-block">
+                      info@ardira.com
+                      <span className="absolute bottom-0 h-0.5 transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+                    </p>
                   </div>
                 </a>
               </div>
 
               {/* Support Note */}
-              <div className="flex items-start gap-4 p-5 rounded-xl border border-secondary/40 bg-secondary/5 w-full min-w-0 shadow-sm">
+              <div className="flex items-start gap-4 p-5 rounded-xl border border-secondary/40 bg-secondary/5 w-full min-w-0 shadow-sm group cursor-pointer hover:bg-secondary/10 transition-colors">
                 <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shrink-0 text-lg font-bold">?</div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-muted-foreground">
                     <span className="hidden md:inline"><span className="font-semibold text-foreground">For customer support,</span> email us directly at<br /></span>
                     <span className="md:hidden"><span className="font-semibold text-foreground">For customer support, email us</span> <br /> directly at</span>
-                    <a href="mailto:support@ardira.com" className="hover:underline font-medium transition-all" style={{ color: '#39B44A' }}> support@ardira.com</a>
+                    <a href="mailto:support@ardira.com" className="relative font-medium inline-block" style={{ color: '#39B44A' }}>
+                      {" "}support@ardira.com
+                      <span 
+                        className="absolute bottom-0 h-0.5 transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" 
+                        style={{ backgroundColor: '#39B44A' }}
+                      ></span>
+                    </a>
                   </p>
                 </div>
               </div>

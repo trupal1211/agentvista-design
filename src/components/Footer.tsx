@@ -65,9 +65,10 @@ const Footer = () => {
                   <a
                     href={l.href}
                     onClick={(e) => handleNavClick(e, l.href)}
-                    className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all"
+                    className="relative text-sm text-muted-foreground hover:text-brand-blue transition-colors group inline-block"
                   >
                     {l.label}
+                    <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
                   </a>
                 </li>
               ))}
@@ -76,9 +77,10 @@ const Footer = () => {
                   href={resourcesLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all"
+                  className="relative text-sm text-muted-foreground hover:text-brand-blue transition-colors group inline-block"
                 >
                   Resources
+                  <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
                 </a>
               </li>
             </ul>
@@ -90,20 +92,23 @@ const Footer = () => {
             <ul className="space-y-2.5 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Globe size={18} className="text-brand-blue flex-shrink-0" />
-                <a href="https://agentsvista.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-blue hover:underline transition-all">
+                <a href="https://agentsvista.com" target="_blank" rel="noopener noreferrer" className="relative hover:text-brand-blue transition-colors group">
                   www.agentsvista.com
+                  <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={18} className="text-brand-blue flex-shrink-0" />
-                <a href="mailto:info@ardira.com" className="hover:text-brand-blue hover:underline transition-all">
+                <a href="mailto:info@ardira.com" className="relative hover:text-brand-blue transition-colors group">
                   info@ardira.com
+                  <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={18} className="text-brand-blue flex-shrink-0" />
-                <a href="tel:16697776838" className="hover:text-brand-blue hover:underline transition-all">
+                <a href="tel:16697776838" className="relative hover:text-brand-blue transition-colors group">
                   1.669.777.6838
+                  <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
                 </a>
               </li>
             </ul>
@@ -117,9 +122,15 @@ const Footer = () => {
           {/* Mobile layout: Links on top, copyright below */}
           <div className="md:hidden flex flex-col items-center justify-center gap-3 text-center">
             <div className="flex items-center gap-4">
-              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Terms of Use</Link>
+              <Link to="/terms-of-use" className="relative text-sm text-muted-foreground hover:text-brand-blue transition-colors group">
+                Terms of Use
+                <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+              </Link>
               <span className="text-sm text-muted-foreground">|</span>
-              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Privacy Policy</Link>
+              <Link to="/privacy-policy" className="relative text-sm text-muted-foreground hover:text-brand-blue transition-colors group">
+                Privacy Policy
+                <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+              </Link>
             </div>
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
@@ -132,8 +143,14 @@ const Footer = () => {
               © {new Date().getFullYear()} Ardira Corporation. All Rights Reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link to="/terms-of-use" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Terms of Use</Link>
-              <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-brand-blue hover:underline transition-all">Privacy Policy</Link>
+              <Link to="/terms-of-use" className="relative text-sm text-muted-foreground hover:text-brand-blue transition-colors group">
+                Terms of Use
+                <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+              </Link>
+              <Link to="/privacy-policy" className="relative text-sm text-muted-foreground hover:text-brand-blue transition-colors group">
+                Privacy Policy
+                <span className="absolute bottom-0 h-px transition-all duration-300 w-0 right-0 group-hover:left-0 group-hover:right-auto group-hover:w-full" style={{ backgroundColor: 'hsl(199 76% 52%)' }}></span>
+              </Link>
             </div>
           </div>
         </div>
