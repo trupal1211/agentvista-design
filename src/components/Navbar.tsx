@@ -87,7 +87,7 @@ const Navbar = () => {
           className="flex items-center justify-between w-full transition-all duration-500 ease-out"
           style={{
             maxWidth: '80rem',
-            padding: scrolled ? (isMobile ? '14px 16px' : '14px 24px') : '20px 4px',
+            padding: scrolled ? (isMobile ? '16px 16px' : '14px 24px') : '20px 4px',
             borderRadius: scrolled ? '16px' : '0',
             background: scrolled ? 'rgba(255,255,255,0.7)' : 'transparent',
             backdropFilter: scrolled ? 'blur(40px) saturate(180%)' : 'none',
