@@ -5,7 +5,7 @@ const WhatIsSection = () => {
   return (
     <section className="pt-16 md:pt-24 pb-9 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-end max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
