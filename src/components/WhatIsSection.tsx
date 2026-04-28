@@ -16,7 +16,7 @@ const WhatIsSection = () => {
             <img
               src={heroImg}
               alt="AgentVista intelligent feedback copilot interface showcasing AI-powered survey creation and feedback management features"
-              className="w-full max-w-sm md:max-w-md h-auto rounded-2xl shadow-xl"
+              className="w-full max-w-sm md:max-w-md h-auto rounded-2xl shadow-xl mb-1"
               loading="lazy"
             />
           </motion.div>
