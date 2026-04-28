@@ -21,7 +21,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 text-brand-blue text-sm font-semibold mb-3 tracking-wide">
+            <div className="inline-flex items-center gap-1 md:gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 text-brand-blue text-xs md:text-sm font-semibold mb-3 tracking-wide">
               <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
               Powered by Salesforce Agentforce
             </div>

@@ -87,7 +87,7 @@ const Navbar = () => {
           }}
         >
           <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2 shrink-0">
-            <img src={logo} alt="AgentVista" className="h-7" loading="lazy" />
+            <img src={logo} alt="AgentVista" className="h-6 md:h-7" loading="lazy" />
           </a>
 
           {/* Desktop links */}
@@ -149,7 +149,7 @@ const Navbar = () => {
                         href={resource.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block px-4 py-3 text-sm text-muted-foreground hover:text-brand-blue hover:bg-brand-blue/5 transition-colors first:border-b last:border-t-0 border-gray-100"
+                        className="block px-4 py-3 text-sm text-muted-foreground hover:text-brand-blue transition-colors first:border-b last:border-t-0 border-gray-100"
                       >
                         {resource.label}
                       </a>
