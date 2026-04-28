@@ -24,6 +24,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -44,9 +45,18 @@ const Navbar = () => {
         setActiveSection(current);
       }
     };
+    
+    const onResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, [isHome]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -77,7 +87,7 @@ const Navbar = () => {
           className="flex items-center justify-between w-full transition-all duration-500 ease-out"
           style={{
             maxWidth: '80rem',
-            padding: scrolled ? '14px 24px' : '20px 4px',
+            padding: scrolled ? (isMobile ? '14px 16px' : '14px 24px') : '20px 4px',
             borderRadius: scrolled ? '16px' : '0',
             background: scrolled ? 'rgba(255,255,255,0.7)' : 'transparent',
             backdropFilter: scrolled ? 'blur(40px) saturate(180%)' : 'none',
