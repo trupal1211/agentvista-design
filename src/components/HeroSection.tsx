@@ -82,7 +82,7 @@ const HeroSection = () => {
               </button>
               <button
                 onClick={() => setAppExOpen(true)}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg border border-border text-foreground font-semibold text-base sm:text-lg hover:bg-muted active:bg-muted transition-colors cursor-pointer select-none"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg border border-border text-foreground font-semibold text-base sm:text-lg hover:bg-gray-50 active:bg-muted transition-colors cursor-pointer select-none"
                 style={{ touchAction: 'manipulation' }}
               >
                 <span className="pointer-events-none">
