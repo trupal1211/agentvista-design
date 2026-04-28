@@ -42,7 +42,7 @@ const HeroSection = () => {
                   <path 
                     d="M0,12 Q50,-6 100,11" 
                     stroke="#3cc14e" 
-                    strokeWidth="4" 
+                    strokeWidth="5" 
                     fill="none" 
                     strokeLinecap="round"
                     strokeLinejoin="round"
