@@ -229,22 +229,27 @@ const UseCasesSection = () => {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCase.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
               className="flex flex-col-reverse lg:flex-row items-center justify-between gap-0 md:gap-0 w-full"
             >
               {/* Text Area */}
               <div className="w-full lg:flex-1 flex flex-col items-start pt-2">
-                <div className="flex items-center gap-4 mb-6">
+                <motion.div 
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="flex items-center gap-4 mb-6"
+                >
                   <div className={`p-2.5 rounded-xl ${activeCase.bgClass} flex items-center justify-center`}>
                     <activeCase.icon size={28} strokeWidth={2.5} className={activeCase.accentColor} />
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground">
                     {activeCase.label}
                   </h3>
-                </div>
+                </motion.div>
 
                 <ul className="space-y-4 md:space-y-6">
                   {activeCase.items.map((item, i) => {
@@ -252,9 +257,9 @@ const UseCasesSection = () => {
                     return (
                       <motion.li
                         key={i}
-                        initial={{ opacity: 0, x: -10 }}
+                        initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 + i * 0.08 }}
+                        transition={{ duration: 0.3, delay: 0.05 + i * 0.05, ease: "easeInOut" }}
                         className="flex items-start gap-4 group"
                       >
                         <span className={`flex-shrink-0 mt-1`}>
@@ -271,13 +276,18 @@ const UseCasesSection = () => {
 
               {/* Image Area */}
               <div className="w-full lg:flex-1 relative flex justify-center items-center">
-                <div className={`absolute inset-0 bg-gradient-to-br ${activeCase.imageBg} rounded-full blur-3xl opacity-60 z-0`} />
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className={`absolute inset-0 bg-gradient-to-br ${activeCase.imageBg} rounded-full blur-3xl opacity-60 z-0`}
+                />
 
                 <div className="relative w-full flex items-center justify-center z-10 min-h-[220px] md:min-h-[300px]">
                   <motion.img
-                    initial={{ opacity: 0, scale: 0.97 }}
+                    initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
                     src={activeCase.image}
                     alt={`AgentVista ${activeCase.label} use case`}
                     className="w-full max-w-[280px] md:max-w-[400px] object-contain drop-shadow-xl"
