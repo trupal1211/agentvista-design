@@ -144,7 +144,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                                     <td align="left" width="50%"
                                         style="text-align:left; font-size: 12px;font-family:Arial, Helvetica, sans-serif;">
                                         <strong>Thanks &amp; Regards</strong><br /> AgentVista Team<br /><strong>Address: </strong>2040 Martin Ave Santa Clara, CA 95050 United States<br />
-                                        <strong>Phone: </strong> 1.669.777.6838 <br /><strong>Email: </strong> <a style="color: #000;" href="mailto:info@surveyvista.com">info@surveyvista.com</a>
+                                        <strong>Phone: </strong> 1.669.777.6838 <br /><strong>Email: </strong> <a style="color: #000;" href="mailto:info@ardira.com">info@ardira.com</a>
                                     </td>
                                 </tr>
                             </table>
