@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# AgentVista Design
 
 TODO: Document your project here
