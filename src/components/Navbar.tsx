@@ -233,7 +233,9 @@ const Navbar = () => {
               className="fixed top-0 left-0 bottom-0 z-[70] w-72 bg-background border-r border-border shadow-2xl lg:hidden"
             >
               <div className="flex items-center justify-between p-5 border-b border-border">
-                <img src={logo} alt="AgentVista" className="h-8" />
+                <a href="#home" onClick={(e) => handleNavClick(e, "#home")}>
+                  <img src={logo} alt="AgentVista" className="h-8" />
+                </a>
                 <button onClick={() => setMobileOpen(false)} className="text-foreground">
                   <X size={22} />
                 </button>
