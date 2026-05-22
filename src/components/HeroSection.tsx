@@ -20,6 +20,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
+            className="md:text-center lg:text-left"
           >
             <div className="inline-flex items-center gap-1 md:gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 text-brand-blue text-xs md:text-sm font-semibold mb-3 tracking-wide">
               <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
@@ -65,11 +66,11 @@ const HeroSection = () => {
               <span className="hidden md:inline">AI-Powered Automation for Feedback <br /> Management & Data Collection.</span>
             </h2>
 
-            <p className="text-sm md:text-base text-muted-foreground max-w-xl mb-10 leading-relaxed">
+            <p className="text-sm md:text-base text-muted-foreground max-w-xl mb-10 leading-relaxed md:mx-auto lg:mx-0">
               Use natural language and AI to create, distribute, understand, and act on feedback — all inside Salesforce. No code required.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:justify-center lg:justify-start">
               <button
                 onClick={() => setDemoOpen(true)}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg bg-brand-blue text-white font-semibold text-base sm:text-lg hover:opacity-85 active:opacity-75 transition-opacity cursor-pointer select-none"
