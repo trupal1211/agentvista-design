@@ -51,7 +51,7 @@ const PrivacyPolicy = () => {
             <li>job role (e.g., Finance, Human Resources, Information Technology, etc.), and</li>
             <li>comments or messages provided in free text boxes.</li>
           </ul>
-          <p>When you provide us Personal Information, we may combine that Personal Information from other data we have collected about you to learn more about you and to provide additional services.</p>
+          <p>When you provide us Personal Information, we may combine that Personal Information from other data we have collected about you to learn more about you and to provide additional services. For example, your Personal Information may be included to update user profiles, provide services to follow-up on your prior questions or requests, and supplement existing marketing and sales promotional lists.(PP)</p>
           <p>You may provide us Personal Information when you:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>request information,</li>
