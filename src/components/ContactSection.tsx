@@ -2,39 +2,48 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, Phone, MapPin, CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRecaptcha } from "@/hooks/use-recaptcha";
 
+// Zod validation schema
+const contactFormSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Name is required")
+    .min(2, "Name must be at least 2 characters"),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Please enter a valid email"),
+  phone: z
+    .string()
+    .min(1, "Phone is required")
+    .regex(
+      /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}/,
+      "Please enter a valid phone number"
+    ),
+  message: z.string().optional(),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { getToken } = useRecaptcha();
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!form.name.trim()) {
-      newErrors.name = "Name is required";
-    } else if (form.name.trim().length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
-    }
-
-    if (!form.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = "Please enter a valid email";
-    }
-
-    if (!form.phone.trim()) {
-      newErrors.phone = "Phone is required";
-    } else if (!/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}/.test(form.phone.replace(/\s+/g, ""))) {
-      newErrors.phone = "Please enter a valid phone number";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    mode: "onBlur", // Validate on blur event
+  });
 
   // ---------- DEPLOYMENT CONFIGURATIONS ----------
   // Uncomment the line below for Original Domain (PHP deployment)
@@ -44,13 +53,8 @@ const ContactSection = () => {
   const CONTACT_API_URL = "/api/contact";
   // ------------------------------------------------
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmitError("");
     setIsLoading(true);
 
     try {
@@ -62,37 +66,37 @@ const ContactSection = () => {
         token = "dev_placeholder_token"; // Allowing local testing to proceed without a real ReCAPTCHA key
       }
 
-      // Send form data to PHP backend
+      // Send form data to backend
       const response = await fetch(CONTACT_API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          message: form.message,
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message || "",
           pageUrl: window.location.href,
           recaptchaToken: token,
         }),
       });
 
-      const data = await response.json();
+      const responseData = await response.json();
 
-      if (response.ok && data.success) {
+      if (response.ok && responseData.success) {
         setSubmitted(true);
-        setErrors({});
+        reset();
         setIsLoading(false);
       } else {
-        const errorMessage = data.message || "Something went wrong. Please try again.";
+        const errorMessage = responseData.message || "Something went wrong. Please try again.";
         console.error("Form submission failed:", errorMessage);
-        setErrors({ form: errorMessage });
+        setSubmitError(errorMessage);
         setIsLoading(false);
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      setErrors({ form: "Unable to send your message. Please try again later. Check browser console for details." });
+      setSubmitError("Unable to send your message. Please try again later. Check browser console for details.");
       setIsLoading(false);
     }
   };
@@ -257,9 +261,10 @@ const ContactSection = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.65, duration: 0.3 }}
+                  type="button"
                   onClick={() => {
                     setSubmitted(false);
-                    setForm({ name: "", email: "", phone: "", message: "" });
+                    reset();
                   }}
                   className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border border-brand-blue/30 text-brand-blue font-semibold text-sm hover:bg-brand-blue/5 transition-colors"
                 >
@@ -268,7 +273,7 @@ const ContactSection = () => {
                 </motion.button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ boxSizing: 'border-box' }} className="bg-card rounded-xl border border-border p-4 md:p-8 space-y-5">
+              <form onSubmit={handleSubmit(onSubmit)} style={{ boxSizing: 'border-box' }} className="bg-card rounded-xl border border-border p-4 md:p-8 space-y-5">
                 <div>
                   <h3 className="text-lg font-bold text-foreground mb-1">Fill out the form and we'll be in touch shortly!</h3>
                   <p className="text-xs text-muted-foreground">Note: fields marked with <span className="text-red-500">(*)</span> are mandatory</p>
@@ -277,72 +282,59 @@ const ContactSection = () => {
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Name<span className="text-red-500">*</span></label>
                   <input 
-                    type="text" 
+                    type="text"
                     disabled={isLoading}
-                    value={form.name} 
-                    onChange={(e) => {
-                      setForm({ ...form, name: e.target.value });
-                      if (errors.name) setErrors({ ...errors, name: "" });
-                    }} 
+                    placeholder="Enter your name"
+                    {...register("name")}
                     className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
                       errors.name
                         ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
                         : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
                     } text-foreground`}
-                    placeholder="Enter your name" 
                   />
-                  {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                  {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Email<span className="text-red-500">*</span></label>
                   <input 
-                    type="email" 
+                    type="email"
                     disabled={isLoading}
-                    value={form.email} 
-                    onChange={(e) => {
-                      setForm({ ...form, email: e.target.value });
-                      if (errors.email) setErrors({ ...errors, email: "" });
-                    }} 
+                    placeholder="Enter your email"
+                    {...register("email")}
                     className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
                       errors.email
                         ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
                         : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
                     } text-foreground`}
-                    placeholder="Enter your email" 
                   />
-                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Phone<span className="text-red-500">*</span></label>
                   <input 
-                    type="tel" 
+                    type="tel"
                     disabled={isLoading}
-                    value={form.phone} 
-                    onChange={(e) => {
-                      setForm({ ...form, phone: e.target.value });
-                      if (errors.phone) setErrors({ ...errors, phone: "" });
-                    }} 
+                    placeholder="Enter your phone number"
+                    {...register("phone")}
                     className={`w-full px-4 py-2.5 rounded-md border transition-colors text-sm focus:outline-none focus:ring-2 disabled:opacity-50 ${
                       errors.phone
                         ? "border-red-500 bg-red-50 focus:ring-red-500/30 focus:border-red-500"
                         : "border-border bg-background focus:ring-brand-blue/30 focus:border-brand-blue"
                     } text-foreground`}
-                    placeholder="Enter your phone number" 
                   />
-                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Message</label>
                   <textarea 
-                    rows={5} 
+                    rows={5}
                     disabled={isLoading}
-                    value={form.message} 
-                    onChange={(e) => setForm({ ...form, message: e.target.value })} 
+                    placeholder="Lets talk! Tell us about yourself."
+                    {...register("message")}
                     className="w-full px-4 py-2.5 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue transition-colors resize-none disabled:opacity-50" 
-                    placeholder="Lets talk! Tell us about yourself." 
                   />
                 </div>
 
@@ -354,8 +346,8 @@ const ContactSection = () => {
                   {isLoading ? "Sending..." : "Send Message"}
                 </button>
 
-                {errors.form && (
-                  <p className="text-red-500 text-sm text-center bg-red-50 border border-red-200 rounded-md px-4 py-2.5">{errors.form}</p>
+                {submitError && (
+                  <p className="text-red-500 text-sm text-center bg-red-50 border border-red-200 rounded-md px-4 py-2.5">{submitError}</p>
                 )}
 
                 <p className="text-xs text-muted-foreground leading-relaxed">
