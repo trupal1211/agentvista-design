@@ -66,7 +66,7 @@ const PrivacyPolicy = () => {
 
           <h3 className="text-lg font-semibold text-foreground !mt-6">Automated Information Collection</h3>
           <p>
-            In addition to the information that you provide to us, we may also collect information about you during your visit to our Website. We collect this information using automated tools that are detailed below. These tools may collect information about your behavior and your computer system, such as your internet address (IP Address), the pages you have viewed, and the actions you have taken while using our Website.
+            In addition to the information that you provide to us, we may also collect information about you during your visit to our Website. We collect this information using automated tools that are detailed below. These tools may collect information about your behavior and your computer system, such as your internet address (IP Address), the pages you have viewed, and the actions you have taken while using our Website. Some of the tools we use to automatically collect information about you may include:
           </p>
 
           <h4 className="text-base font-semibold text-foreground !mt-4">(a) Cookies</h4>
