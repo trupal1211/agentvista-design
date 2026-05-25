@@ -107,7 +107,7 @@ const PrivacyPolicy = () => {
             We want to provide you with relevant information that you have requested. When you initially make contact with us, such as through requesting a white paper or requesting a demonstration of a product, we will add your information to our communications list. If we provide subscription-based services, such as email newsletters, we will always allow you to make choices about what information you provide at the point of information collection or at any time after you have received a communication from us while you are subscribed to the service.
           </p>
           <p>
-            You may opt-out of receiving communications from us at any time by selecting the "unsubscribe" link at the bottom of each email. Please note that by opting out or unsubscribing you might affect other services you have requested we provide to you, in which email communication is a requirement of the service provided.
+            You may opt-out of receiving communications from us at any time by selecting the "unsubscribe" link at the bottom of each email. Please note that by opting out or unsubscribing you might affect other services you have requested we provide to you, in which email communication is a requirement of the service provided. Any such communications you receive from us will be administered in accordance with your preferences and this Policy.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Accuracy and Access to Your Personal Information</h2>
