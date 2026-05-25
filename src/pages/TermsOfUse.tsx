@@ -70,6 +70,9 @@ const TermsOfUse = () => {
             The Website and Content are protected by copyrights, trademarks, or are subject to other proprietary rights. Accordingly, you are not permitted to use the Website or Content in any manner, except as expressly permitted by the Company in these Terms. The Website or Content may not be copied, reproduced, modified, published, uploaded, posted, transmitted, performed, or distributed in any way, and you agree not to modify, rent, lease, loan, sell, distribute, transmit, broadcast, or create derivatives with the express written consent of the Company or applicable owner.
           </p>
           <p>
+            You acknowledge and agree that you are solely responsible for complying with the applicable restrictions on use of all Content, copyrighted materials and trademarks that you see, hear, and use on the Website. You understand that any unauthorized use of such intellectual property would result in irreparable injury for which money damages would be inadequate.  You further acknowledge that, in the event of any such unauthorized use, the Company or the applicable intellectual property owner will have the right, in addition to other remedies available at law and in equity, to immediate injunctive relief to prevent any such unauthorized use. 
+          </p>
+          <p>
             Questions regarding the use of any intellectual property provided on the Website should be directed to <a href="mailto:legal@ardira.com" className="text-[#39B44A] hover:underline font-medium">legal@ardira.com</a>.
           </p>
 
