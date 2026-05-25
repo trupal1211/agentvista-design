@@ -89,12 +89,12 @@ const PrivacyPolicy = () => {
 
           <h4 className="text-base font-semibold text-foreground !mt-4">(b) Embedded Web Links</h4>
           <p>
-            Links provided in our emails and, in some cases, on third-party websites may include tracking technology embedded in the link. The tracking system allows us to understand how the link is being used by email recipients. Some of these links will enable us to identify that you have personally clicked on the link and this may be attached to the Personal Information that we hold about you.
+            Links provided in our emails and, in some cases, on third-party websites may include tracking technology embedded in the link. The tracking system allows us to understand how the link is being used by email recipients. Some of these links will enable us to identify that you have personally clicked on the link and this may be attached to the Personal Information that we hold about you. This data is used to improve our service to you and to help us understand the performance of our marketing campaigns.
           </p>
 
           <h4 className="text-base font-semibold text-foreground !mt-4">(c) Third-Party Websites and Services</h4>
           <p>
-            We work with a number of service providers of marketing communications technology. These service providers may use various data collection methods to improve the performance of the marketing campaigns we are contracting them to provide.
+            Third-Party Websites and Services. We work with a number of service providers of marketing communications technology. These service providers may use various data collection methods to improve the performance of the marketing campaigns we are contracting them to provide. The information collected can be gathered on our Website and also on the websites where our marketing communications are appearing. For example, we may collect data where our banner advertisements are displayed on third-party websites.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground !mt-8">Do Not Track Disclosure</h2>
